@@ -46,6 +46,7 @@
             android:layout_height="wrap_content"
             android:textSize="24sp"
             android:textColor="@color/dark"
+            android:textStyle="bold"
             android:text="@string/what_is_your_name" />
 
         <EditText
