@@ -1,5 +1,6 @@
 package kz.kolesateam.confapp.hello.presentation
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
@@ -29,5 +30,10 @@ class HelloActivity : AppCompatActivity() {
                 continueButton.isEnabled = !isInputEmpty
             }
         })
+
+        continueButton.setOnClickListener {
+            val testHelloScreenIntent = Intent(this, TestHelloActivity::class.java)
+            startActivity(testHelloScreenIntent)
+        }
     }
 }
