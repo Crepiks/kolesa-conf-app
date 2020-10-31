@@ -1,6 +1,8 @@
 package kz.kolesateam.confapp.hello.presentation
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
@@ -11,6 +13,7 @@ import android.widget.EditText
 import kz.kolesateam.confapp.R
 
 private const val TAG = "HelloActivity"
+private const val PREFERENCE_NAME = "user-name"
 
 class HelloActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,6 +35,11 @@ class HelloActivity : AppCompatActivity() {
         })
 
         continueButton.setOnClickListener {
+            val sharedPref: SharedPreferences = getSharedPreferences(PREFERENCE_NAME, Context.MODE_PRIVATE)
+            val editor = sharedPref.edit()
+            val userName: String = nameEditText.text.toString()
+            editor.putString(PREFERENCE_NAME, userName)
+            editor.apply()
             val testHelloScreenIntent = Intent(this, TestHelloActivity::class.java)
             startActivity(testHelloScreenIntent)
         }
