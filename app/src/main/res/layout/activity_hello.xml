@@ -11,7 +11,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="209dp"
-        android:background="@color/space_color"
+        android:background="@color/activity_hello_header_background"
         android:orientation="vertical">
 
         <ImageView
@@ -43,7 +43,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="24sp"
-            android:textColor="@color/dark"
+            android:textColor="@color/text_primary_dark"
             android:textStyle="bold"
             android:text="@string/what_is_your_name" />
 
