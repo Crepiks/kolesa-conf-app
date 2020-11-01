@@ -16,7 +16,7 @@ class TestHelloActivity : AppCompatActivity() {
 
         val nameTextView = findViewById<TextView>(R.id.activity_test_hello_greeting_text)
         val userName = retrieveUserName()
-        nameTextView.text = resources.getString(R.string.greeting, userName)
+        nameTextView.text = resources.getString(R.string.activity_hello_test_greeting_fmt, userName)
     }
 
     private fun retrieveUserName(): String {

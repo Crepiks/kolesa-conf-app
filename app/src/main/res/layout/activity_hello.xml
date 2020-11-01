@@ -29,7 +29,7 @@
             android:id="@+id/hello_activity_virus_icon"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:contentDescription="@string/virus_description"
+            android:contentDescription="@string/activity_hello_virus_description"
             app:srcCompat="@drawable/ic_virus"
             />
 
@@ -49,7 +49,7 @@
             android:textSize="24sp"
             android:textColor="@color/text_primary_dark"
             android:textStyle="bold"
-            android:text="@string/what_is_your_name"
+            android:text="@string/activity_hello_what_is_your_name"
             />
 
         <EditText
@@ -72,7 +72,7 @@
             android:textAllCaps="false"
             android:background="@drawable/background_submit_button"
             android:enabled="false"
-            android:text="@string/continue_button"
+            android:text="@string/action_continue"
             />
 
     </LinearLayout>
