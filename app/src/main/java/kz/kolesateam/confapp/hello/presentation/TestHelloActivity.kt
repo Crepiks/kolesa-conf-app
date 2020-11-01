@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.widget.TextView
 import kz.kolesateam.confapp.R
 
-private const val TAG = "HelloTestActivity"
 private const val PRIVATE_MODE = 0
 private const val PREFERENCE_NAME = "user-name"
 

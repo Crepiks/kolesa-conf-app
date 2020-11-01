@@ -12,7 +12,6 @@ import android.widget.Button
 import android.widget.EditText
 import kz.kolesateam.confapp.R
 
-private const val TAG = "HelloActivity"
 private const val PREFERENCE_NAME = "user-name"
 
 class HelloActivity : AppCompatActivity() {
