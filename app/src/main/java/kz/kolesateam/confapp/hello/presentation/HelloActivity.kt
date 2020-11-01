@@ -34,13 +34,21 @@ class HelloActivity : AppCompatActivity() {
         })
 
         continueButton.setOnClickListener {
-            val sharedPref: SharedPreferences = getSharedPreferences(PREFERENCE_NAME, Context.MODE_PRIVATE)
-            val editor = sharedPref.edit()
-            val userName: String = nameEditText.text.toString()
-            editor.putString(PREFERENCE_NAME, userName)
-            editor.apply()
-            val testHelloScreenIntent = Intent(this, TestHelloActivity::class.java)
-            startActivity(testHelloScreenIntent)
+            val userName = nameEditText.text.toString()
+            storeUserName(userName)
+            moveToHelloTestScreen()
         }
+    }
+
+    private fun storeUserName(userName: String) {
+        val sharedPref: SharedPreferences = getSharedPreferences(PREFERENCE_NAME, Context.MODE_PRIVATE)
+        val editor = sharedPref.edit()
+        editor.putString(PREFERENCE_NAME, userName)
+        editor.apply()
+    }
+
+    private fun moveToHelloTestScreen() {
+        val testHelloScreenIntent = Intent(this, TestHelloActivity::class.java)
+        startActivity(testHelloScreenIntent)
     }
 }
