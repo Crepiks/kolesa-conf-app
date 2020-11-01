@@ -11,7 +11,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="209dp"
+        android:layout_height="210dp"
         android:background="@color/activity_hello_header_background"
         android:orientation="vertical"
         >
