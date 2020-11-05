@@ -3,10 +3,10 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     >
     <item
-        android:drawable="@drawable/submit_button_enabled"
+        android:drawable="@drawable/button_background_enabled"
         android:state_enabled="true"
         />
     <item
-        android:drawable="@drawable/submit_button_disabled"
+        android:drawable="@drawable/button_background_disabled"
         />
 </selector>
