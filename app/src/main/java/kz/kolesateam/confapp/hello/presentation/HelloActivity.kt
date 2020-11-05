@@ -37,7 +37,7 @@ class HelloActivity : AppCompatActivity() {
         continueButton.setOnClickListener {
             val userName = nameEditText.text.toString()
             storeUserName(userName)
-            moveToHelloTestScreen()
+            navigateToHelloTestScreen()
         }
     }
 
@@ -48,7 +48,7 @@ class HelloActivity : AppCompatActivity() {
         editor.apply()
     }
 
-    private fun moveToHelloTestScreen() {
+    private fun navigateToHelloTestScreen() {
         val testHelloScreenIntent = Intent(this, TestHelloActivity::class.java)
         startActivity(testHelloScreenIntent)
     }
