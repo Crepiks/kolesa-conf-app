@@ -72,6 +72,7 @@
             android:textAllCaps="false"
             android:background="@drawable/button_background_selector"
             android:enabled="false"
+            android:textColor="@color/button_text_color_selector"
             android:text="@string/action_continue"
             />
 
