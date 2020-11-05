@@ -9,31 +9,39 @@
     tools:context=".hello.presentation.HelloActivity"
     >
 
-    <LinearLayout
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="210dp"
-        android:background="@color/activity_hello_header_background"
-        android:orientation="vertical"
-        >
+        android:background="@color/activity_hello_header_background">
 
         <ImageView
-            android:id="@+id/hello_activity_logo"
             android:layout_width="match_parent"
-            android:layout_height="16dp"
-            android:layout_marginTop="40dp"
-            android:contentDescription="@string/logo_description"
-            app:srcCompat="@drawable/ic_logo_white"
-            />
+            android:layout_height="match_parent"
+            android:src="@drawable/bg"
+            android:scaleType="matrix"/>
 
-        <ImageView
-            android:id="@+id/hello_activity_virus_icon"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:contentDescription="@string/activity_hello_virus_description"
-            app:srcCompat="@drawable/ic_virus"
-            />
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-    </LinearLayout>
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/ic_logo_white"
+                android:layout_gravity="center"
+                android:layout_marginTop="40dp"
+                />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_virus"
+                android:layout_gravity="center"
+                />
+
+        </LinearLayout>
+    </FrameLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
