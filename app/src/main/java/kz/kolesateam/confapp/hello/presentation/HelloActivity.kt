@@ -12,9 +12,10 @@ import android.widget.Button
 import android.widget.EditText
 import kz.kolesateam.confapp.R
 
-private const val PREFERENCE_NAME = "user-name"
+private const val PREFERENCE_NAME = "user_name"
 
 class HelloActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_hello)

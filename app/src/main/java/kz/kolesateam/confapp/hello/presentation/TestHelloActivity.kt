@@ -7,7 +7,7 @@ import android.os.Bundle
 import android.widget.TextView
 import kz.kolesateam.confapp.R
 
-private const val PREFERENCE_NAME = "user-name"
+private const val PREFERENCE_NAME = "user_name"
 
 class TestHelloActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
