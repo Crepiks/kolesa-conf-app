@@ -11,7 +11,7 @@
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="210dp"
+        android:layout_height="@dimen/activity_hello_header_height"
         android:background="@color/activity_hello_header_background">
 
         <ImageView
@@ -30,7 +30,7 @@
                 android:layout_height="wrap_content"
                 app:srcCompat="@drawable/ic_logo_white"
                 android:layout_gravity="center"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="@dimen/activity_hello_logo_margin_top"
                 />
 
             <ImageView
@@ -46,7 +46,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="16dp"
+        android:padding="@dimen/activity_hello_content_padding"
         android:orientation="vertical"
         >
 
@@ -54,7 +54,7 @@
             android:id="@+id/textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="24sp"
+            android:textSize="@dimen/activity_hello_title_size"
             android:textColor="@color/text_primary_dark"
             android:textStyle="bold"
             android:text="@string/activity_hello_what_is_your_name"
@@ -62,10 +62,10 @@
 
         <EditText
             android:id="@+id/activity_hello_name_input"
-            android:layout_height="44dp"
+            android:layout_height="@dimen/activity_hello_edit_text_height"
             android:layout_width="match_parent"
-            android:layout_marginTop="16dp"
-            android:paddingHorizontal="16dp"
+            android:layout_marginTop="@dimen/activity_hello_edit_text_margin_top"
+            android:paddingHorizontal="@dimen/activity_hello_edit_text_padding_horizontal"
             android:background="@drawable/edit_text_border"
             android:inputType="text"
             />
@@ -74,9 +74,9 @@
             android:id="@+id/activity_hello_continue_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:padding="10dp"
-            android:textSize="16sp"
+            android:layout_marginTop="@dimen/activity_hello_continue_button_margin_top"
+            android:padding="@dimen/activity_hello_continue_button_padding"
+            android:textSize="@dimen/activity_hello_continue_button_text_size"
             android:textAllCaps="false"
             android:background="@drawable/button_background_selector"
             android:enabled="false"
