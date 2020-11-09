@@ -17,4 +17,5 @@
     <dimen name="activity_test_hello_text_size">20sp</dimen>
     <dimen name="activity_upcoming_events_screen_padding">10dp</dimen>
     <dimen name="activity_upcoming_events_header_margin_bottom">10dp</dimen>
+    <dimen name="activity_upcoming_events_header_margin_top">20dp</dimen>
 </resources>

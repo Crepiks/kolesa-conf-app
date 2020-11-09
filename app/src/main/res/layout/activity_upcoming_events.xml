@@ -6,11 +6,13 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="@dimen/activity_upcoming_events_screen_padding"
-    tools:context=".events.presentation.UpcomingEventsActivity">
+    tools:context=".events.presentation.UpcomingEventsActivity"
+    >
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/activity_upcoming_events_header_margin_top"
         android:layout_marginBottom="@dimen/activity_upcoming_events_header_margin_bottom"
         >
 
@@ -18,23 +20,29 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/activity_upcoming_events_sync_loading" />
+            android:text="@string/activity_upcoming_events_sync_loading"
+            />
 
         <Button
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/activity_upcoming_events_async_loading" />
+            android:text="@string/activity_upcoming_events_async_loading"
+            />
+
     </LinearLayout>
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        >
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="Hello" />
+            android:text="Hello"
+            />
+
     </ScrollView>
 
     <ProgressBar

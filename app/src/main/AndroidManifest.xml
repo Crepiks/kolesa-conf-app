@@ -9,9 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ConfApp">
-        <activity android:name=".events.presentation.UpcomingEventsActivity"></activity>
+        <activity android:name=".hello.presentation.HelloActivity"></activity>
         <activity android:name=".hello.presentation.TestHelloActivity" />
-        <activity android:name=".hello.presentation.HelloActivity">
+        <activity android:name=".events.presentation.UpcomingEventsActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
