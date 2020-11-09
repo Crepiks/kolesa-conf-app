@@ -14,4 +14,7 @@
     <color name="button_background_disabled">#1A858585</color>
     <color name="button_stroke_disabled">#331C1819</color>
     <color name="button_background_enabled">#2A81DD</color>
+    <color name="activity_upcoming_events_sync_text_color">#2196F3</color>
+    <color name="activity_upcoming_events_async_text_color">#4CAF50</color>
+    <color name="activity_upcoming_events_error_text_color">#F44336</color>
 </resources>
