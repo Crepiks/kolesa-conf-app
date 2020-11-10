@@ -12,23 +12,26 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/activity_hello_header_height"
-        android:background="@color/activity_hello_header_background">
+        android:background="@color/activity_hello_header_background"
+        >
 
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:src="@drawable/bg"
-            android:scaleType="matrix"/>
+            android:scaleType="matrix"
+            />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            >
 
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:srcCompat="@drawable/ic_logo_white"
+                android:src="@drawable/ic_logo_white"
                 android:layout_gravity="center"
                 android:layout_marginTop="@dimen/activity_hello_logo_margin_top"
                 />

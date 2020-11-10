@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
-    tools:context=".hello.presentation.TestHelloActivity">
+    tools:context=".hello.presentation.TestHelloActivity"
+    >
 
     <TextView
         android:id="@+id/activity_test_hello_greeting_text"
@@ -14,6 +15,7 @@
         android:layout_weight="1"
         android:textAlignment="center"
         android:textSize="@dimen/activity_test_hello_text_size"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        />
 
 </LinearLayout>
