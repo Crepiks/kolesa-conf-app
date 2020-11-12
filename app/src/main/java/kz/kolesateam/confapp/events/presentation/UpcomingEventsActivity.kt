@@ -47,20 +47,20 @@ class UpcomingEventsActivity : AppCompatActivity() {
     }
 
     private fun loadAsyncData() {
-        fillText("", R.color.activity_upcoming_events_async_text_color)
+        changeText("", R.color.activity_upcoming_events_async_text_color)
         showProgressBar()
         apiClient.getUpcomingEvents().enqueue(object: Callback<JsonNode> {
             override fun onResponse(call: Call<JsonNode>, response: Response<JsonNode>) {
                 if (response.isSuccessful) {
                     hideProgressBar()
                     val body: JsonNode = response.body()!!
-                    fillText(body.toString(), R.color.activity_upcoming_events_async_text_color)
+                    changeText(body.toString(), R.color.activity_upcoming_events_async_text_color)
                 }
             }
 
             override fun onFailure(call: Call<JsonNode>, t: Throwable) {
                 val errorMessage = t.localizedMessage;
-                fillText(errorMessage, R.color.activity_upcoming_events_error_text_color)
+                changeText(errorMessage, R.color.activity_upcoming_events_error_text_color)
             }
         })
     }
@@ -69,21 +69,21 @@ class UpcomingEventsActivity : AppCompatActivity() {
         Thread {
             try {
                 runOnUiThread {
-                    fillText("", R.color.activity_upcoming_events_sync_text_color)
+                    changeText("", R.color.activity_upcoming_events_sync_text_color)
                     showProgressBar()
                 }
                 val response: Response<JsonNode> = apiClient.getUpcomingEvents().execute()
                 if (response.isSuccessful) {
                     val body: JsonNode = response.body()!!
                     runOnUiThread {
-                        fillText(body.toString(), R.color.activity_upcoming_events_sync_text_color)
+                        changeText(body.toString(), R.color.activity_upcoming_events_sync_text_color)
                         hideProgressBar()
                     }
                 }
             } catch(e: Exception) {
                 runOnUiThread {
                     val errorMessage = e.localizedMessage
-                    fillText(errorMessage, R.color.activity_upcoming_events_error_text_color)
+                    changeText(errorMessage, R.color.activity_upcoming_events_error_text_color)
                     hideProgressBar()
                 }
             }
@@ -98,7 +98,7 @@ class UpcomingEventsActivity : AppCompatActivity() {
         progressBar.visibility = View.INVISIBLE
     }
 
-    private fun fillText(text: String?, color: Int) {
+    private fun changeText(text: String, color: Int) {
         loadDataResultTextView.text = text
         loadDataResultTextView.setTextColor( ContextCompat.getColor(this, color))
     }
