@@ -21,6 +21,20 @@ val apiRetrofit: Retrofit = Retrofit.Builder()
         .addConverterFactory(JacksonConverterFactory.create()).build();
 val apiClient: ApiClient = apiRetrofit.create(ApiClient::class.java)
 
+fun View.show() : View {
+    if (visibility != View.VISIBLE) {
+        visibility = View.VISIBLE
+    }
+    return this
+}
+
+fun View.hide() : View {
+    if (visibility != View.GONE) {
+        visibility = View.GONE
+    }
+    return this
+}
+
 class UpcomingEventsActivity : AppCompatActivity() {
 
     private lateinit var loadDataResultTextView: TextView
@@ -48,11 +62,11 @@ class UpcomingEventsActivity : AppCompatActivity() {
 
     private fun loadAsyncData() {
         changeText("", R.color.activity_upcoming_events_async_text_color)
-        showProgressBar()
+        progressBar.show()
         apiClient.getUpcomingEvents().enqueue(object: Callback<JsonNode> {
             override fun onResponse(call: Call<JsonNode>, response: Response<JsonNode>) {
                 if (response.isSuccessful) {
-                    hideProgressBar()
+                    progressBar.hide()
                     val body: JsonNode = response.body()!!
                     changeText(body.toString(), R.color.activity_upcoming_events_async_text_color)
                 }
@@ -70,32 +84,24 @@ class UpcomingEventsActivity : AppCompatActivity() {
             try {
                 runOnUiThread {
                     changeText("", R.color.activity_upcoming_events_sync_text_color)
-                    showProgressBar()
+                    progressBar.show()
                 }
                 val response: Response<JsonNode> = apiClient.getUpcomingEvents().execute()
                 if (response.isSuccessful) {
                     val body: JsonNode = response.body()!!
                     runOnUiThread {
                         changeText(body.toString(), R.color.activity_upcoming_events_sync_text_color)
-                        hideProgressBar()
+                        progressBar.hide()
                     }
                 }
             } catch(e: Exception) {
                 runOnUiThread {
                     val errorMessage = e.localizedMessage
                     changeText(errorMessage, R.color.activity_upcoming_events_error_text_color)
-                    hideProgressBar()
+                    progressBar.hide()
                 }
             }
         }.start()
-    }
-
-    private fun showProgressBar() {
-        progressBar.visibility = View.VISIBLE
-    }
-
-    private fun hideProgressBar() {
-        progressBar.visibility = View.INVISIBLE
     }
 
     private fun changeText(text: String, color: Int) {
