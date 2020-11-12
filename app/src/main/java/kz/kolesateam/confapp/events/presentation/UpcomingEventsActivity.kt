@@ -61,10 +61,11 @@ class UpcomingEventsActivity : AppCompatActivity() {
     }
 
     private fun loadAsyncData() {
-        changeText("", R.color.activity_upcoming_events_async_text_color)
+        loadDataResultTextView.hide()
         progressBar.show()
         apiClient.getUpcomingEvents().enqueue(object: Callback<JsonNode> {
             override fun onResponse(call: Call<JsonNode>, response: Response<JsonNode>) {
+                loadDataResultTextView.show()
                 if (response.isSuccessful) {
                     progressBar.hide()
                     val body: JsonNode = response.body()!!
@@ -73,6 +74,7 @@ class UpcomingEventsActivity : AppCompatActivity() {
             }
 
             override fun onFailure(call: Call<JsonNode>, t: Throwable) {
+                loadDataResultTextView.show()
                 val errorMessage = t.localizedMessage;
                 changeText(errorMessage, R.color.activity_upcoming_events_error_text_color)
             }
@@ -83,19 +85,21 @@ class UpcomingEventsActivity : AppCompatActivity() {
         Thread {
             try {
                 runOnUiThread {
-                    changeText("", R.color.activity_upcoming_events_sync_text_color)
+                    loadDataResultTextView.hide()
                     progressBar.show()
                 }
                 val response: Response<JsonNode> = apiClient.getUpcomingEvents().execute()
                 if (response.isSuccessful) {
                     val body: JsonNode = response.body()!!
                     runOnUiThread {
+                        loadDataResultTextView.show()
                         changeText(body.toString(), R.color.activity_upcoming_events_sync_text_color)
                         progressBar.hide()
                     }
                 }
             } catch(e: Exception) {
                 runOnUiThread {
+                    loadDataResultTextView.show()
                     val errorMessage = e.localizedMessage
                     changeText(errorMessage, R.color.activity_upcoming_events_error_text_color)
                     progressBar.hide()
