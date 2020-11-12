@@ -68,6 +68,9 @@ class UpcomingEventsActivity : AppCompatActivity() {
                 if (response.isSuccessful) {
                     val body: JsonNode = response.body()!!
                     changeText(body.toString(), R.color.activity_upcoming_events_async_text_color)
+                } else {
+                    val errorMessage = response.errorBody().toString()
+                    changeText(errorMessage, R.color.activity_upcoming_events_error_text_color)
                 }
             }
 
@@ -80,25 +83,29 @@ class UpcomingEventsActivity : AppCompatActivity() {
     }
 
     private fun loadSyncData() {
+        startLoading()
         Thread {
             try {
-                runOnUiThread {
-                    startLoading()
-                }
                 val response: Response<JsonNode> = apiClient.getUpcomingEvents().execute()
                 if (response.isSuccessful) {
                     val body: JsonNode = response.body()!!
                     runOnUiThread {
-                        finishLoading()
                         changeText(body.toString(), R.color.activity_upcoming_events_sync_text_color)
+                    }
+                } else {
+                    val errorMessage = response.errorBody().toString()
+                    runOnUiThread {
+                        changeText(errorMessage, R.color.activity_upcoming_events_error_text_color)
                     }
                 }
             } catch(e: Exception) {
+                val errorMessage = e.localizedMessage
                 runOnUiThread {
-                    finishLoading()
-                    val errorMessage = e.localizedMessage
                     changeText(errorMessage, R.color.activity_upcoming_events_error_text_color)
                 }
+            }
+            runOnUiThread {
+                finishLoading()
             }
         }.start()
     }
