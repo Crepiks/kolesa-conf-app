@@ -67,19 +67,19 @@ class UpcomingEventsActivity : AppCompatActivity() {
 
     private fun loadAsyncData() {
         startLoading()
-        apiClient.getUpcomingEvents().enqueue(object: Callback<JsonNode> {
-            override fun onResponse(call: Call<JsonNode>, response: Response<JsonNode>) {
+        apiClient.getParsedUpcomingEvents().enqueue(object: Callback<List<BranchApiData>> {
+            override fun onResponse(call: Call<List<BranchApiData>>, response: Response<List<BranchApiData>>) {
                 finishLoading()
                 if (response.isSuccessful) {
-                    val body: JsonNode = response.body()!!
-                    changeText(body.toString(), R.color.activity_upcoming_events_async_text_color)
+                    val branchesList: List<BranchApiData> = response.body()!!
+                    changeText(branchesList.toString(), R.color.activity_upcoming_events_async_text_color)
                 } else {
                     val errorMessage = response.errorBody().toString()
                     changeText(errorMessage, R.color.activity_upcoming_events_error_text_color)
                 }
             }
 
-            override fun onFailure(call: Call<JsonNode>, t: Throwable) {
+            override fun onFailure(call: Call<List<BranchApiData>>, t: Throwable) {
                 finishLoading()
                 val errorMessage = t.localizedMessage;
                 changeText(errorMessage, R.color.activity_upcoming_events_error_text_color)
