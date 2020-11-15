@@ -10,6 +10,11 @@ import androidx.core.content.ContextCompat
 import com.fasterxml.jackson.databind.JsonNode
 import kz.kolesateam.confapp.R
 import kz.kolesateam.confapp.events.data.ApiClient
+import kz.kolesateam.confapp.events.data.models.BranchApiData
+import kz.kolesateam.confapp.events.data.models.EventApiData
+import kz.kolesateam.confapp.events.data.models.SpeakerApiData
+import org.json.JSONArray
+import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -89,8 +94,11 @@ class UpcomingEventsActivity : AppCompatActivity() {
                 val response: Response<JsonNode> = apiClient.getUpcomingEvents().execute()
                 if (response.isSuccessful) {
                     val body: JsonNode = response.body()!!
+                    val responseJsonString = body.toString()
+                    val responseJsonArray = JSONArray(responseJsonString)
+                    val branchesList = parseBranchesJsonArray(responseJsonArray)
                     runOnUiThread {
-                        changeText(body.toString(), R.color.activity_upcoming_events_sync_text_color)
+                        changeText(branchesList.toString(), R.color.activity_upcoming_events_sync_text_color)
                     }
                 } else {
                     val errorMessage = response.errorBody().toString()
@@ -127,5 +135,72 @@ class UpcomingEventsActivity : AppCompatActivity() {
     private fun changeText(text: String, color: Int) {
         loadDataResultTextView.text = text
         loadDataResultTextView.setTextColor( ContextCompat.getColor(this, color))
+    }
+
+    private fun parseBranchesJsonArray(branchesJsonArray: JSONArray): List<BranchApiData> {
+        val branchList = mutableListOf<BranchApiData>()
+        for (index in 0 until branchesJsonArray.length()) {
+            val branchJsonObject: JSONObject = branchesJsonArray[index] as? JSONObject ?: continue
+            val branch = parseBranchJsonObject(branchJsonObject)
+            branchList.add(branch)
+        }
+        return branchList
+    }
+
+    private fun parseBranchJsonObject(branchJsonObject: JSONObject): BranchApiData {
+        val id = branchJsonObject.getInt("id")
+        val title = branchJsonObject.getString("title")
+        val eventsJsonArray = branchJsonObject.getJSONArray("events")
+
+        val eventsList = mutableListOf<EventApiData>()
+        for (index in 0 until eventsJsonArray.length()) {
+            val eventJsonObject = (eventsJsonArray[index] as? JSONObject) ?: continue
+            val event = parseEventJsonObject(eventJsonObject)
+            eventsList.add(event)
+        }
+        return BranchApiData(
+                id = id,
+                title = title,
+                events = eventsList
+        )
+    }
+
+    private fun parseEventJsonObject(eventJsonObject: JSONObject): EventApiData {
+        val id = eventJsonObject.getInt("id")
+        val startTime = eventJsonObject.getString("startTime")
+        val endTime = eventJsonObject.getString("endTime")
+        val title = eventJsonObject.getString("title")
+        val description = eventJsonObject.getString("description")
+        val place = eventJsonObject.getString("place")
+        val speakerJsonObject: JSONObject? = eventJsonObject.get("speaker") as? JSONObject
+        var speaker: SpeakerApiData? = null
+
+        speakerJsonObject?.let {
+            speaker = parseSpeakerJsonObject(speakerJsonObject)
+        }
+
+        return EventApiData(
+                id = id,
+                startTime = startTime,
+                endTime = endTime,
+                title = title,
+                description = description,
+                place = place,
+                speaker = speaker
+        )
+    }
+
+    private fun parseSpeakerJsonObject(speakerJsonObject: JSONObject): SpeakerApiData {
+        val id = speakerJsonObject.getInt("id")
+        val fullName = speakerJsonObject.getString("fullName")
+        val job = speakerJsonObject.getString("job")
+        val photoUrl = speakerJsonObject.getString("photoUrl")
+
+        return SpeakerApiData(
+                id = id,
+                fullName = fullName,
+                job = job,
+                photoUrl = photoUrl
+        )
     }
 }
