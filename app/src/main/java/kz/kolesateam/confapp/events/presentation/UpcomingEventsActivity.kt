@@ -2,7 +2,6 @@ package kz.kolesateam.confapp.events.presentation
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import android.widget.Button
 import android.widget.ProgressBar
 import android.widget.TextView
@@ -10,6 +9,8 @@ import androidx.core.content.ContextCompat
 import com.fasterxml.jackson.databind.JsonNode
 import kz.kolesateam.confapp.R
 import kz.kolesateam.confapp.events.data.ApiClient
+import kz.kolesateam.confapp.extension.gone
+import kz.kolesateam.confapp.extension.show
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -21,19 +22,6 @@ val apiRetrofit: Retrofit = Retrofit.Builder()
         .addConverterFactory(JacksonConverterFactory.create()).build();
 val apiClient: ApiClient = apiRetrofit.create(ApiClient::class.java)
 
-fun View.show() : View {
-    if (visibility != View.VISIBLE) {
-        visibility = View.VISIBLE
-    }
-    return this
-}
-
-fun View.hide() : View {
-    if (visibility != View.GONE) {
-        visibility = View.GONE
-    }
-    return this
-}
 
 class UpcomingEventsActivity : AppCompatActivity() {
 
@@ -111,9 +99,9 @@ class UpcomingEventsActivity : AppCompatActivity() {
     }
 
     private fun startLoading() {
-        loadSyncButton.hide()
-        loadAsyncButton.hide()
-        loadDataResultTextView.hide()
+        loadSyncButton.gone()
+        loadAsyncButton.gone()
+        loadDataResultTextView.gone()
         progressBar.show()
     }
 
@@ -121,7 +109,7 @@ class UpcomingEventsActivity : AppCompatActivity() {
         loadSyncButton.show()
         loadAsyncButton.show()
         loadDataResultTextView.show()
-        progressBar.hide()
+        progressBar.gone()
     }
 
     private fun changeText(text: String, color: Int) {
