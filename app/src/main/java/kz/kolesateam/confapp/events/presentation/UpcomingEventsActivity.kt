@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.ProgressBar
 import android.widget.TextView
+import androidx.annotation.ColorRes
 import androidx.core.content.ContextCompat
 import com.fasterxml.jackson.databind.JsonNode
 import kz.kolesateam.confapp.R
@@ -21,7 +22,6 @@ val apiRetrofit: Retrofit = Retrofit.Builder()
         .baseUrl("http://37.143.8.68:2020/")
         .addConverterFactory(JacksonConverterFactory.create()).build();
 val apiClient: UpcomingEventsApiClient = apiRetrofit.create(UpcomingEventsApiClient::class.java)
-
 
 class UpcomingEventsActivity : AppCompatActivity() {
 
@@ -53,19 +53,12 @@ class UpcomingEventsActivity : AppCompatActivity() {
         apiClient.getUpcomingEvents().enqueue(object: Callback<JsonNode> {
             override fun onResponse(call: Call<JsonNode>, response: Response<JsonNode>) {
                 finishLoading()
-                if (response.isSuccessful) {
-                    val body: JsonNode = response.body()!!
-                    changeText(body.toString(), R.color.activity_upcoming_events_async_text_color)
-                } else {
-                    val errorMessage = response.errorBody().toString()
-                    changeText(errorMessage, R.color.activity_upcoming_events_error_text_color)
-                }
+                handleSuccessResponse(response, R.color.activity_upcoming_events_async_text_color)
             }
 
             override fun onFailure(call: Call<JsonNode>, t: Throwable) {
                 finishLoading()
-                val errorMessage = t.localizedMessage;
-                changeText(errorMessage, R.color.activity_upcoming_events_error_text_color)
+                handleFailureResponse(t)
             }
         })
     }
@@ -75,27 +68,38 @@ class UpcomingEventsActivity : AppCompatActivity() {
         Thread {
             try {
                 val response: Response<JsonNode> = apiClient.getUpcomingEvents().execute()
-                if (response.isSuccessful) {
-                    val body: JsonNode = response.body()!!
-                    runOnUiThread {
-                        changeText(body.toString(), R.color.activity_upcoming_events_sync_text_color)
-                    }
-                } else {
-                    val errorMessage = response.errorBody().toString()
-                    runOnUiThread {
-                        changeText(errorMessage, R.color.activity_upcoming_events_error_text_color)
-                    }
+                runOnUiThread {
+                    handleSuccessResponse(response, R.color.activity_upcoming_events_sync_text_color)
                 }
             } catch(e: Exception) {
-                val errorMessage = e.localizedMessage
                 runOnUiThread {
-                    changeText(errorMessage, R.color.activity_upcoming_events_error_text_color)
+                    handleFailureResponse(e)
                 }
             }
             runOnUiThread {
                 finishLoading()
             }
         }.start()
+    }
+
+    private fun handleSuccessResponse(
+        response: Response<JsonNode>,
+        @ColorRes successColor: Int = R.color.activity_upcoming_events_error_text_color
+    ) {
+        if (response.isSuccessful) {
+            val body: JsonNode = response.body()!!
+            changeText(body.toString(), successColor)
+        } else {
+            val errorMessage: String = response.errorBody().toString()
+            changeText(errorMessage, R.color.activity_upcoming_events_error_text_color)
+        }
+    }
+
+    private fun handleFailureResponse(
+        throwable: Throwable
+    ) {
+        val errorMessage = throwable.localizedMessage
+        changeText(errorMessage, R.color.activity_upcoming_events_error_text_color)
     }
 
     private fun startLoading() {
@@ -114,6 +118,6 @@ class UpcomingEventsActivity : AppCompatActivity() {
 
     private fun changeText(text: String, color: Int) {
         loadDataResultTextView.text = text
-        loadDataResultTextView.setTextColor( ContextCompat.getColor(this, color))
+        loadDataResultTextView.setTextColor(ContextCompat.getColor(this, color))
     }
 }
