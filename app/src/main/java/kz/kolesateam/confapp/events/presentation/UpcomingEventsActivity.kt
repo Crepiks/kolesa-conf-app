@@ -8,7 +8,7 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat
 import com.fasterxml.jackson.databind.JsonNode
 import kz.kolesateam.confapp.R
-import kz.kolesateam.confapp.events.data.ApiClient
+import kz.kolesateam.confapp.events.data.UpcomingEventsApiClient
 import kz.kolesateam.confapp.extension.gone
 import kz.kolesateam.confapp.extension.show
 import retrofit2.Call
@@ -20,7 +20,7 @@ import retrofit2.converter.jackson.JacksonConverterFactory
 val apiRetrofit: Retrofit = Retrofit.Builder()
         .baseUrl("http://37.143.8.68:2020/")
         .addConverterFactory(JacksonConverterFactory.create()).build();
-val apiClient: ApiClient = apiRetrofit.create(ApiClient::class.java)
+val apiClient: UpcomingEventsApiClient = apiRetrofit.create(UpcomingEventsApiClient::class.java)
 
 
 class UpcomingEventsActivity : AppCompatActivity() {

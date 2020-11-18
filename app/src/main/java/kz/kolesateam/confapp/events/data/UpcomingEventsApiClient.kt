@@ -4,7 +4,7 @@ import com.fasterxml.jackson.databind.JsonNode
 import retrofit2.Call
 import retrofit2.http.GET
 
-interface ApiClient {
+interface UpcomingEventsApiClient {
 
     @GET("/upcoming_events")
     fun getUpcomingEvents(): Call<JsonNode>
