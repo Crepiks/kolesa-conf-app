@@ -1,8 +1,11 @@
 <resources>
     <string name="app_name">ConfApp</string>
-    <string name="activity_hello_virus_description">Virus image</string>
-    <string name="activity_hello_what_is_your_name">Как тебя зовут?</string>
     <string name="logo_description">Logo icon</string>
     <string name="action_continue">Продолжить</string>
-    <string name="activity_hello_test_greeting_fmt">Привет, %1s</string>
+
+    <string name="activity_hello_virus_description">Virus image</string>
+    <string name="activity_hello_what_is_your_name">Как тебя зовут?</string>
+
+    <string name="activity_upcoming_events_sync_loading">Sync Loading</string>
+    <string name="activity_upcoming_events_async_loading">Async Loading</string>
 </resources>
