@@ -7,8 +7,8 @@ import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.annotation.ColorRes
 import androidx.core.content.ContextCompat
-import com.fasterxml.jackson.databind.JsonNode
 import kz.kolesateam.confapp.R
+import kz.kolesateam.confapp.events.data.models.BranchApiData
 import kz.kolesateam.confapp.events.data.UpcomingEventsApiClient
 import kz.kolesateam.confapp.extension.gone
 import kz.kolesateam.confapp.extension.show
@@ -50,13 +50,13 @@ class UpcomingEventsActivity : AppCompatActivity() {
 
     private fun loadAsyncData() {
         startLoading()
-        apiClient.getUpcomingEvents().enqueue(object: Callback<JsonNode> {
-            override fun onResponse(call: Call<JsonNode>, response: Response<JsonNode>) {
+        apiClient.getUpcomingEvents().enqueue(object: Callback<List<BranchApiData>> {
+            override fun onResponse(call: Call<List<BranchApiData>>, response: Response<List<BranchApiData>>) {
                 finishLoading()
                 handleSuccessResponse(response, R.color.activity_upcoming_events_async_text_color)
             }
 
-            override fun onFailure(call: Call<JsonNode>, t: Throwable) {
+            override fun onFailure(call: Call<List<BranchApiData>>, t: Throwable) {
                 finishLoading()
                 handleFailureResponse(t)
             }
@@ -67,7 +67,7 @@ class UpcomingEventsActivity : AppCompatActivity() {
         startLoading()
         Thread {
             try {
-                val response: Response<JsonNode> = apiClient.getUpcomingEvents().execute()
+                val response: Response<List<BranchApiData>> = apiClient.getUpcomingEvents().execute()
                 runOnUiThread {
                     handleSuccessResponse(response, R.color.activity_upcoming_events_sync_text_color)
                 }
@@ -83,12 +83,12 @@ class UpcomingEventsActivity : AppCompatActivity() {
     }
 
     private fun handleSuccessResponse(
-        response: Response<JsonNode>,
+        response: Response<List<BranchApiData>>,
         @ColorRes successColor: Int = R.color.activity_upcoming_events_error_text_color
     ) {
         if (response.isSuccessful) {
-            val body: JsonNode = response.body()!!
-            changeText(body.toString(), successColor)
+            val branchesList: List<BranchApiData> = response.body()!!
+            changeText(branchesList.toString(), successColor)
         } else {
             val errorMessage: String = response.errorBody().toString()
             changeText(errorMessage, R.color.activity_upcoming_events_error_text_color)
