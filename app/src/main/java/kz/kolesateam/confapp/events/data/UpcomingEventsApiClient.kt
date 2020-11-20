@@ -5,11 +5,9 @@ import kz.kolesateam.confapp.events.data.models.BranchApiData
 import retrofit2.Call
 import retrofit2.http.GET
 
-interface ApiClient {
+interface UpcomingEventsApiClient {
 
     @GET("/upcoming_events")
-    fun getUpcomingEvents(): Call<JsonNode>
+    fun getUpcomingEvents(): Call<List<BranchApiData>>
 
-    @GET("/upcoming_events")
-    fun getParsedUpcomingEvents(): Call<List<BranchApiData>>
 }
