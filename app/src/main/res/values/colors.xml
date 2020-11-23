@@ -16,7 +16,6 @@
 
     <color name="activity_hello_header_background">#051021</color>
 
-    <color name="activity_upcoming_events_sync_text_color">#2196F3</color>
-    <color name="activity_upcoming_events_async_text_color">#4CAF50</color>
-    <color name="activity_upcoming_events_error_text_color">#F44336</color>
+    <color name="activity_upcoming_events_background_color">#051021</color>
+    <color name="activity_upcoming_events_greetings_color">#FAFAFA</color>
 </resources>

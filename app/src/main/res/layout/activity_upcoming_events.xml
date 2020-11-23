@@ -6,14 +6,56 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="@dimen/activity_upcoming_events_screen_padding"
-    tools:context=".events.presentation.UpcomingEventsActivity">
+    android:background="@color/activity_upcoming_events_background_color"
+    tools:context=".events.presentation.UpcomingEventsActivity"
+    >
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/bg"
+        android:scaleType="matrix"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="16dp"
+            android:src="@drawable/ic_logo_white"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:textColor="@color/activity_upcoming_events_greetings_color"
+            android:text="Hello, Sayazhan"
+            />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/activity_upcoming_events_events_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+
+        </androidx.recyclerview.widget.RecyclerView>
+
+    </LinearLayout>
+
 
     <ProgressBar
         android:id="@+id/activity_upcoming_events_progress_bar"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="center"
-        android:visibility="invisible"
+        android:visibility="gone"
         />
 
 </FrameLayout>
