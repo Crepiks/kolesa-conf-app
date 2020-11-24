@@ -19,6 +19,8 @@ class EventViewHolder(
     private val title: TextView = view.findViewById(R.id.item_event_card_title)
     private val favoriteButton: ImageView = view.findViewById(R.id.item_event_card_favorite_button)
 
+    private var liked: Boolean = false
+
     init {
         setListeners()
     }
@@ -37,7 +39,13 @@ class EventViewHolder(
         }
 
         favoriteButton.setOnClickListener {
-            favoriteButton.setImageResource(R.drawable.ic_favorite_fill)
+            liked = if (liked) {
+                favoriteButton.setImageResource(R.drawable.ic_favorite_border)
+                false
+            } else {
+                favoriteButton.setImageResource(R.drawable.ic_favorite_fill)
+                true
+            }
         }
     }
 }
