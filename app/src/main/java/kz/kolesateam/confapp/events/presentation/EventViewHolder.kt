@@ -2,6 +2,7 @@ package kz.kolesateam.confapp.events.presentation
 
 import android.util.Log
 import android.view.View
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import kz.kolesateam.confapp.R
@@ -19,6 +20,7 @@ class EventViewHolder(
     private val speakerName: TextView = view.findViewById(R.id.item_event_card_speaker_name)
     private val speakerPosition: TextView = view.findViewById(R.id.item_event_card_speaker_position)
     private val title: TextView = view.findViewById(R.id.item_event_card_title)
+    private val favoriteButton: ImageView = view.findViewById(R.id.item_event_card_favorite_button)
 
     init {
         setListeners()
@@ -36,6 +38,10 @@ class EventViewHolder(
             Log.d(TAG, "Clicked")
             val eventTitle = title.text.toString()
             onEventClick(eventTitle)
+        }
+
+        favoriteButton.setOnClickListener {
+            favoriteButton.setImageResource(R.drawable.ic_favorite_fill)
         }
     }
 }
