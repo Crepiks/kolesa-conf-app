@@ -1,6 +1,5 @@
 package kz.kolesateam.confapp.events.presentation
 
-import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
@@ -8,8 +7,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kz.kolesateam.confapp.R
 import kz.kolesateam.confapp.events.data.models.BranchApiData
-
-private const val TAG = "BranchViewHolder"
 
 class BranchViewHolder(
         view: View,
@@ -38,7 +35,6 @@ class BranchViewHolder(
         header.setOnClickListener{
             val branchTitle = this.branchTitle.text.toString()
             onBranchClick(branchTitle)
-            Log.d(TAG, "Branch $branchTitle clicked")
         }
     }
 

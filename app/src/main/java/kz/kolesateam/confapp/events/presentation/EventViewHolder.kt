@@ -1,14 +1,11 @@
 package kz.kolesateam.confapp.events.presentation
 
-import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import kz.kolesateam.confapp.R
 import kz.kolesateam.confapp.events.data.models.EventApiData
-
-private const val TAG = "EventViewHolder"
 
 class EventViewHolder(
         view: View,
@@ -35,7 +32,6 @@ class EventViewHolder(
 
     private fun setListeners() {
         container.setOnClickListener{
-            Log.d(TAG, "Clicked")
             val eventTitle = title.text.toString()
             onEventClick(eventTitle)
         }
