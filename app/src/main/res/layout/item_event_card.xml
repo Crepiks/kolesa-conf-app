@@ -25,8 +25,17 @@
             android:id="@+id/item_event_card_placement"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:textSize="14sp"
             android:text="5:00 - 16:00 • Зал номер 5"
+            />
+
+        <ImageView
+            android:id="@+id/item_event_card_favorite_button"
+            android:layout_width="14dp"
+            android:layout_height="14dp"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/ic_favorite_border"
             />
 
     </LinearLayout>
