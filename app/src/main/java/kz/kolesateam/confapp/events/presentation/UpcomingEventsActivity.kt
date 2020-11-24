@@ -3,6 +3,8 @@ package kz.kolesateam.confapp.events.presentation
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ProgressBar
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import kz.kolesateam.confapp.R
 import kz.kolesateam.confapp.events.data.models.BranchApiData
 import kz.kolesateam.confapp.events.data.UpcomingEventsApiClient
@@ -21,13 +23,23 @@ val apiClient: UpcomingEventsApiClient = apiRetrofit.create(UpcomingEventsApiCli
 
 class UpcomingEventsActivity : AppCompatActivity() {
 
+    private val branchListAdapter = BranchListAdapter()
+
     private lateinit var progressBar: ProgressBar
+    private lateinit var branchList: RecyclerView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_upcoming_events)
+        bindViews()
+        fetchData()
+    }
 
+    private fun bindViews() {
         progressBar = findViewById(R.id.activity_upcoming_events_progress_bar)
+        branchList = findViewById(R.id.activity_upcoming_events_events_list)
+        branchList.layoutManager = LinearLayoutManager(this)
+        branchList.adapter = branchListAdapter
     }
 
     private fun fetchData() {
@@ -35,6 +47,10 @@ class UpcomingEventsActivity : AppCompatActivity() {
         apiClient.getUpcomingEvents().enqueue(object: Callback<List<BranchApiData>> {
             override fun onResponse(call: Call<List<BranchApiData>>, response: Response<List<BranchApiData>>) {
                 finishLoading()
+                if (response.isSuccessful) {
+                    val branchList = response.body()!!
+                    showResult(branchList)
+                }
             }
 
             override fun onFailure(call: Call<List<BranchApiData>>, t: Throwable) {
@@ -49,5 +65,9 @@ class UpcomingEventsActivity : AppCompatActivity() {
 
     private fun finishLoading() {
         progressBar.gone()
+    }
+
+    private fun showResult(branchList: List<BranchApiData>) {
+        branchListAdapter.setList(branchList)
     }
 }
