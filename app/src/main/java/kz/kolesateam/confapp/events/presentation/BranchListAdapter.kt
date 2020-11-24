@@ -12,7 +12,8 @@ class BranchListAdapter : RecyclerView.Adapter<BranchViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BranchViewHolder {
         return BranchViewHolder(
-                view = View.inflate(parent.context, R.layout.item_branch_card, null)
+                view = View.inflate(parent.context, R.layout.item_branch_card, null),
+                parent = parent
         )
     }
 

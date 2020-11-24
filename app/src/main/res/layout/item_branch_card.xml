@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="280dp"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:paddingBottom="42dp"
-    >
+    android:paddingBottom="42dp">
 
     <TextView
         android:id="@+id/item_branch_card_branch_name"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:textColor="@color/activity_upcoming_events_branch_name_color"
@@ -16,56 +16,10 @@
         android:text="Android"
         />
 
-    <LinearLayout
-        android:layout_width="280dp"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/item_branch_card_event_list"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="16dp"
-        android:background="@drawable/event_card_background"
-        >
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            >
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="14sp"
-                android:text="5:00 - 16:00 • Зал номер 5"
-                />
-
-        </LinearLayout>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:textColor="@color/event_card_speaker_name_color"
-            android:textStyle="bold"
-            android:textSize="14sp"
-            android:text="Жалгас Бакин"
-            />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="13sp"
-            android:textColor="@color/event_card_speaker_position_color"
-            android:text="Андроид-разработчик в Альфа Банке"
-            />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:textColor="@color/event_card_description_color"
-            android:textSize="14sp"
-            android:text="Борьба за независимость в многомодульных приложениях"
-            />
-
-    </LinearLayout>
+        />
 
 </LinearLayout>
