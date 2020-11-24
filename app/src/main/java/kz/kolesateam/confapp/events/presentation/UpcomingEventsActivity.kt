@@ -2,7 +2,9 @@ package kz.kolesateam.confapp.events.presentation
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.ProgressBar
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kz.kolesateam.confapp.R
@@ -21,9 +23,14 @@ val apiRetrofit: Retrofit = Retrofit.Builder()
         .addConverterFactory(JacksonConverterFactory.create()).build();
 val apiClient: UpcomingEventsApiClient = apiRetrofit.create(UpcomingEventsApiClient::class.java)
 
+private const val TAG = "UpcomingEventsActivity"
+
 class UpcomingEventsActivity : AppCompatActivity() {
 
-    private val branchListAdapter = BranchListAdapter()
+    private val branchListAdapter = BranchListAdapter(
+            onBranchClick = ::handleBranchClick,
+            onEventClick = ::handleEventClick
+    )
 
     private lateinit var progressBar: ProgressBar
     private lateinit var branchList: RecyclerView
@@ -33,6 +40,16 @@ class UpcomingEventsActivity : AppCompatActivity() {
         setContentView(R.layout.activity_upcoming_events)
         bindViews()
         fetchData()
+    }
+
+    private fun handleBranchClick(branchTitle: String) {
+        Log.d(TAG, "Branch $branchTitle clicked")
+        Toast.makeText(this, branchTitle, Toast.LENGTH_SHORT).show()
+    }
+
+    private fun handleEventClick(eventTitle: String) {
+        Log.d(TAG, "Event $eventTitle clicked")
+        Toast.makeText(this, eventTitle, Toast.LENGTH_SHORT).show()
     }
 
     private fun bindViews() {

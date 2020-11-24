@@ -6,15 +6,23 @@
     android:orientation="vertical"
     android:paddingBottom="42dp">
 
-    <TextView
-        android:id="@+id/item_branch_card_branch_name"
+    <LinearLayout
+        android:id="@+id/item_branch_card_header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:textColor="@color/activity_upcoming_events_branch_name_color"
-        android:textSize="24sp"
-        android:text="Android"
-        />
+        >
+
+        <TextView
+            android:id="@+id/item_branch_card_branch_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:textColor="@color/activity_upcoming_events_branch_name_color"
+            android:textSize="24sp"
+            android:text="Android"
+            />
+
+    </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/item_branch_card_event_list"

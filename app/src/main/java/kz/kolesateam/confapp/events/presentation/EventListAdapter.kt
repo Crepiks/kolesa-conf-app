@@ -6,13 +6,16 @@ import androidx.recyclerview.widget.RecyclerView
 import kz.kolesateam.confapp.R
 import kz.kolesateam.confapp.events.data.models.EventApiData
 
-class EventListAdapter : RecyclerView.Adapter<EventViewHolder>() {
+class EventListAdapter(
+        private val onEventClick: (eventTitle: String) -> Unit
+) : RecyclerView.Adapter<EventViewHolder>() {
 
     private var eventList: MutableList<EventApiData> = mutableListOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EventViewHolder {
         return EventViewHolder(
-                view = View.inflate(parent.context, R.layout.item_event_card, null)
+                view = View.inflate(parent.context, R.layout.item_event_card, null),
+                onEventClick = onEventClick
         )
     }
 
