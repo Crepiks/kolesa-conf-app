@@ -31,13 +31,14 @@
             />
 
         <TextView
+            android:id="@+id/activity_upcoming_events_greeting"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="24dp"
             android:layout_marginLeft="24dp"
             android:textColor="@color/activity_upcoming_events_greetings_color"
-            android:text="Hello, Sayazhan"
+            android:text="@string/activity_upcoming_events_greeting_fmt"
             />
 
         <androidx.recyclerview.widget.RecyclerView

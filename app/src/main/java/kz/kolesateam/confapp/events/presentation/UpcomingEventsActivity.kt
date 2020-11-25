@@ -1,8 +1,11 @@
 package kz.kolesateam.confapp.events.presentation
 
+import android.content.Context
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ProgressBar
+import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -22,6 +25,8 @@ val apiRetrofit: Retrofit = Retrofit.Builder()
         .addConverterFactory(JacksonConverterFactory.create()).build();
 val apiClient: UpcomingEventsApiClient = apiRetrofit.create(UpcomingEventsApiClient::class.java)
 
+private const val PREFERENCE_NAME = "user_name"
+
 class UpcomingEventsActivity : AppCompatActivity() {
 
     private val branchListAdapter = BranchListAdapter(
@@ -30,6 +35,7 @@ class UpcomingEventsActivity : AppCompatActivity() {
     )
 
     private lateinit var progressBar: ProgressBar
+    private lateinit var greeting: TextView
     private lateinit var branchList: RecyclerView
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -49,9 +55,17 @@ class UpcomingEventsActivity : AppCompatActivity() {
 
     private fun bindViews() {
         progressBar = findViewById(R.id.activity_upcoming_events_progress_bar)
+        greeting = findViewById(R.id.activity_upcoming_events_greeting)
+        val userName: String = getUserName()
+        greeting.text = resources.getString(R.string.activity_upcoming_events_greeting_fmt, userName)
         branchList = findViewById(R.id.activity_upcoming_events_events_list)
         branchList.layoutManager = LinearLayoutManager(this)
         branchList.adapter = branchListAdapter
+    }
+
+    private fun getUserName(): String {
+        val sharedPref: SharedPreferences = getSharedPreferences(PREFERENCE_NAME, Context.MODE_PRIVATE)
+        return sharedPref.getString(PREFERENCE_NAME, "Unknown").toString()
     }
 
     private fun fetchData() {
