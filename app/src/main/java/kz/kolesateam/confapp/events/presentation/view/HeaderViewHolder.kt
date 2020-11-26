@@ -5,7 +5,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import kz.kolesateam.confapp.R
 
-const val GREETING_FORMAT = "Hello, %s"
+const val GREETING_FORMAT = "Привет, %s"
 
 class HeaderViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 

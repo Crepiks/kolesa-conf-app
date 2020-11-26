@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
-    android:paddingRight="@dimen/item_event_card_padding_right">
+    android:paddingRight="@dimen/item_event_card_padding_right"
+    >
 
     <LinearLayout
         android:id="@+id/item_event_card_container"
         android:layout_width="@dimen/item_event_card_width"
         android:layout_height="wrap_content"
+        android:background="@drawable/event_card_background"
         android:orientation="vertical"
         android:padding="@dimen/item_event_card_padding"
-        android:background="@drawable/event_card_background"
         >
 
         <LinearLayout
@@ -23,7 +24,7 @@
 
             <TextView
                 android:id="@+id/item_event_card_placement"
-                android:layout_width="wrap_content"
+                android:layout_width="@dimen/item_event_card_placement_width"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textSize="@dimen/item_event_card_placement_size"
@@ -46,8 +47,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/item_event_card_speaker_name_margin_top"
             android:textColor="@color/item_event_card_speaker_name_color"
-            android:textStyle="bold"
             android:textSize="@dimen/item_event_card_speaker_name_size"
+            android:textStyle="bold"
             tools:text="Жалгас Бакин"
             />
 
@@ -55,8 +56,8 @@
             android:id="@+id/item_event_card_speaker_position"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/item_event_card_position_size"
             android:textColor="@color/item_event_card_speaker_position_color"
+            android:textSize="@dimen/item_event_card_position_size"
             tools:text="Андроид-разработчик в Альфа Банке"
             />
 

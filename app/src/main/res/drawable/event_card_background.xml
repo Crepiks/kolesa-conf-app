@@ -4,6 +4,6 @@
         android:color="@color/item_event_card_background_color"
         />
     <corners
-        android:radius="3dp"
+        android:radius="@dimen/event_card_background_border_radius"
         />
 </shape>

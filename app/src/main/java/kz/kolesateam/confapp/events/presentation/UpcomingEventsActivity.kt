@@ -62,7 +62,7 @@ class UpcomingEventsActivity : AppCompatActivity() {
 
     private fun fetchData() {
         startLoading()
-        apiClient.getUpcomingEvents().enqueue(object: Callback<List<BranchApiData>> {
+        apiClient.getUpcomingEvents().enqueue(object : Callback<List<BranchApiData>> {
             override fun onResponse(call: Call<List<BranchApiData>>, response: Response<List<BranchApiData>>) {
                 finishLoading()
                 if (response.isSuccessful) {

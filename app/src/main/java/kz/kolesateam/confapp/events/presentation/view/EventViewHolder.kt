@@ -7,6 +7,8 @@ import androidx.recyclerview.widget.RecyclerView
 import kz.kolesateam.confapp.R
 import kz.kolesateam.confapp.events.data.models.EventApiData
 
+const val TIME_AND_PLACE_FORMAT = "%s - %s • %s"
+
 class EventViewHolder(
         view: View,
         private val onEventClick: (eventTitle: String) -> Unit
@@ -26,7 +28,7 @@ class EventViewHolder(
     }
 
     fun bind(event: EventApiData) {
-        placement.text = "%s - %s • %s".format(event.startTime, event.endTime, event.place)
+        placement.text = TIME_AND_PLACE_FORMAT.format(event.startTime, event.endTime, event.place)
         speakerName.text = event.speaker?.fullName
         speakerPosition.text = event.speaker?.job
         title.text = event.title
