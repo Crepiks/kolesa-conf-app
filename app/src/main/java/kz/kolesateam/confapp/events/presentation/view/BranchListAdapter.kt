@@ -1,5 +1,6 @@
 package kz.kolesateam.confapp.events.presentation.view
 
+import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -16,7 +17,9 @@ class BranchListAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when(viewType) {
-            1 -> HeaderViewHolder(view = View.inflate(parent.context, R.layout.item_upcoming_events_header, null))
+            1 -> HeaderViewHolder(
+                    view = LayoutInflater.from(parent.context).inflate(R.layout.item_upcoming_events_header, parent, false)
+            )
             else -> BranchViewHolder(
                     view = View.inflate(parent.context, R.layout.item_branch_card, null),
                     parent = parent,

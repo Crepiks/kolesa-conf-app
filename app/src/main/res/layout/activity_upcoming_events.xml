@@ -20,7 +20,6 @@
         android:id="@+id/activity_upcoming_events_events_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingLeft="24dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         tools:listitem="@layout/item_branch_card"
         />

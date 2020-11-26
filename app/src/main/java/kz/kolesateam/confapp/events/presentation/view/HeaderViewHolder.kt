@@ -7,9 +7,9 @@ import kz.kolesateam.confapp.R
 
 class HeaderViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
-    private val userName: TextView = view.findViewById(R.id.item_upcoming_event_header_greeting)
+    private val greeting: TextView = view.findViewById(R.id.item_upcoming_event_header_greeting)
 
-    fun bind(name: String) {
-        userName.text = name
+    fun bind(text: String) {
+        greeting.text = text
     }
 }
