@@ -5,7 +5,6 @@ import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ProgressBar
-import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -94,20 +93,17 @@ class UpcomingEventsActivity : AppCompatActivity() {
     private fun getUpcomingEventList(branchList: List<BranchApiData>): List<UpcomingEventsListItem> {
         val userName: String = getUserName()
         val greetingText: String = getGreetingText(userName)
-        val upcomingEventItemList: MutableList<UpcomingEventsListItem> = mutableListOf()
         val headerListItem = UpcomingEventsListItem(
                 type = 1,
                 data = greetingText
         )
-        upcomingEventItemList.add(headerListItem)
         val branchListItems = branchList.map { branchListItem ->
             UpcomingEventsListItem(
                     type = 2,
                     data = branchListItem
             )
         }
-        upcomingEventItemList.addAll(branchListItems)
-        return upcomingEventItemList
+        return listOf(headerListItem) + branchListItems
     }
 
     private fun getUserName(): String {
