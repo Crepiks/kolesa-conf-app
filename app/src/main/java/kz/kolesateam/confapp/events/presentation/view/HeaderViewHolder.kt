@@ -5,11 +5,15 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import kz.kolesateam.confapp.R
 
+const val GREETING_FORMAT = "Hello, %s"
+
 class HeaderViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
     private val greeting: TextView = view.findViewById(R.id.item_upcoming_event_header_greeting)
 
-    fun bind(text: String) {
-        greeting.text = text
+    fun bind(userName: String) {
+        if (userName.isNotEmpty()) {
+            greeting.text = GREETING_FORMAT.format(userName)
+        }
     }
 }

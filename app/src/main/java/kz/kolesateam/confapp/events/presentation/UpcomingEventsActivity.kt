@@ -92,10 +92,9 @@ class UpcomingEventsActivity : AppCompatActivity() {
 
     private fun getUpcomingEventList(branchList: List<BranchApiData>): List<UpcomingEventsListItem> {
         val userName: String = getUserName()
-        val greetingText: String = getGreetingText(userName)
         val headerListItem = UpcomingEventsListItem(
                 type = 1,
-                data = greetingText
+                data = userName
         )
         val branchListItems = branchList.map { branchListItem ->
             UpcomingEventsListItem(
@@ -108,10 +107,6 @@ class UpcomingEventsActivity : AppCompatActivity() {
 
     private fun getUserName(): String {
         val sharedPref: SharedPreferences = getSharedPreferences(PREFERENCE_NAME, Context.MODE_PRIVATE)
-        return sharedPref.getString(PREFERENCE_NAME, "Unknown").toString()
-    }
-
-    private fun getGreetingText(userName: String): String {
-        return resources.getString(R.string.activity_upcoming_events_greeting_fmt, userName)
+        return sharedPref.getString(PREFERENCE_NAME, "").toString()
     }
 }
