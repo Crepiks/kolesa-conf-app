@@ -26,7 +26,7 @@ class EventViewHolder(
     }
 
     fun bind(event: EventApiData) {
-        placement.text = event.place
+        placement.text = "%s - %s • %s".format(event.startTime, event.endTime, event.place)
         speakerName.text = event.speaker?.fullName
         speakerPosition.text = event.speaker?.job
         title.text = event.title
