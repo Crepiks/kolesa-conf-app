@@ -45,7 +45,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:textColor="@color/event_card_speaker_name_color"
+        android:textColor="@color/item_event_card_speaker_name_color"
         android:textStyle="bold"
         android:textSize="14sp"
         android:text="Жалгас Бакин"
@@ -56,7 +56,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="13sp"
-        android:textColor="@color/event_card_speaker_position_color"
+        android:textColor="@color/item_event_card_speaker_position_color"
         android:text="Андроид-разработчик в Альфа Банке"
         />
 
@@ -65,7 +65,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:textColor="@color/event_card_description_color"
+        android:textColor="@color/item_event_card_description_color"
         android:textSize="14sp"
         android:text="Борьба за независимость в многомодульных приложениях"
         />

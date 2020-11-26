@@ -12,6 +12,8 @@ import androidx.recyclerview.widget.RecyclerView
 import kz.kolesateam.confapp.R
 import kz.kolesateam.confapp.events.data.models.BranchApiData
 import kz.kolesateam.confapp.events.data.UpcomingEventsApiClient
+import kz.kolesateam.confapp.events.data.models.UpcomingEventsListItem
+import kz.kolesateam.confapp.events.presentation.view.BranchListAdapter
 import kz.kolesateam.confapp.extension.gone
 import kz.kolesateam.confapp.extension.show
 import retrofit2.Call
@@ -35,7 +37,6 @@ class UpcomingEventsActivity : AppCompatActivity() {
     )
 
     private lateinit var progressBar: ProgressBar
-    private lateinit var greeting: TextView
     private lateinit var branchList: RecyclerView
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -55,17 +56,9 @@ class UpcomingEventsActivity : AppCompatActivity() {
 
     private fun bindViews() {
         progressBar = findViewById(R.id.activity_upcoming_events_progress_bar)
-        greeting = findViewById(R.id.activity_upcoming_events_greeting)
-        val userName: String = getUserName()
-        greeting.text = resources.getString(R.string.activity_upcoming_events_greeting_fmt, userName)
         branchList = findViewById(R.id.activity_upcoming_events_events_list)
         branchList.layoutManager = LinearLayoutManager(this)
         branchList.adapter = branchListAdapter
-    }
-
-    private fun getUserName(): String {
-        val sharedPref: SharedPreferences = getSharedPreferences(PREFERENCE_NAME, Context.MODE_PRIVATE)
-        return sharedPref.getString(PREFERENCE_NAME, "Unknown").toString()
     }
 
     private fun fetchData() {
@@ -94,6 +87,30 @@ class UpcomingEventsActivity : AppCompatActivity() {
     }
 
     private fun showResult(branchList: List<BranchApiData>) {
-        branchListAdapter.setList(branchList)
+        val upcomingEventItemList = getUpcomingEventList(branchList)
+        branchListAdapter.setList(upcomingEventItemList)
+    }
+
+    private fun getUpcomingEventList(branchList: List<BranchApiData>): List<UpcomingEventsListItem> {
+        val userName: String = getUserName()
+        val upcomingEventItemList: MutableList<UpcomingEventsListItem> = mutableListOf()
+        val headerListItem = UpcomingEventsListItem(
+                type = 1,
+                data = userName
+        )
+        upcomingEventItemList.add(headerListItem)
+        val branchListItems = branchList.map { branchListItem ->
+            UpcomingEventsListItem(
+                    type = 1,
+                    data = branchListItem
+            )
+        }
+        upcomingEventItemList.addAll(branchListItems)
+        return upcomingEventItemList
+    }
+
+    private fun getUserName(): String {
+        val sharedPref: SharedPreferences = getSharedPreferences(PREFERENCE_NAME, Context.MODE_PRIVATE)
+        return sharedPref.getString(PREFERENCE_NAME, "Unknown").toString()
     }
 }
