@@ -2,73 +2,73 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
-    android:paddingRight="8dp"
-    >
+    android:paddingRight="@dimen/item_event_card_padding_right">
 
     <LinearLayout
         android:id="@+id/item_event_card_container"
-        android:layout_width="280dp"
+        android:layout_width="@dimen/item_event_card_width"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="16dp"
+        android:padding="@dimen/item_event_card_padding"
         android:background="@drawable/event_card_background"
         >
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+
+            <TextView
+                android:id="@+id/item_event_card_placement"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textSize="@dimen/item_event_card_placement_size"
+                tools:text="5:00 - 16:00 • Зал номер 5"
+                />
+
+            <ImageView
+                android:id="@+id/item_event_card_favorite_button"
+                android:layout_width="@dimen/item_event_card_favorite_button_width"
+                android:layout_height="@dimen/item_event_card_favorite_button_height"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/ic_favorite_border"
+                />
+
+        </LinearLayout>
 
         <TextView
-            android:id="@+id/item_event_card_placement"
-            android:layout_width="wrap_content"
+            android:id="@+id/item_event_card_speaker_name"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textSize="14sp"
-            android:text="5:00 - 16:00 • Зал номер 5"
+            android:layout_marginTop="@dimen/item_event_card_speaker_name_margin_top"
+            android:textColor="@color/item_event_card_speaker_name_color"
+            android:textStyle="bold"
+            android:textSize="@dimen/item_event_card_speaker_name_size"
+            tools:text="Жалгас Бакин"
             />
 
-        <ImageView
-            android:id="@+id/item_event_card_favorite_button"
-            android:layout_width="14dp"
-            android:layout_height="14dp"
-            android:layout_gravity="center_vertical"
-            android:src="@drawable/ic_favorite_border"
+        <TextView
+            android:id="@+id/item_event_card_speaker_position"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/item_event_card_position_size"
+            android:textColor="@color/item_event_card_speaker_position_color"
+            tools:text="Андроид-разработчик в Альфа Банке"
             />
 
-    </LinearLayout>
-
-    <TextView
-        android:id="@+id/item_event_card_speaker_name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:textColor="@color/item_event_card_speaker_name_color"
-        android:textStyle="bold"
-        android:textSize="14sp"
-        android:text="Жалгас Бакин"
-        />
-
-    <TextView
-        android:id="@+id/item_event_card_speaker_position"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="13sp"
-        android:textColor="@color/item_event_card_speaker_position_color"
-        android:text="Андроид-разработчик в Альфа Банке"
-        />
-
-    <TextView
-        android:id="@+id/item_event_card_title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:textColor="@color/item_event_card_description_color"
-        android:textSize="14sp"
-        android:text="Борьба за независимость в многомодульных приложениях"
-        />
+        <TextView
+            android:id="@+id/item_event_card_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/item_event_card_title_margin_top"
+            android:textColor="@color/item_event_card_description_color"
+            android:textSize="@dimen/item_event_card_title_size"
+            tools:text="Борьба за независимость в многомодульных приложениях"
+            />
 
     </LinearLayout>
 

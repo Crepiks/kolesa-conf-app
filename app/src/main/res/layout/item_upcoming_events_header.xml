@@ -9,7 +9,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="16dp"
+        android:layout_marginVertical="@dimen/item_upcoming_events_header_logo_margin_vertical"
         android:src="@drawable/ic_logo_white"
         />
 
@@ -17,9 +17,8 @@
         android:id="@+id/item_upcoming_event_header_greeting"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="24dp"
-        android:paddingLeft="16dp"
+        android:layout_marginLeft="@dimen/item_upcoming_events_header_greeting_margin_left"
+        android:layout_marginBottom="@dimen/item_upcoming_events_header_margin_bottom"
         android:textColor="@color/item_upcoming_events_heading_greeting_color"
         android:text="@string/activity_upcoming_events_greeting_fmt"
         />
