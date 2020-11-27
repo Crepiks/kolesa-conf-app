@@ -27,6 +27,7 @@ val apiRetrofit: Retrofit = Retrofit.Builder()
 val apiClient: UpcomingEventsApiClient = apiRetrofit.create(UpcomingEventsApiClient::class.java)
 
 private const val PREFERENCE_NAME = "user_name"
+private const val USERNAME_DEFAULT_VALUE = ""
 
 class UpcomingEventsActivity : AppCompatActivity() {
 
@@ -107,6 +108,7 @@ class UpcomingEventsActivity : AppCompatActivity() {
 
     private fun getUserName(): String {
         val sharedPref: SharedPreferences = getSharedPreferences(PREFERENCE_NAME, Context.MODE_PRIVATE)
-        return sharedPref.getString(PREFERENCE_NAME, "").toString()
+        return sharedPref.getString(PREFERENCE_NAME, USERNAME_DEFAULT_VALUE)
+                ?: USERNAME_DEFAULT_VALUE
     }
 }
