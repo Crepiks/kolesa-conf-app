@@ -1,40 +1,28 @@
 package kz.kolesateam.confapp.events.presentation.view
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import kz.kolesateam.confapp.R
-import kz.kolesateam.confapp.events.data.models.BranchApiData
-import kz.kolesateam.confapp.events.data.models.UpcomingEventsListItem
+import kz.kolesateam.confapp.events.data.models.HEADER_TYPE
+import kz.kolesateam.confapp.events.data.models.UpcomingEventListItem
 
 class BranchListAdapter(
         private val onBranchClick: (branchTitle: String) -> Unit,
         private val onEventClick: (eventTitle: String) -> Unit
-) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+) : RecyclerView.Adapter<BaseViewHolder<UpcomingEventListItem>>() {
 
-    private val itemList: MutableList<UpcomingEventsListItem> = mutableListOf()
+    private val itemList: MutableList<UpcomingEventListItem> = mutableListOf()
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        return when(viewType) {
-            1 -> HeaderViewHolder(
-                    view = LayoutInflater.from(parent.context).inflate(R.layout.item_upcoming_events_header, parent, false)
-            )
-            else -> BranchViewHolder(
-                    view = View.inflate(parent.context, R.layout.item_branch_card, null),
-                    parent = parent,
-                    onBranchClick = onBranchClick,
-                    onEventClick = onEventClick
-            )
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<UpcomingEventListItem> {
+        return when (viewType) {
+            HEADER_TYPE -> createHeaderViewHolder(parent)
+            else -> createBranchViewHolder(parent)
         }
     }
 
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        if (holder is HeaderViewHolder) {
-            holder.bind(itemList[position].data as String)
-        } else if (holder is BranchViewHolder) {
-            holder.bind(itemList[position].data as BranchApiData)
-        }
+    override fun onBindViewHolder(holder: BaseViewHolder<UpcomingEventListItem>, position: Int) {
+        holder.bind(itemList[position])
     }
 
     override fun getItemCount(): Int = itemList.size
@@ -43,9 +31,32 @@ class BranchListAdapter(
         return itemList[position].type
     }
 
-    fun setList(itemList: List<UpcomingEventsListItem>) {
+    fun setList(itemList: List<UpcomingEventListItem>) {
         this.itemList.clear()
         this.itemList.addAll(itemList)
         notifyDataSetChanged()
     }
+
+    private fun createHeaderViewHolder(
+            parent: ViewGroup
+    ): BaseViewHolder<UpcomingEventListItem> = HeaderViewHolder(
+            view = LayoutInflater.from(parent.context).inflate(
+                    R.layout.item_upcoming_events_header,
+                    parent,
+                    false
+            )
+    )
+
+    private fun createBranchViewHolder(
+            parent: ViewGroup
+    ): BaseViewHolder<UpcomingEventListItem> = BranchViewHolder(
+            view = LayoutInflater.from(parent.context).inflate(
+                    R.layout.item_branch_card,
+                    parent,
+                    false
+            ),
+            parent = parent,
+            onBranchClick = onBranchClick,
+            onEventClick = onEventClick
+    )
 }

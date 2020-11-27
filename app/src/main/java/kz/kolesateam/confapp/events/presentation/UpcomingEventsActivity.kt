@@ -9,9 +9,8 @@ import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kz.kolesateam.confapp.R
-import kz.kolesateam.confapp.events.data.models.BranchApiData
 import kz.kolesateam.confapp.events.data.UpcomingEventsApiClient
-import kz.kolesateam.confapp.events.data.models.UpcomingEventsListItem
+import kz.kolesateam.confapp.events.data.models.*
 import kz.kolesateam.confapp.events.presentation.view.BranchListAdapter
 import kz.kolesateam.confapp.extension.gone
 import kz.kolesateam.confapp.extension.show
@@ -91,15 +90,13 @@ class UpcomingEventsActivity : AppCompatActivity() {
         branchListAdapter.setList(upcomingEventItemList)
     }
 
-    private fun getUpcomingEventList(branchList: List<BranchApiData>): List<UpcomingEventsListItem> {
+    private fun getUpcomingEventList(branchList: List<BranchApiData>): List<UpcomingEventListItem> {
         val userName: String = getUserName()
-        val headerListItem = UpcomingEventsListItem(
-                type = 1,
-                data = userName
+        val headerListItem = HeaderItem(
+                userName = userName
         )
         val branchListItems = branchList.map { branchListItem ->
-            UpcomingEventsListItem(
-                    type = 2,
+            BranchItem(
                     data = branchListItem
             )
         }

@@ -7,13 +7,15 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kz.kolesateam.confapp.R
 import kz.kolesateam.confapp.events.data.models.BranchApiData
+import kz.kolesateam.confapp.events.data.models.BranchItem
+import kz.kolesateam.confapp.events.data.models.UpcomingEventListItem
 
 class BranchViewHolder(
         view: View,
         private val parent: ViewGroup,
         private val onBranchClick: (branchTitle: String) -> Unit,
         onEventClick: (eventTitle: String) -> Unit
-) : RecyclerView.ViewHolder(view) {
+) : BaseViewHolder<UpcomingEventListItem>(view) {
 
     private val header: View = view.findViewById(R.id.item_branch_card_header)
     private val branchTitle: TextView = view.findViewById(R.id.item_branch_card_branch_name)
@@ -24,7 +26,8 @@ class BranchViewHolder(
         setListeners()
     }
 
-    fun bind(branchApiData: BranchApiData) {
+    override fun bind(data: UpcomingEventListItem) {
+        val branchApiData: BranchApiData = (data as? BranchItem)?.data ?: return
         branchTitle.text = branchApiData.title
         eventList.layoutManager = LinearLayoutManager(parent.context, LinearLayoutManager.HORIZONTAL, false)
         eventList.adapter = eventListAdapter
@@ -32,10 +35,9 @@ class BranchViewHolder(
     }
 
     private fun setListeners() {
-        header.setOnClickListener{
+        header.setOnClickListener {
             val branchTitle = this.branchTitle.text.toString()
             onBranchClick(branchTitle)
         }
     }
-
 }
