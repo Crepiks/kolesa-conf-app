@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import kz.kolesateam.confapp.R
+import kz.kolesateam.confapp.common.BaseViewHolder
 import kz.kolesateam.confapp.events.presentation.models.HEADER_TYPE
 import kz.kolesateam.confapp.events.presentation.models.UpcomingEventListItem
 

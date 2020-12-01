@@ -1,4 +1,4 @@
-package kz.kolesateam.confapp.events.presentation.view
+package kz.kolesateam.confapp.common
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView

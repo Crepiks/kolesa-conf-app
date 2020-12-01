@@ -6,6 +6,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kz.kolesateam.confapp.R
+import kz.kolesateam.confapp.common.BaseViewHolder
 import kz.kolesateam.confapp.events.data.models.BranchApiData
 import kz.kolesateam.confapp.events.presentation.models.BranchItem
 import kz.kolesateam.confapp.events.presentation.models.UpcomingEventListItem

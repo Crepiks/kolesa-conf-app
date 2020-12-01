@@ -3,8 +3,8 @@ package kz.kolesateam.confapp.events.presentation.view
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.recyclerview.widget.RecyclerView
 import kz.kolesateam.confapp.R
+import kz.kolesateam.confapp.common.BaseViewHolder
 import kz.kolesateam.confapp.events.data.models.EventApiData
 
 const val TIME_AND_PLACE_FORMAT = "%s - %s • %s"
@@ -12,7 +12,7 @@ const val TIME_AND_PLACE_FORMAT = "%s - %s • %s"
 class EventViewHolder(
         view: View,
         private val onEventClick: (eventTitle: String) -> Unit
-) : RecyclerView.ViewHolder(view) {
+) : BaseViewHolder<EventApiData>(view) {
 
     private val container: View = view.findViewById(R.id.item_event_card_container)
     private val placement: TextView = view.findViewById(R.id.item_event_card_placement)
@@ -27,7 +27,7 @@ class EventViewHolder(
         setListeners()
     }
 
-    fun bind(event: EventApiData) {
+    override fun bind(event: EventApiData) {
         placement.text = TIME_AND_PLACE_FORMAT.format(event.startTime, event.endTime, event.place)
         speakerName.text = event.speaker?.fullName
         speakerPosition.text = event.speaker?.job
