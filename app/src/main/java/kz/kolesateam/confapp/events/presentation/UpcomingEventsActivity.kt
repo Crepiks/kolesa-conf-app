@@ -11,6 +11,9 @@ import androidx.recyclerview.widget.RecyclerView
 import kz.kolesateam.confapp.R
 import kz.kolesateam.confapp.events.data.UpcomingEventsApiClient
 import kz.kolesateam.confapp.events.data.models.*
+import kz.kolesateam.confapp.events.presentation.models.BranchItem
+import kz.kolesateam.confapp.events.presentation.models.HeaderItem
+import kz.kolesateam.confapp.events.presentation.models.UpcomingEventListItem
 import kz.kolesateam.confapp.events.presentation.view.BranchListAdapter
 import kz.kolesateam.confapp.extension.gone
 import kz.kolesateam.confapp.extension.show
