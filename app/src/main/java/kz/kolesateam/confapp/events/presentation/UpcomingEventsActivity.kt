@@ -1,6 +1,7 @@
 package kz.kolesateam.confapp.events.presentation
 
 import android.content.Context
+import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -49,7 +50,8 @@ class UpcomingEventsActivity : AppCompatActivity() {
     }
 
     private fun handleBranchClick(branchTitle: String) {
-        Toast.makeText(this, branchTitle, Toast.LENGTH_SHORT).show()
+        val branchEventsIntent = Intent(this, BranchEventsActivity::class.java)
+        startActivity(branchEventsIntent)
     }
 
     private fun handleEventClick(eventTitle: String) {

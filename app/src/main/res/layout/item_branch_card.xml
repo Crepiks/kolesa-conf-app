@@ -33,7 +33,7 @@
             android:layout_height="@dimen/item_branch_card_arrow_icon_height"
             android:layout_gravity="center"
             android:layout_marginRight="@dimen/item_branch_card_arrow_icon_margin_right"
-            android:src="@drawable/ic_arrow_back"
+            android:src="@drawable/ic_arrow"
             />
 
     </LinearLayout>
