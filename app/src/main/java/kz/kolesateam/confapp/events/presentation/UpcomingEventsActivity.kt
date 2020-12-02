@@ -1,15 +1,20 @@
 package kz.kolesateam.confapp.events.presentation
 
+import android.content.Context
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
 import android.widget.ProgressBar
-import android.widget.TextView
-import androidx.annotation.ColorRes
-import androidx.core.content.ContextCompat
+import android.widget.Toast
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import kz.kolesateam.confapp.R
-import kz.kolesateam.confapp.events.data.models.BranchApiData
 import kz.kolesateam.confapp.events.data.UpcomingEventsApiClient
+import kz.kolesateam.confapp.events.data.models.*
+import kz.kolesateam.confapp.events.presentation.models.BranchItem
+import kz.kolesateam.confapp.events.presentation.models.HeaderItem
+import kz.kolesateam.confapp.events.presentation.models.UpcomingEventListItem
+import kz.kolesateam.confapp.events.presentation.view.BranchListAdapter
 import kz.kolesateam.confapp.extension.gone
 import kz.kolesateam.confapp.extension.show
 import retrofit2.Call
@@ -23,101 +28,87 @@ val apiRetrofit: Retrofit = Retrofit.Builder()
         .addConverterFactory(JacksonConverterFactory.create()).build();
 val apiClient: UpcomingEventsApiClient = apiRetrofit.create(UpcomingEventsApiClient::class.java)
 
+private const val PREFERENCE_NAME = "user_name"
+private const val USERNAME_DEFAULT_VALUE = ""
+
 class UpcomingEventsActivity : AppCompatActivity() {
 
-    private lateinit var loadDataResultTextView: TextView
+    private val branchListAdapter = BranchListAdapter(
+            onBranchClick = ::handleBranchClick,
+            onEventClick = ::handleEventClick
+    )
+
     private lateinit var progressBar: ProgressBar
-    private lateinit var loadSyncButton: Button
-    private lateinit var loadAsyncButton: Button
+    private lateinit var branchList: RecyclerView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_upcoming_events)
-
-        loadDataResultTextView = findViewById(R.id.activity_upcoming_events_request_result)
-        progressBar = findViewById(R.id.activity_upcoming_events_progress_bar)
-
-        loadSyncButton = findViewById(R.id.activity_upcoming_events_sync_loading_button)
-        loadSyncButton.setOnClickListener {
-            loadSyncData()
-        }
-
-        loadAsyncButton = findViewById(R.id.activity_upcoming_events_async_loading_button)
-        loadAsyncButton.setOnClickListener {
-            loadAsyncData()
-        }
+        bindViews()
+        fetchData()
     }
 
-    private fun loadAsyncData() {
+    private fun handleBranchClick(branchTitle: String) {
+        Toast.makeText(this, branchTitle, Toast.LENGTH_SHORT).show()
+    }
+
+    private fun handleEventClick(eventTitle: String) {
+        Toast.makeText(this, eventTitle, Toast.LENGTH_SHORT).show()
+    }
+
+    private fun bindViews() {
+        progressBar = findViewById(R.id.activity_upcoming_events_progress_bar)
+        branchList = findViewById(R.id.activity_upcoming_events_events_list)
+        branchList.layoutManager = LinearLayoutManager(this)
+        branchList.adapter = branchListAdapter
+    }
+
+    private fun fetchData() {
         startLoading()
-        apiClient.getUpcomingEvents().enqueue(object: Callback<List<BranchApiData>> {
+        apiClient.getUpcomingEvents().enqueue(object : Callback<List<BranchApiData>> {
             override fun onResponse(call: Call<List<BranchApiData>>, response: Response<List<BranchApiData>>) {
                 finishLoading()
-                handleSuccessResponse(response, R.color.activity_upcoming_events_async_text_color)
+                if (response.isSuccessful) {
+                    val branchList = response.body()!!
+                    showResult(branchList)
+                }
             }
 
             override fun onFailure(call: Call<List<BranchApiData>>, t: Throwable) {
                 finishLoading()
-                handleFailureResponse(t)
             }
         })
     }
 
-    private fun loadSyncData() {
-        startLoading()
-        Thread {
-            try {
-                val response: Response<List<BranchApiData>> = apiClient.getUpcomingEvents().execute()
-                runOnUiThread {
-                    handleSuccessResponse(response, R.color.activity_upcoming_events_sync_text_color)
-                }
-            } catch(e: Exception) {
-                runOnUiThread {
-                    handleFailureResponse(e)
-                }
-            }
-            runOnUiThread {
-                finishLoading()
-            }
-        }.start()
-    }
-
-    private fun handleSuccessResponse(
-        response: Response<List<BranchApiData>>,
-        @ColorRes successColor: Int = R.color.activity_upcoming_events_error_text_color
-    ) {
-        if (response.isSuccessful) {
-            val branchesList: List<BranchApiData> = response.body()!!
-            changeText(branchesList.toString(), successColor)
-        } else {
-            val errorMessage: String = response.errorBody().toString()
-            changeText(errorMessage, R.color.activity_upcoming_events_error_text_color)
-        }
-    }
-
-    private fun handleFailureResponse(
-        throwable: Throwable
-    ) {
-        val errorMessage = throwable.localizedMessage
-        changeText(errorMessage, R.color.activity_upcoming_events_error_text_color)
-    }
-
     private fun startLoading() {
-        loadSyncButton.gone()
-        loadAsyncButton.gone()
-        loadDataResultTextView.gone()
         progressBar.show()
     }
 
     private fun finishLoading() {
-        loadSyncButton.show()
-        loadAsyncButton.show()
-        loadDataResultTextView.show()
         progressBar.gone()
     }
 
-    private fun changeText(text: String, color: Int) {
-        loadDataResultTextView.text = text
-        loadDataResultTextView.setTextColor(ContextCompat.getColor(this, color))
+    private fun showResult(branchList: List<BranchApiData>) {
+        val upcomingEventItemList = getUpcomingEventList(branchList)
+        branchListAdapter.setList(upcomingEventItemList)
+    }
+
+    private fun getUpcomingEventList(branchList: List<BranchApiData>): List<UpcomingEventListItem> {
+        val userName: String = getUserName()
+        val headerListItem = HeaderItem(
+                userName = userName
+        )
+        val branchListItems = branchList.map { branchListItem ->
+            BranchItem(
+                    data = branchListItem
+            )
+        }
+        return listOf(headerListItem) + branchListItems
+    }
+
+    private fun getUserName(): String {
+        val sharedPref: SharedPreferences = getSharedPreferences(PREFERENCE_NAME, Context.MODE_PRIVATE)
+        return sharedPref.getString(PREFERENCE_NAME, USERNAME_DEFAULT_VALUE)
+                ?: USERNAME_DEFAULT_VALUE
     }
 }

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingLeft="@dimen/item_branch_card_padding_left"
+    android:paddingBottom="@dimen/item_branch_card_padding_bottom"
+    >
+
+    <LinearLayout
+        android:id="@+id/item_branch_card_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/item_branch_card_header_margin_bottom"
+        android:orientation="horizontal"
+        >
+
+        <TextView
+            android:id="@+id/item_branch_card_branch_name"
+            android:layout_width="@dimen/item_branch_card_title_width"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:textColor="@color/activity_upcoming_events_branch_name_color"
+            android:textSize="@dimen/item_branch_card_title_size"
+            tools:text="Android"
+            />
+
+        <ImageView
+            android:layout_width="@dimen/item_branch_card_arrow_icon_width"
+            android:layout_height="@dimen/item_branch_card_arrow_icon_height"
+            android:layout_gravity="center"
+            android:layout_marginRight="@dimen/item_branch_card_arrow_icon_margin_right"
+            android:src="@drawable/ic_arrow_back"
+            />
+
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/item_branch_card_event_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:listitem="@layout/item_event_card"
+        />
+
+</LinearLayout>

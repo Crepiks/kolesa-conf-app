@@ -1,58 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<FrameLayout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:padding="@dimen/activity_upcoming_events_screen_padding"
+    android:background="@color/activity_upcoming_events_background_color"
     tools:context=".events.presentation.UpcomingEventsActivity"
     >
 
-    <LinearLayout
+    <ImageView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/activity_upcoming_events_header_margin_top"
-        android:layout_marginBottom="@dimen/activity_upcoming_events_header_margin_bottom"
-        >
+        android:layout_height="match_parent"
+        android:src="@drawable/bg"
+        android:scaleType="matrix"
+        />
 
-        <Button
-            android:id="@+id/activity_upcoming_events_sync_loading_button"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/activity_upcoming_events_sync_loading"
-            />
-
-        <Button
-            android:id="@+id/activity_upcoming_events_async_loading_button"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/activity_upcoming_events_async_loading"
-            />
-
-    </LinearLayout>
-
-    <ScrollView
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/activity_upcoming_events_events_list"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        >
-
-        <TextView
-            android:id="@+id/activity_upcoming_events_request_result"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            />
-
-    </ScrollView>
+        android:layout_height="match_parent"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:listitem="@layout/item_branch_card"
+        />
 
     <ProgressBar
         android:id="@+id/activity_upcoming_events_progress_bar"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="center"
-        android:visibility="invisible"
+        android:visibility="gone"
+        android:theme="@style/AppTheme.WhiteAccent"
         />
 
-</LinearLayout>
+</FrameLayout>

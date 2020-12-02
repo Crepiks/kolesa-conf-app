@@ -6,6 +6,5 @@
     <string name="activity_hello_virus_description">Virus image</string>
     <string name="activity_hello_what_is_your_name">Как тебя зовут?</string>
 
-    <string name="activity_upcoming_events_sync_loading">Sync Loading</string>
-    <string name="activity_upcoming_events_async_loading">Async Loading</string>
+    <string name="item_upcoming_events_header_greeting_fmt">Привет, %1s</string>
 </resources>
