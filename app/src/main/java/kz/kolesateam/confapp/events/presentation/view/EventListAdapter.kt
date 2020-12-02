@@ -14,7 +14,7 @@ class EventListAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EventViewHolder {
         return EventViewHolder(
-                view = View.inflate(parent.context, R.layout.item_event_card, null),
+                view = View.inflate(parent.context, R.layout.item_upcoming_event_card, null),
                 onEventClick = onEventClick
         )
     }

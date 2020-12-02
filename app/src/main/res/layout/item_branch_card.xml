@@ -44,7 +44,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        tools:listitem="@layout/item_event_card"
+        tools:listitem="@layout/item_upcoming_event_card"
         />
 
 </LinearLayout>
