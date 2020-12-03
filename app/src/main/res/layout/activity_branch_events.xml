@@ -47,6 +47,8 @@
 
         </FrameLayout>
 
+        <include layout="@layout/item_branch_events_header" />
+
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="match_parent"

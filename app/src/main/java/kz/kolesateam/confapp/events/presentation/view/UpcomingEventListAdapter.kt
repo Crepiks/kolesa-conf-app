@@ -8,7 +8,7 @@ import kz.kolesateam.confapp.common.BaseViewHolder
 import kz.kolesateam.confapp.events.presentation.models.HEADER_TYPE
 import kz.kolesateam.confapp.events.presentation.models.UpcomingEventListItem
 
-class BranchListAdapter(
+class UpcomingEventListAdapter(
         private val onBranchClick: (branchTitle: String) -> Unit,
         private val onEventClick: (eventTitle: String) -> Unit
 ) : RecyclerView.Adapter<BaseViewHolder<UpcomingEventListItem>>() {

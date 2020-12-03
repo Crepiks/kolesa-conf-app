@@ -28,4 +28,6 @@
     <color name="item_upcoming_events_heading_greeting_color">#FAFAFA</color>
 
     <color name="activity_branch_events_background_color">#051021</color>
+
+    <color name="item_branch_events_header_title_color">#FFFFFF</color>
 </resources>

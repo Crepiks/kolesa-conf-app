@@ -15,7 +15,7 @@ import kz.kolesateam.confapp.events.data.models.*
 import kz.kolesateam.confapp.events.presentation.models.BranchItem
 import kz.kolesateam.confapp.events.presentation.models.HeaderItem
 import kz.kolesateam.confapp.events.presentation.models.UpcomingEventListItem
-import kz.kolesateam.confapp.events.presentation.view.BranchListAdapter
+import kz.kolesateam.confapp.events.presentation.view.UpcomingEventListAdapter
 import kz.kolesateam.confapp.extension.gone
 import kz.kolesateam.confapp.extension.show
 import retrofit2.Call
@@ -34,7 +34,7 @@ private const val USERNAME_DEFAULT_VALUE = ""
 
 class UpcomingEventsActivity : AppCompatActivity() {
 
-    private val branchListAdapter = BranchListAdapter(
+    private val branchListAdapter = UpcomingEventListAdapter(
             onBranchClick = ::handleBranchClick,
             onEventClick = ::handleEventClick
     )
