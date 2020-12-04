@@ -33,6 +33,7 @@ class BranchEventsActivity : AppCompatActivity() {
 
     private val eventListAdapter = EventListAdapter()
 
+    private lateinit var branchTitle: String
     private lateinit var backArrow: View
     private lateinit var eventListRecyclerView: RecyclerView
     private lateinit var progressBar: ProgressBar
@@ -40,7 +41,13 @@ class BranchEventsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_branch_events)
+        branchTitle = getBranchTitle()
         bindViews()
+    }
+
+    private fun getBranchTitle(): String {
+        val branchTitle = intent.getStringExtra("BRANCH_TITLE");
+        return branchTitle ?: ""
     }
 
     private fun bindViews() {
@@ -94,7 +101,7 @@ class BranchEventsActivity : AppCompatActivity() {
     }
 
     private fun getBranchEventList(eventList: List<EventApiData>): List<BranchEventListItem> {
-        val headerItem = HeaderItem(title = "Hello")
+        val headerItem = HeaderItem(title = branchTitle)
         val eventItemList = eventList.map { event ->
             EventItem(data = event)
         }

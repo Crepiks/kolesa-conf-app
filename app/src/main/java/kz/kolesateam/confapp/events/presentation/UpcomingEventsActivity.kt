@@ -27,8 +27,8 @@ import retrofit2.Retrofit
 import retrofit2.converter.jackson.JacksonConverterFactory
 
 val apiRetrofit: Retrofit = Retrofit.Builder()
-        .baseUrl(API_BASE_URL)
-        .addConverterFactory(JacksonConverterFactory.create()).build();
+    .baseUrl(API_BASE_URL)
+    .addConverterFactory(JacksonConverterFactory.create()).build();
 val apiClient: UpcomingEventsApiClient = apiRetrofit.create(UpcomingEventsApiClient::class.java)
 
 private const val PREFERENCE_NAME = "user_name"
@@ -37,8 +37,8 @@ private const val USERNAME_DEFAULT_VALUE = ""
 class UpcomingEventsActivity : AppCompatActivity() {
 
     private val branchListAdapter = UpcomingEventListAdapter(
-            onBranchClick = ::handleBranchClick,
-            onEventClick = ::handleEventClick
+        onBranchClick = ::handleBranchClick,
+        onEventClick = ::handleEventClick
     )
 
     private lateinit var progressBar: ProgressBar
@@ -53,6 +53,7 @@ class UpcomingEventsActivity : AppCompatActivity() {
 
     private fun handleBranchClick(branchTitle: String) {
         val branchEventsIntent = Intent(this, BranchEventsActivity::class.java)
+        branchEventsIntent.putExtra("BRANCH_TITLE", branchTitle)
         startActivity(branchEventsIntent)
     }
 
@@ -70,7 +71,10 @@ class UpcomingEventsActivity : AppCompatActivity() {
     private fun fetchData() {
         startLoading()
         apiClient.getUpcomingEvents().enqueue(object : Callback<List<BranchApiData>> {
-            override fun onResponse(call: Call<List<BranchApiData>>, response: Response<List<BranchApiData>>) {
+            override fun onResponse(
+                call: Call<List<BranchApiData>>,
+                response: Response<List<BranchApiData>>
+            ) {
                 finishLoading()
                 if (response.isSuccessful) {
                     val branchList = response.body()!!
@@ -100,19 +104,20 @@ class UpcomingEventsActivity : AppCompatActivity() {
     private fun getUpcomingEventList(branchList: List<BranchApiData>): List<UpcomingEventListItem> {
         val userName: String = getUserName()
         val headerListItem = HeaderItem(
-                userName = userName
+            userName = userName
         )
         val branchListItems = branchList.map { branchListItem ->
             BranchItem(
-                    data = branchListItem
+                data = branchListItem
             )
         }
         return listOf(headerListItem) + branchListItems
     }
 
     private fun getUserName(): String {
-        val sharedPref: SharedPreferences = getSharedPreferences(PREFERENCE_NAME, Context.MODE_PRIVATE)
+        val sharedPref: SharedPreferences =
+            getSharedPreferences(PREFERENCE_NAME, Context.MODE_PRIVATE)
         return sharedPref.getString(PREFERENCE_NAME, USERNAME_DEFAULT_VALUE)
-                ?: USERNAME_DEFAULT_VALUE
+            ?: USERNAME_DEFAULT_VALUE
     }
 }
