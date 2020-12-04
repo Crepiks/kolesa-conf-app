@@ -4,11 +4,13 @@
     android:layout_height="wrap_content"
     android:gravity="center_horizontal"
     android:orientation="vertical"
-    android:paddingBottom="@dimen/item_branch_event_card_padding_bottom">
+    android:paddingBottom="@dimen/item_branch_event_card_padding_bottom"
+    >
 
     <LinearLayout
-        android:layout_width="312dp"
-        android:layout_height="wrap_content">
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        >
 
         <include layout="@layout/layout_event_card" />
 
