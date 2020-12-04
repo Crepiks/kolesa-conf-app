@@ -6,10 +6,10 @@
     android:layout_height="wrap_content"
     card_view:cardBackgroundColor="@color/item_event_card_background_color"
     card_view:cardCornerRadius="@dimen/layout_event_card_corner_radius"
-    >w
+    >
 
     <LinearLayout
-        android:id="@+id/item_event_card_container"
+        android:id="@+id/layout_event_card_container"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -23,7 +23,7 @@
             >
 
             <TextView
-                android:id="@+id/item_event_card_placement"
+                android:id="@+id/layout_event_card_placement"
                 android:layout_width="@dimen/layout_event_card_placement_width"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -32,18 +32,18 @@
                 />
 
             <ImageView
-                android:id="@+id/item_event_card_favorite_button"
+                android:id="@+id/layout_event_card_favorite_button"
                 android:layout_width="@dimen/layout_event_card_favorite_button_width"
                 android:layout_height="@dimen/layout_event_card_favorite_button_height"
-                android:layout_marginLeft="@dimen/layout_event_card_favorite_button_margin_left"
                 android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/layout_event_card_favorite_button_margin_left"
                 android:src="@drawable/ic_favorite_border"
                 />
 
         </LinearLayout>
 
         <TextView
-            android:id="@+id/item_event_card_speaker_name"
+            android:id="@+id/layout_event_card_speaker_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/layout_event_card_speaker_name_margin_top"
@@ -54,7 +54,7 @@
             />
 
         <TextView
-            android:id="@+id/item_event_card_speaker_position"
+            android:id="@+id/layout_event_card_speaker_position"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/item_event_card_speaker_position_color"
@@ -63,7 +63,7 @@
             />
 
         <TextView
-            android:id="@+id/item_event_card_title"
+            android:id="@+id/layout_event_card_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/layout_event_card_title_margin_top"

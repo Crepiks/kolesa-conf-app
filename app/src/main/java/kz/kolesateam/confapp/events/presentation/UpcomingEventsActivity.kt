@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import kz.kolesateam.confapp.R
 import kz.kolesateam.confapp.events.data.models.BranchApiData
 import kz.kolesateam.confapp.branchEvents.presentation.BranchEventsActivity
+import kz.kolesateam.confapp.common.API_BASE_URL
 import kz.kolesateam.confapp.events.data.UpcomingEventsApiClient
 import kz.kolesateam.confapp.events.presentation.models.BranchItem
 import kz.kolesateam.confapp.events.presentation.models.HeaderItem
@@ -26,7 +27,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.jackson.JacksonConverterFactory
 
 val apiRetrofit: Retrofit = Retrofit.Builder()
-        .baseUrl("http://37.143.8.68:2020/")
+        .baseUrl(API_BASE_URL)
         .addConverterFactory(JacksonConverterFactory.create()).build();
 val apiClient: UpcomingEventsApiClient = apiRetrofit.create(UpcomingEventsApiClient::class.java)
 
