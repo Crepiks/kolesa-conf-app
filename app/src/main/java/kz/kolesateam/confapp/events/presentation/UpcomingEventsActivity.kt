@@ -10,8 +10,9 @@ import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kz.kolesateam.confapp.R
+import kz.kolesateam.confapp.events.data.models.BranchApiData
+import kz.kolesateam.confapp.branchEvents.presentation.BranchEventsActivity
 import kz.kolesateam.confapp.events.data.UpcomingEventsApiClient
-import kz.kolesateam.confapp.events.data.models.*
 import kz.kolesateam.confapp.events.presentation.models.BranchItem
 import kz.kolesateam.confapp.events.presentation.models.HeaderItem
 import kz.kolesateam.confapp.events.presentation.models.UpcomingEventListItem

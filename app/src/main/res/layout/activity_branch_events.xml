@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/activity_branch_events_background_color"
     android:orientation="vertical"
-    tools:context=".events.presentation.BranchEventsActivity"
+    tools:context=".branchEvents.presentation.BranchEventsActivity"
     >
 
     <ImageView

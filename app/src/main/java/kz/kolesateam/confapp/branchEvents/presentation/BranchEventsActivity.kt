@@ -1,10 +1,11 @@
-package kz.kolesateam.confapp.events.presentation
+package kz.kolesateam.confapp.branchEvents.presentation
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import kz.kolesateam.confapp.R
+import kz.kolesateam.confapp.events.presentation.UpcomingEventsActivity
 
 class BranchEventsActivity : AppCompatActivity() {
 
