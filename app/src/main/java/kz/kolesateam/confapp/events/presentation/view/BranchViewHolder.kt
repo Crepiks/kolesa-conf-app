@@ -12,10 +12,10 @@ import kz.kolesateam.confapp.events.presentation.models.BranchItem
 import kz.kolesateam.confapp.events.presentation.models.UpcomingEventListItem
 
 class BranchViewHolder(
-        view: View,
-        private val parent: ViewGroup,
-        private val onBranchClick: (branchTitle: String) -> Unit,
-        onEventClick: (eventTitle: String) -> Unit
+    view: View,
+    private val parent: ViewGroup,
+    private val onBranchClick: (branchId: Int, branchTitle: String) -> Unit,
+    onEventClick: (eventTitle: String) -> Unit
 ) : BaseViewHolder<UpcomingEventListItem>(view) {
 
     private val header: View = view.findViewById(R.id.item_branch_card_header)
@@ -23,22 +23,20 @@ class BranchViewHolder(
     private val eventList: RecyclerView = view.findViewById(R.id.item_branch_card_event_list)
     private val eventListAdapter = EventListAdapter(onEventClick)
 
-    init {
-        setListeners()
-    }
-
     override fun bind(data: UpcomingEventListItem) {
         val branchApiData: BranchApiData = (data as? BranchItem)?.data ?: return
         branchTitle.text = branchApiData.title
-        eventList.layoutManager = LinearLayoutManager(parent.context, LinearLayoutManager.HORIZONTAL, false)
+        eventList.layoutManager =
+            LinearLayoutManager(parent.context, LinearLayoutManager.HORIZONTAL, false)
         eventList.adapter = eventListAdapter
         branchApiData.events?.let { eventListAdapter.setList(it) }
+        setListeners(branchApiData.id ?: return)
     }
 
-    private fun setListeners() {
+    private fun setListeners(branchId: Int) {
         header.setOnClickListener {
             val branchTitle = this.branchTitle.text.toString()
-            onBranchClick(branchTitle)
+            onBranchClick(branchId, branchTitle)
         }
     }
 }

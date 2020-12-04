@@ -51,8 +51,9 @@ class UpcomingEventsActivity : AppCompatActivity() {
         fetchData()
     }
 
-    private fun handleBranchClick(branchTitle: String) {
+    private fun handleBranchClick(branchId: Int, branchTitle: String) {
         val branchEventsIntent = Intent(this, BranchEventsActivity::class.java)
+        branchEventsIntent.putExtra("BRANCH_ID", branchId)
         branchEventsIntent.putExtra("BRANCH_TITLE", branchTitle)
         startActivity(branchEventsIntent)
     }

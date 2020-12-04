@@ -7,6 +7,6 @@ import retrofit2.http.Path
 
 interface BranchEventsApiClient {
 
-    @GET("/branch_events/{eventId}")
-    fun getBranchEvents(@Path("eventId") eventId: Int): Call<List<EventApiData>>
+    @GET("/branch_events/{branchId}")
+    fun getBranchEvents(@Path("branchId") branchId: Int): Call<List<EventApiData>>
 }
