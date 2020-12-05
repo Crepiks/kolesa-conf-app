@@ -14,22 +14,20 @@ import kz.kolesateam.confapp.branchEvents.presentation.models.BranchEventListIte
 import kz.kolesateam.confapp.branchEvents.presentation.models.EventItem
 import kz.kolesateam.confapp.branchEvents.presentation.models.HeaderItem
 import kz.kolesateam.confapp.branchEvents.presentation.view.EventListAdapter
-import kz.kolesateam.confapp.common.API_BASE_URL
 import kz.kolesateam.confapp.events.presentation.UpcomingEventsActivity
 import kz.kolesateam.confapp.extension.gone
 import kz.kolesateam.confapp.extension.show
+import org.koin.java.KoinJavaComponent.inject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.jackson.JacksonConverterFactory
 
-val apiRetrofit: Retrofit = Retrofit.Builder()
-    .baseUrl(API_BASE_URL)
-    .addConverterFactory(JacksonConverterFactory.create()).build();
-val apiClient: BranchEventsApiClient = apiRetrofit.create(BranchEventsApiClient::class.java)
+private const val DEFAULT_BRANCH_ID = 0
+private const val DEFAULT_BRANCH_TITLE = ""
 
 class BranchEventsActivity : AppCompatActivity() {
+
+    private val apiClient: BranchEventsApiClient by inject()
 
     private val eventListAdapter = EventListAdapter()
 
@@ -48,12 +46,12 @@ class BranchEventsActivity : AppCompatActivity() {
     }
 
     private fun getBranchId(): Int {
-        return intent.getIntExtra("BRANCH_ID", 0)
+        return intent.getIntExtra("BRANCH_ID", DEFAULT_BRANCH_ID)
     }
 
     private fun getBranchTitle(): String {
         val branchTitle = intent.getStringExtra("BRANCH_TITLE");
-        return branchTitle ?: ""
+        return branchTitle ?: DEFAULT_BRANCH_TITLE
     }
 
     private fun bindViews() {
@@ -75,22 +73,23 @@ class BranchEventsActivity : AppCompatActivity() {
 
     private fun fetchData() {
         startLoading()
-        apiClient.getBranchEvents(branchId = branchId).enqueue(object : Callback<List<EventApiData>> {
-            override fun onResponse(
-                call: Call<List<EventApiData>>,
-                response: Response<List<EventApiData>>
-            ) {
-                finishLoading()
-                if (response.isSuccessful) {
-                    val branchList = response.body()!!
-                    showResult(branchList)
+        apiClient.getBranchEvents(branchId = branchId)
+            .enqueue(object : Callback<List<EventApiData>> {
+                override fun onResponse(
+                    call: Call<List<EventApiData>>,
+                    response: Response<List<EventApiData>>
+                ) {
+                    finishLoading()
+                    if (response.isSuccessful) {
+                        val branchList = response.body()!!
+                        showResult(branchList)
+                    }
                 }
-            }
 
-            override fun onFailure(call: Call<List<EventApiData>>, t: Throwable) {
-                finishLoading()
-            }
-        })
+                override fun onFailure(call: Call<List<EventApiData>>, t: Throwable) {
+                    finishLoading()
+                }
+            })
     }
 
     private fun startLoading() {
