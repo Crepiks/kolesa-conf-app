@@ -58,7 +58,7 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:theme="@style/AppTheme.WhiteAccent"
-                android:visibility="visible" />
+                android:visibility="gone" />
 
         </FrameLayout>
 
