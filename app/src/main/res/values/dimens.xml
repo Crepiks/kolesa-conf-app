@@ -20,6 +20,8 @@
     <dimen name="item_upcoming_events_header_greeting_margin_left">16dp</dimen>
     <dimen name="item_upcoming_events_header_margin_bottom">24dp</dimen>
 
+    <dimen name="item_upcoming_event_card_width">288dp</dimen>
+
     <dimen name="item_branch_card_padding_left">24dp</dimen>
     <dimen name="item_branch_card_padding_bottom">42dp</dimen>
     <dimen name="item_branch_card_header_margin_bottom">16dp</dimen>
