@@ -17,7 +17,7 @@ import kz.kolesateam.confapp.branchEvents.presentation.view.EventListAdapter
 import kz.kolesateam.confapp.events.presentation.UpcomingEventsActivity
 import kz.kolesateam.confapp.extension.gone
 import kz.kolesateam.confapp.extension.show
-import org.koin.java.KoinJavaComponent.inject
+import org.koin.android.ext.android.inject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -27,7 +27,7 @@ private const val DEFAULT_BRANCH_TITLE = ""
 
 class BranchEventsActivity : AppCompatActivity() {
 
-    private val apiClient: BranchEventsApiClient by inject()
+    private val branchEventsApiClient: BranchEventsApiClient by inject()
 
     private val eventListAdapter = EventListAdapter()
 
@@ -73,7 +73,7 @@ class BranchEventsActivity : AppCompatActivity() {
 
     private fun fetchData() {
         startLoading()
-        apiClient.getBranchEvents(branchId = branchId)
+        branchEventsApiClient.getBranchEvents(branchId = branchId)
             .enqueue(object : Callback<List<EventApiData>> {
                 override fun onResponse(
                     call: Call<List<EventApiData>>,
