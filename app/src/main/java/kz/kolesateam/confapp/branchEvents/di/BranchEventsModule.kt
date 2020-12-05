@@ -1,6 +1,8 @@
 package kz.kolesateam.confapp.branchEvents.di
 
-import kz.kolesateam.confapp.branchEvents.data.BranchEventsApiClient
+import kz.kolesateam.confapp.branchEvents.data.BranchEventsDataSource
+import kz.kolesateam.confapp.branchEvents.data.BranchEventsRepositoryImp
+import kz.kolesateam.confapp.branchEvents.domain.BranchEventsRepository
 import kz.kolesateam.confapp.branchEvents.presentation.BranchEventsViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.module.Module
@@ -14,7 +16,7 @@ val branchEventsModule: Module = module {
 
     viewModel {
         BranchEventsViewModel(
-            branchEventsApiClient = get()
+            branchEventsRepository = get()
         )
     }
 
@@ -24,8 +26,13 @@ val branchEventsModule: Module = module {
             .addConverterFactory(JacksonConverterFactory.create()).build()
     }
 
-    single<BranchEventsApiClient> {
+    single<BranchEventsDataSource> {
         val apiClient = get<Retrofit>()
-        apiClient.create(BranchEventsApiClient::class.java)
+        apiClient.create(BranchEventsDataSource::class.java)
+    }
+
+    factory<BranchEventsRepository> {
+        val branchEventsDataSource: BranchEventsDataSource = get()
+        BranchEventsRepositoryImp(branchEventsDataSource)
     }
 }

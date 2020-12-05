@@ -7,24 +7,26 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import kz.kolesateam.confapp.branchEvents.data.BranchEventsApiClient
+import kz.kolesateam.confapp.branchEvents.data.BranchEventsDataSource
 import kz.kolesateam.confapp.branchEvents.data.models.EventApiData
+import kz.kolesateam.confapp.branchEvents.domain.BranchEventsRepository
 import kz.kolesateam.confapp.common.models.ProgressStatus
+import kz.kolesateam.confapp.common.models.ResponseData
 import retrofit2.Response
 
 private const val DEFAULT_BRANCH_ID = 0
 
 class BranchEventsViewModel(
-    private val branchEventsApiClient: BranchEventsApiClient
+    private val branchEventsRepository: BranchEventsRepository
 ) : ViewModel() {
 
     private val progressLiveData: MutableLiveData<ProgressStatus> = MutableLiveData()
     private val branchListLiveData: MutableLiveData<List<EventApiData>> = MutableLiveData()
-    private val errorLiveData: MutableLiveData<Exception> = MutableLiveData()
+    private val errorLiveData: MutableLiveData<String> = MutableLiveData()
 
     fun getProgressLiveData(): LiveData<ProgressStatus> = progressLiveData
     fun getBranchListLiveData(): LiveData<List<EventApiData>> = branchListLiveData
-    fun getErrorLiveData(): LiveData<Exception> = errorLiveData
+    fun getErrorLiveData(): LiveData<String> = errorLiveData
 
     private var branchId = DEFAULT_BRANCH_ID
 
@@ -36,13 +38,16 @@ class BranchEventsViewModel(
     private fun fetchData() {
         progressLiveData.value = ProgressStatus.Loading
         viewModelScope.launch(Dispatchers.Main) {
-            var response: Response<List<EventApiData>>
-            withContext(Dispatchers.IO) {
-                response = branchEventsApiClient.getBranchEvents(branchId = branchId).execute()
-            }
-            if (response.isSuccessful) {
-                val branchList = response.body()!!
-                branchListLiveData.value = branchList
+            var response: ResponseData<List<EventApiData>, String> =
+                withContext(Dispatchers.IO) {
+                    branchEventsRepository.getBranchEvents(branchId = branchId)
+                }
+            when (response) {
+                is ResponseData.Success -> {
+                    val branchList = response.result
+                    branchListLiveData.value = branchList
+                }
+                is ResponseData.Error -> errorLiveData.value = response.error
             }
             progressLiveData.value = ProgressStatus.Finished
         }

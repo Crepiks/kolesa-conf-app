@@ -92,8 +92,7 @@ class BranchEventsActivity : AppCompatActivity() {
         eventListAdapter.setList(branchEventList)
     }
 
-    private fun showErrorMessage(error: Exception) {
-        val errorMessage = error.localizedMessage
+    private fun showErrorMessage(errorMessage: String) {
         Toast.makeText(this, errorMessage, Toast.LENGTH_SHORT).show()
     }
 

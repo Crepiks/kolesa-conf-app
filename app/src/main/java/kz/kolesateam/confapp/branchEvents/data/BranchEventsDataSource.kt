@@ -5,7 +5,7 @@ import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path
 
-interface BranchEventsApiClient {
+interface BranchEventsDataSource {
 
     @GET("/branch_events/{branchId}")
     fun getBranchEvents(@Path("branchId") branchId: Int): Call<List<EventApiData>>
