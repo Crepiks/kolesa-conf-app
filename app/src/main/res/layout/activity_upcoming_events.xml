@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:tools="http://schemas.android.com/tools"
+<FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:background="@color/activity_upcoming_events_background_color"
+    android:orientation="vertical"
     tools:context=".events.presentation.UpcomingEventsActivity"
     >
 
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/bg"
         android:scaleType="matrix"
+        android:src="@drawable/bg"
         />
 
     <androidx.recyclerview.widget.RecyclerView
@@ -29,8 +30,8 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="center"
-        android:visibility="gone"
         android:theme="@style/AppTheme.WhiteAccent"
+        android:visibility="gone"
         />
 
 </FrameLayout>
