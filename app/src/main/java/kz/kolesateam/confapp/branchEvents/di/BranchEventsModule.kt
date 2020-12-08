@@ -20,19 +20,12 @@ val branchEventsModule: Module = module {
         )
     }
 
-    single<Retrofit> {
-        Retrofit.Builder()
-            .baseUrl(API_BASE_URL)
-            .addConverterFactory(JacksonConverterFactory.create()).build()
-    }
-
     single<BranchEventsDataSource> {
         val apiClient = get<Retrofit>()
         apiClient.create(BranchEventsDataSource::class.java)
     }
 
     factory<BranchEventsRepository> {
-        val branchEventsDataSource: BranchEventsDataSource = get()
-        BranchEventsRepositoryImp(branchEventsDataSource)
+        BranchEventsRepositoryImp(branchEventsDataSource = get())
     }
 }
