@@ -48,29 +48,22 @@
 
         </FrameLayout>
 
-        <FrameLayout
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/activity_branch_events_event_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            >
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/activity_branch_events_event_list"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                tools:listitem="@layout/item_branch_event_card"
-                />
-
-            <ProgressBar
-                android:id="@+id/activity_branch_events_progress_bar"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:theme="@style/AppTheme.WhiteAccent"
-                android:visibility="gone"
-                />
-
-        </FrameLayout>
+            tools:listitem="@layout/item_branch_event_card"
+            />
 
     </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/activity_branch_events_progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:theme="@style/AppTheme.WhiteAccent"
+        android:visibility="gone"
+        />
 
 </FrameLayout>
