@@ -48,6 +48,10 @@
 
     <dimen name="activity_branch_events_header_padding_vertical">16dp</dimen>
     <dimen name="activity_branch_events_header_padding_horizontal">21dp</dimen>
+    <dimen name="activity_branch_events_favorite_button_margin_bottom">20dp</dimen>
+    <dimen name="activity_branch_events_favorite_button_drawable_padding">8dp</dimen>
+    <dimen name="activity_branch_events_favorite_button_padding">16dp</dimen>
+    <dimen name="activity_branch_events_favorite_button_text_size">16sp</dimen>
 
     <dimen name="item_branch_event_card_padding_bottom">16dp</dimen>
     <dimen name="item_branch_event_card_width">312dp</dimen>
