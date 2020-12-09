@@ -24,6 +24,7 @@ import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.jackson.JacksonConverterFactory
+import java.lang.ref.WeakReference
 
 const val API_BASE_URL = "http://37.143.8.68:2020/"
 
@@ -34,8 +35,6 @@ val apiClient: UpcomingEventsApiClient = apiRetrofit.create(UpcomingEventsApiCli
 
 private const val PREFERENCE_NAME = "user_name"
 private const val USERNAME_DEFAULT_VALUE = ""
-private const val BRANCH_ID_KEY = "BRANCH_ID"
-private const val BRANCH_TITLE_KEY = "BRANCH_TITLE"
 
 class UpcomingEventsActivity : AppCompatActivity() {
 
@@ -55,10 +54,11 @@ class UpcomingEventsActivity : AppCompatActivity() {
     }
 
     private fun handleBranchClick(branchId: Int, branchTitle: String) {
-        val branchEventsIntent = Intent(this, BranchEventsActivity::class.java)
-        branchEventsIntent.putExtra(BRANCH_ID_KEY, branchId)
-        branchEventsIntent.putExtra(BRANCH_TITLE_KEY, branchTitle)
-        startActivity(branchEventsIntent)
+        val router = UpcomingEventsRouter(WeakReference(this))
+        router.navigateToBranchEventsScreen(
+            branchId = branchId,
+            branchTitle = branchTitle
+        )
     }
 
     private fun handleEventClick(eventTitle: String) {
