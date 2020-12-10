@@ -8,13 +8,10 @@
     android:paddingBottom="@dimen/item_branch_event_card_padding_bottom"
     >
 
-    <LinearLayout
+    <include
+        layout="@layout/layout_event_card"
         android:layout_width="@dimen/item_branch_event_card_width"
-        android:layout_height="match_parent"
-        >
-
-        <include layout="@layout/layout_event_card" />
-
-    </LinearLayout>
+        android:layout_height="wrap_content"
+        />
 
 </LinearLayout>
