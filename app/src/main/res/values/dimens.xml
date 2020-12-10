@@ -20,6 +20,8 @@
     <dimen name="item_upcoming_events_header_greeting_margin_left">16dp</dimen>
     <dimen name="item_upcoming_events_header_margin_bottom">24dp</dimen>
 
+    <dimen name="item_upcoming_event_card_width">288dp</dimen>
+
     <dimen name="item_branch_card_padding_left">24dp</dimen>
     <dimen name="item_branch_card_padding_bottom">42dp</dimen>
     <dimen name="item_branch_card_header_margin_bottom">16dp</dimen>
@@ -30,17 +32,30 @@
     <dimen name="item_branch_card_arrow_icon_margin_right">8dp</dimen>
 
     <dimen name="item_event_card_padding_right">8dp</dimen>
-    <dimen name="item_event_card_width">280dp</dimen>
-    <dimen name="item_event_card_padding">16dp</dimen>
-    <dimen name="item_event_card_placement_width">0dp</dimen>
-    <dimen name="item_event_card_placement_size">14sp</dimen>
-    <dimen name="item_event_card_favorite_button_width">14dp</dimen>
-    <dimen name="item_event_card_favorite_button_height">14dp</dimen>
-    <dimen name="item_event_card_speaker_name_margin_top">8dp</dimen>
-    <dimen name="item_event_card_speaker_name_size">14sp</dimen>
-    <dimen name="item_event_card_position_size">13sp</dimen>
-    <dimen name="item_event_card_title_margin_top">8dp</dimen>
-    <dimen name="item_event_card_title_size">14sp</dimen>
 
-    <dimen name="event_card_background_border_radius">1dp</dimen>
+    <dimen name="layout_event_card_width">280dp</dimen>
+    <dimen name="layout_event_card_padding">16dp</dimen>
+    <dimen name="layout_event_card_placement_size">14sp</dimen>
+    <dimen name="layout_event_card_favorite_button_width">14dp</dimen>
+    <dimen name="layout_event_card_favorite_button_height">14dp</dimen>
+    <dimen name="layout_event_card_speaker_name_margin_top">8dp</dimen>
+    <dimen name="layout_event_card_speaker_name_size">14sp</dimen>
+    <dimen name="layout_event_card_position_size">13sp</dimen>
+    <dimen name="layout_event_card_title_margin_top">8dp</dimen>
+    <dimen name="layout_event_card_title_size">14sp</dimen>
+    <dimen name="layout_event_card_corner_radius">3dp</dimen>
+    <dimen name="layout_event_card_favorite_button_margin_left">20dp</dimen>
+
+    <dimen name="activity_branch_events_header_padding_vertical">16dp</dimen>
+    <dimen name="activity_branch_events_header_padding_horizontal">21dp</dimen>
+    <dimen name="activity_branch_events_favorite_button_margin_bottom">20dp</dimen>
+    <dimen name="activity_branch_events_favorite_button_drawable_padding">8dp</dimen>
+    <dimen name="activity_branch_events_favorite_button_padding">16dp</dimen>
+    <dimen name="activity_branch_events_favorite_button_text_size">16sp</dimen>
+
+    <dimen name="item_branch_event_card_padding_bottom">16dp</dimen>
+    <dimen name="item_branch_event_card_width">312dp</dimen>
+
+    <dimen name="item_branch_events_header_padding_bottom">32dp</dimen>
+    <dimen name="item_branch_events_header_title_size">24dp</dimen>
 </resources>

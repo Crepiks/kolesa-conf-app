@@ -7,15 +7,19 @@ import kz.kolesateam.confapp.R
 import kz.kolesateam.confapp.common.BaseViewHolder
 import kz.kolesateam.confapp.events.presentation.models.HEADER_TYPE
 import kz.kolesateam.confapp.events.presentation.models.UpcomingEventListItem
+import kotlin.reflect.KFunction2
 
-class BranchListAdapter(
-        private val onBranchClick: (branchTitle: String) -> Unit,
-        private val onEventClick: (eventTitle: String) -> Unit
+class UpcomingEventListAdapter(
+    private val onBranchClick: (branchId: Int, branchTitle: String) -> Unit,
+    private val onEventClick: (eventTitle: String) -> Unit
 ) : RecyclerView.Adapter<BaseViewHolder<UpcomingEventListItem>>() {
 
     private val itemList: MutableList<UpcomingEventListItem> = mutableListOf()
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<UpcomingEventListItem> {
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int
+    ): BaseViewHolder<UpcomingEventListItem> {
         return when (viewType) {
             HEADER_TYPE -> createHeaderViewHolder(parent)
             else -> createBranchViewHolder(parent)
@@ -39,25 +43,25 @@ class BranchListAdapter(
     }
 
     private fun createHeaderViewHolder(
-            parent: ViewGroup
+        parent: ViewGroup
     ): BaseViewHolder<UpcomingEventListItem> = HeaderViewHolder(
-            view = LayoutInflater.from(parent.context).inflate(
-                    R.layout.item_upcoming_events_header,
-                    parent,
-                    false
-            )
+        view = LayoutInflater.from(parent.context).inflate(
+            R.layout.item_upcoming_events_header,
+            parent,
+            false
+        )
     )
 
     private fun createBranchViewHolder(
-            parent: ViewGroup
+        parent: ViewGroup
     ): BaseViewHolder<UpcomingEventListItem> = BranchViewHolder(
-            view = LayoutInflater.from(parent.context).inflate(
-                    R.layout.item_branch_card,
-                    parent,
-                    false
-            ),
-            parent = parent,
-            onBranchClick = onBranchClick,
-            onEventClick = onEventClick
+        view = LayoutInflater.from(parent.context).inflate(
+            R.layout.item_branch_card,
+            parent,
+            false
+        ),
+        parent = parent,
+        onBranchClick = onBranchClick,
+        onEventClick = onEventClick
     )
 }

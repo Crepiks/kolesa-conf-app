@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:paddingRight="@dimen/item_event_card_padding_right"
+    card_view:cardBackgroundColor="@color/item_event_card_background_color"
+    card_view:cardCornerRadius="@dimen/layout_event_card_corner_radius"
     >
 
     <LinearLayout
-        android:id="@+id/item_event_card_container"
-        android:layout_width="@dimen/item_event_card_width"
+        android:id="@+id/layout_event_card_container"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/event_card_background"
         android:orientation="vertical"
-        android:padding="@dimen/item_event_card_padding"
+        android:padding="@dimen/layout_event_card_padding"
         >
 
         <LinearLayout
@@ -23,54 +24,55 @@
             >
 
             <TextView
-                android:id="@+id/item_event_card_placement"
-                android:layout_width="@dimen/item_event_card_placement_width"
+                android:id="@+id/layout_event_card_placement"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textSize="@dimen/item_event_card_placement_size"
+                android:textSize="@dimen/layout_event_card_placement_size"
                 tools:text="5:00 - 16:00 • Зал номер 5"
                 />
 
             <ImageView
-                android:id="@+id/item_event_card_favorite_button"
-                android:layout_width="@dimen/item_event_card_favorite_button_width"
-                android:layout_height="@dimen/item_event_card_favorite_button_height"
+                android:id="@+id/layout_event_card_favorite_button"
+                android:layout_width="@dimen/layout_event_card_favorite_button_width"
+                android:layout_height="@dimen/layout_event_card_favorite_button_height"
                 android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/layout_event_card_favorite_button_margin_left"
                 android:src="@drawable/ic_favorite_border"
                 />
 
         </LinearLayout>
 
         <TextView
-            android:id="@+id/item_event_card_speaker_name"
+            android:id="@+id/layout_event_card_speaker_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/item_event_card_speaker_name_margin_top"
+            android:layout_marginTop="@dimen/layout_event_card_speaker_name_margin_top"
             android:textColor="@color/item_event_card_speaker_name_color"
-            android:textSize="@dimen/item_event_card_speaker_name_size"
+            android:textSize="@dimen/layout_event_card_speaker_name_size"
             android:textStyle="bold"
             tools:text="Жалгас Бакин"
             />
 
         <TextView
-            android:id="@+id/item_event_card_speaker_position"
+            android:id="@+id/layout_event_card_speaker_position"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/item_event_card_speaker_position_color"
-            android:textSize="@dimen/item_event_card_position_size"
+            android:textSize="@dimen/layout_event_card_position_size"
             tools:text="Андроид-разработчик в Альфа Банке"
             />
 
         <TextView
-            android:id="@+id/item_event_card_title"
+            android:id="@+id/layout_event_card_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/item_event_card_title_margin_top"
+            android:layout_marginTop="@dimen/layout_event_card_title_margin_top"
             android:textColor="@color/item_event_card_description_color"
-            android:textSize="@dimen/item_event_card_title_size"
+            android:textSize="@dimen/layout_event_card_title_size"
             tools:text="Борьба за независимость в многомодульных приложениях"
             />
 
     </LinearLayout>
+</androidx.cardview.widget.CardView>
 
-</LinearLayout>
