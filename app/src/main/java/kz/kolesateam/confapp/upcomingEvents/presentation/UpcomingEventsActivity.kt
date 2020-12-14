@@ -1,42 +1,36 @@
 package kz.kolesateam.confapp.upcomingEvents.presentation
 
 import android.content.Context
-import android.content.Intent
 import android.content.SharedPreferences
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ProgressBar
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import kz.kolesateam.confapp.R
+import kz.kolesateam.confapp.common.models.ResponseData
+import kz.kolesateam.confapp.extension.gone
+import kz.kolesateam.confapp.extension.show
 import kz.kolesateam.confapp.upcomingEvents.data.models.BranchApiData
-import kz.kolesateam.confapp.branchEvents.presentation.BranchEventsActivity
-import kz.kolesateam.confapp.upcomingEvents.data.UpcomingEventsApiClient
+import kz.kolesateam.confapp.upcomingEvents.domain.UpcomingEventsRepository
 import kz.kolesateam.confapp.upcomingEvents.presentation.models.BranchItem
 import kz.kolesateam.confapp.upcomingEvents.presentation.models.HeaderItem
 import kz.kolesateam.confapp.upcomingEvents.presentation.models.UpcomingEventListItem
 import kz.kolesateam.confapp.upcomingEvents.presentation.view.UpcomingEventListAdapter
-import kz.kolesateam.confapp.extension.gone
-import kz.kolesateam.confapp.extension.show
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.jackson.JacksonConverterFactory
+import org.koin.android.ext.android.inject
 import java.lang.ref.WeakReference
-
-const val API_BASE_URL = "http://37.143.8.68:2020/"
-
-val apiRetrofit: Retrofit = Retrofit.Builder()
-    .baseUrl(API_BASE_URL)
-    .addConverterFactory(JacksonConverterFactory.create()).build();
-val apiClient: UpcomingEventsApiClient = apiRetrofit.create(UpcomingEventsApiClient::class.java)
 
 private const val PREFERENCE_NAME = "user_name"
 private const val USERNAME_DEFAULT_VALUE = ""
 
 class UpcomingEventsActivity : AppCompatActivity() {
+
+    private val upcomingEventsRepository: UpcomingEventsRepository by inject()
 
     private val branchListAdapter = UpcomingEventListAdapter(
         onBranchClick = ::handleBranchClick,
@@ -74,22 +68,16 @@ class UpcomingEventsActivity : AppCompatActivity() {
 
     private fun fetchData() {
         startLoading()
-        apiClient.getUpcomingEvents().enqueue(object : Callback<List<BranchApiData>> {
-            override fun onResponse(
-                call: Call<List<BranchApiData>>,
-                response: Response<List<BranchApiData>>
-            ) {
-                finishLoading()
-                if (response.isSuccessful) {
-                    val branchList = response.body()!!
-                    showResult(branchList)
-                }
+        GlobalScope.launch(Dispatchers.Main) {
+            val response: ResponseData<List<BranchApiData>, String> = withContext(Dispatchers.IO) {
+                upcomingEventsRepository.getUpcomingEvents()
             }
-
-            override fun onFailure(call: Call<List<BranchApiData>>, t: Throwable) {
-                finishLoading()
+            if (response is ResponseData.Success) {
+                val branchList = response.result
+                showResult(branchList)
             }
-        })
+            finishLoading()
+        }
     }
 
     private fun startLoading() {

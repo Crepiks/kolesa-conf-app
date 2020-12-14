@@ -3,6 +3,7 @@ package kz.kolesateam.confapp
 import android.app.Application
 import kz.kolesateam.confapp.branchEvents.di.branchEventsModule
 import kz.kolesateam.confapp.di.applicationModule
+import kz.kolesateam.confapp.upcomingEvents.di.upcomingEventsModule
 import org.koin.core.context.startKoin
 
 class ConfApplication : Application() {
@@ -11,7 +12,8 @@ class ConfApplication : Application() {
         startKoin {
             modules(
                 applicationModule,
-                branchEventsModule
+                branchEventsModule,
+                upcomingEventsModule
             )
         }
     }
