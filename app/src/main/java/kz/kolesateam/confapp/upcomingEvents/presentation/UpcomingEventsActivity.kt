@@ -8,21 +8,13 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import kz.kolesateam.confapp.R
-import kz.kolesateam.confapp.common.models.ResponseData
+import kz.kolesateam.confapp.common.models.ProgressStatus
 import kz.kolesateam.confapp.extension.gone
 import kz.kolesateam.confapp.extension.show
-import kz.kolesateam.confapp.upcomingEvents.data.models.BranchApiData
-import kz.kolesateam.confapp.upcomingEvents.domain.UpcomingEventsRepository
-import kz.kolesateam.confapp.upcomingEvents.presentation.models.BranchItem
-import kz.kolesateam.confapp.upcomingEvents.presentation.models.HeaderItem
 import kz.kolesateam.confapp.upcomingEvents.presentation.models.UpcomingEventListItem
 import kz.kolesateam.confapp.upcomingEvents.presentation.view.UpcomingEventListAdapter
-import org.koin.android.ext.android.inject
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.lang.ref.WeakReference
 
 private const val PREFERENCE_NAME = "user_name"
@@ -30,7 +22,7 @@ private const val USERNAME_DEFAULT_VALUE = ""
 
 class UpcomingEventsActivity : AppCompatActivity() {
 
-    private val upcomingEventsRepository: UpcomingEventsRepository by inject()
+    private val upcomingEventsViewModel: UpcomingEventsViewModel by viewModel()
 
     private val branchListAdapter = UpcomingEventListAdapter(
         onBranchClick = ::handleBranchClick,
@@ -44,7 +36,23 @@ class UpcomingEventsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_upcoming_events)
         bindViews()
-        fetchData()
+
+        observerUpcomingEventsLiveData()
+        upcomingEventsViewModel.onStart(userName = getUserName())
+    }
+
+    private fun observerUpcomingEventsLiveData() {
+        upcomingEventsViewModel.getProgressLiveData().observe(this, ::handleProgressStatusChange)
+        upcomingEventsViewModel.getUpcomingEventsLiveData()
+            .observe(this, ::showUpcomingEventsChange)
+        upcomingEventsViewModel.getErrorLiveData().observe(this, ::showErrorMessage)
+    }
+
+    private fun handleProgressStatusChange(progressStatus: ProgressStatus) {
+        when (progressStatus) {
+            ProgressStatus.Loading -> startLoading()
+            ProgressStatus.Finished -> finishLoading()
+        }
     }
 
     private fun handleBranchClick(branchId: Int, branchTitle: String) {
@@ -53,6 +61,14 @@ class UpcomingEventsActivity : AppCompatActivity() {
             branchId = branchId,
             branchTitle = branchTitle
         )
+    }
+
+    private fun showUpcomingEventsChange(upcomingEventList: List<UpcomingEventListItem>) {
+        branchListAdapter.setList(upcomingEventList)
+    }
+
+    private fun showErrorMessage(errorMessage: String) {
+        Toast.makeText(this, errorMessage, Toast.LENGTH_SHORT).show()
     }
 
     private fun handleEventClick(eventTitle: String) {
@@ -66,44 +82,12 @@ class UpcomingEventsActivity : AppCompatActivity() {
         branchList.adapter = branchListAdapter
     }
 
-    private fun fetchData() {
-        startLoading()
-        GlobalScope.launch(Dispatchers.Main) {
-            val response: ResponseData<List<BranchApiData>, String> = withContext(Dispatchers.IO) {
-                upcomingEventsRepository.getUpcomingEvents()
-            }
-            if (response is ResponseData.Success) {
-                val branchList = response.result
-                showResult(branchList)
-            }
-            finishLoading()
-        }
-    }
-
     private fun startLoading() {
         progressBar.show()
     }
 
     private fun finishLoading() {
         progressBar.gone()
-    }
-
-    private fun showResult(branchList: List<BranchApiData>) {
-        val upcomingEventItemList = getUpcomingEventList(branchList)
-        branchListAdapter.setList(upcomingEventItemList)
-    }
-
-    private fun getUpcomingEventList(branchList: List<BranchApiData>): List<UpcomingEventListItem> {
-        val userName: String = getUserName()
-        val headerListItem = HeaderItem(
-            userName = userName
-        )
-        val branchListItems = branchList.map { branchListItem ->
-            BranchItem(
-                data = branchListItem
-            )
-        }
-        return listOf(headerListItem) + branchListItems
     }
 
     private fun getUserName(): String {
