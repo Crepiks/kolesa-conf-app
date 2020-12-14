@@ -10,7 +10,7 @@ import android.text.TextWatcher
 import android.widget.Button
 import android.widget.EditText
 import kz.kolesateam.confapp.R
-import kz.kolesateam.confapp.events.presentation.UpcomingEventsActivity
+import kz.kolesateam.confapp.upcomingEvents.presentation.UpcomingEventsActivity
 
 private const val PREFERENCE_NAME = "user_name"
 

@@ -1,6 +1,6 @@
-package kz.kolesateam.confapp.events.data
+package kz.kolesateam.confapp.upcomingEvents.data
 
-import kz.kolesateam.confapp.events.data.models.BranchApiData
+import kz.kolesateam.confapp.upcomingEvents.data.models.BranchApiData
 import retrofit2.Call
 import retrofit2.http.GET
 

@@ -1,4 +1,4 @@
-package kz.kolesateam.confapp.events.presentation
+package kz.kolesateam.confapp.upcomingEvents.presentation
 
 import android.content.Context
 import android.content.Intent
@@ -10,13 +10,13 @@ import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kz.kolesateam.confapp.R
-import kz.kolesateam.confapp.events.data.models.BranchApiData
+import kz.kolesateam.confapp.upcomingEvents.data.models.BranchApiData
 import kz.kolesateam.confapp.branchEvents.presentation.BranchEventsActivity
-import kz.kolesateam.confapp.events.data.UpcomingEventsApiClient
-import kz.kolesateam.confapp.events.presentation.models.BranchItem
-import kz.kolesateam.confapp.events.presentation.models.HeaderItem
-import kz.kolesateam.confapp.events.presentation.models.UpcomingEventListItem
-import kz.kolesateam.confapp.events.presentation.view.UpcomingEventListAdapter
+import kz.kolesateam.confapp.upcomingEvents.data.UpcomingEventsApiClient
+import kz.kolesateam.confapp.upcomingEvents.presentation.models.BranchItem
+import kz.kolesateam.confapp.upcomingEvents.presentation.models.HeaderItem
+import kz.kolesateam.confapp.upcomingEvents.presentation.models.UpcomingEventListItem
+import kz.kolesateam.confapp.upcomingEvents.presentation.view.UpcomingEventListAdapter
 import kz.kolesateam.confapp.extension.gone
 import kz.kolesateam.confapp.extension.show
 import retrofit2.Call

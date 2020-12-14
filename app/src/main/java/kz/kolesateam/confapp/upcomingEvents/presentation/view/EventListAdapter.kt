@@ -1,10 +1,10 @@
-package kz.kolesateam.confapp.events.presentation.view
+package kz.kolesateam.confapp.upcomingEvents.presentation.view
 
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import kz.kolesateam.confapp.R
-import kz.kolesateam.confapp.events.data.models.EventApiData
+import kz.kolesateam.confapp.upcomingEvents.data.models.EventApiData
 
 class EventListAdapter(
         private val onEventClick: (eventTitle: String) -> Unit

@@ -1,4 +1,4 @@
-package kz.kolesateam.confapp.events.presentation
+package kz.kolesateam.confapp.upcomingEvents.presentation
 
 import android.content.Intent
 import kz.kolesateam.confapp.branchEvents.presentation.BranchEventsActivity

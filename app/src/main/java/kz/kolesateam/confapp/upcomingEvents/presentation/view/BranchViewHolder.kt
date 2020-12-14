@@ -1,4 +1,4 @@
-package kz.kolesateam.confapp.events.presentation.view
+package kz.kolesateam.confapp.upcomingEvents.presentation.view
 
 import android.view.View
 import android.view.ViewGroup
@@ -7,9 +7,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kz.kolesateam.confapp.R
 import kz.kolesateam.confapp.common.BaseViewHolder
-import kz.kolesateam.confapp.events.data.models.BranchApiData
-import kz.kolesateam.confapp.events.presentation.models.BranchItem
-import kz.kolesateam.confapp.events.presentation.models.UpcomingEventListItem
+import kz.kolesateam.confapp.upcomingEvents.data.models.BranchApiData
+import kz.kolesateam.confapp.upcomingEvents.presentation.models.BranchItem
+import kz.kolesateam.confapp.upcomingEvents.presentation.models.UpcomingEventListItem
 
 class BranchViewHolder(
     view: View,

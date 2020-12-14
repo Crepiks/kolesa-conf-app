@@ -1,11 +1,11 @@
-package kz.kolesateam.confapp.events.presentation.view
+package kz.kolesateam.confapp.upcomingEvents.presentation.view
 
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import kz.kolesateam.confapp.R
 import kz.kolesateam.confapp.common.BaseViewHolder
-import kz.kolesateam.confapp.events.data.models.EventApiData
+import kz.kolesateam.confapp.upcomingEvents.data.models.EventApiData
 
 const val TIME_AND_PLACE_FORMAT = "%s - %s • %s"
 

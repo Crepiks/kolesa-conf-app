@@ -1,13 +1,12 @@
-package kz.kolesateam.confapp.events.presentation.view
+package kz.kolesateam.confapp.upcomingEvents.presentation.view
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import kz.kolesateam.confapp.R
 import kz.kolesateam.confapp.common.BaseViewHolder
-import kz.kolesateam.confapp.events.presentation.models.HEADER_TYPE
-import kz.kolesateam.confapp.events.presentation.models.UpcomingEventListItem
-import kotlin.reflect.KFunction2
+import kz.kolesateam.confapp.upcomingEvents.presentation.models.HEADER_TYPE
+import kz.kolesateam.confapp.upcomingEvents.presentation.models.UpcomingEventListItem
 
 class UpcomingEventListAdapter(
     private val onBranchClick: (branchId: Int, branchTitle: String) -> Unit,

@@ -1,4 +1,4 @@
-package kz.kolesateam.confapp.events.data.models
+package kz.kolesateam.confapp.upcomingEvents.data.models
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import com.fasterxml.jackson.annotation.JsonProperty

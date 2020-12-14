@@ -1,11 +1,11 @@
-package kz.kolesateam.confapp.events.presentation.view
+package kz.kolesateam.confapp.upcomingEvents.presentation.view
 
 import android.view.View
 import android.widget.TextView
 import kz.kolesateam.confapp.R
 import kz.kolesateam.confapp.common.BaseViewHolder
-import kz.kolesateam.confapp.events.presentation.models.HeaderItem
-import kz.kolesateam.confapp.events.presentation.models.UpcomingEventListItem
+import kz.kolesateam.confapp.upcomingEvents.presentation.models.HeaderItem
+import kz.kolesateam.confapp.upcomingEvents.presentation.models.UpcomingEventListItem
 
 class HeaderViewHolder(val view: View) : BaseViewHolder<UpcomingEventListItem>(view) {
 
