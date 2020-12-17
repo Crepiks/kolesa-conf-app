@@ -4,13 +4,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import kz.kolesateam.confapp.R
-import kz.kolesateam.confapp.upcomingEvents.data.models.EventApiData
+import kz.kolesateam.confapp.upcomingEvents.domain.models.EventData
 
 class EventListAdapter(
         private val onEventClick: (eventTitle: String) -> Unit
 ) : RecyclerView.Adapter<EventViewHolder>() {
 
-    private var eventList: MutableList<EventApiData> = mutableListOf()
+    private var eventList: MutableList<EventData> = mutableListOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EventViewHolder {
         return EventViewHolder(
@@ -25,7 +25,7 @@ class EventListAdapter(
 
     override fun getItemCount(): Int = eventList.size
 
-    fun setList(eventList: List<EventApiData>) {
+    fun setList(eventList: List<EventData>) {
         this.eventList.clear()
         this.eventList.addAll(eventList)
         notifyDataSetChanged()

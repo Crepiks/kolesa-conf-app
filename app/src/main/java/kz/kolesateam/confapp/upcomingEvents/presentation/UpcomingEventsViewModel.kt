@@ -1,7 +1,5 @@
 package kz.kolesateam.confapp.upcomingEvents.presentation
 
-import android.content.Context
-import android.content.SharedPreferences
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -11,8 +9,8 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import kz.kolesateam.confapp.common.models.ProgressStatus
 import kz.kolesateam.confapp.common.models.ResponseData
-import kz.kolesateam.confapp.upcomingEvents.data.models.BranchApiData
 import kz.kolesateam.confapp.upcomingEvents.domain.UpcomingEventsRepository
+import kz.kolesateam.confapp.upcomingEvents.domain.models.BranchData
 import kz.kolesateam.confapp.upcomingEvents.presentation.models.BranchItem
 import kz.kolesateam.confapp.upcomingEvents.presentation.models.HeaderItem
 import kz.kolesateam.confapp.upcomingEvents.presentation.models.UpcomingEventListItem
@@ -42,7 +40,7 @@ class UpcomingEventsViewModel(
     private fun fetchData() {
         progressLiveData.value = ProgressStatus.Loading
         viewModelScope.launch {
-            val response: ResponseData<List<BranchApiData>, String> = withContext(Dispatchers.IO) {
+            val response: ResponseData<List<BranchData>, String> = withContext(Dispatchers.IO) {
                 upcomingEventsRepository.getUpcomingEvents()
             }
             when (response) {
@@ -54,11 +52,11 @@ class UpcomingEventsViewModel(
                     errorLiveData.value = response.error
                 }
             }
+            progressLiveData.value = ProgressStatus.Finished
         }
-        progressLiveData.value = ProgressStatus.Finished
     }
 
-    private fun getUpcomingEventList(branchList: List<BranchApiData>): List<UpcomingEventListItem> {
+    private fun getUpcomingEventList(branchList: List<BranchData>): List<UpcomingEventListItem> {
         val headerListItem = HeaderItem(
             userName = userName
         )

@@ -5,14 +5,14 @@ import android.widget.ImageView
 import android.widget.TextView
 import kz.kolesateam.confapp.R
 import kz.kolesateam.confapp.common.BaseViewHolder
-import kz.kolesateam.confapp.upcomingEvents.data.models.EventApiData
+import kz.kolesateam.confapp.upcomingEvents.domain.models.EventData
 
 const val TIME_AND_PLACE_FORMAT = "%s - %s • %s"
 
 class EventViewHolder(
     view: View,
     private val onEventClick: (eventTitle: String) -> Unit
-) : BaseViewHolder<EventApiData>(view) {
+) : BaseViewHolder<EventData>(view) {
 
     private val container: View = view.findViewById(R.id.layout_event_card_container)
     private val placement: TextView = view.findViewById(R.id.layout_event_card_placement)
@@ -29,8 +29,8 @@ class EventViewHolder(
         setListeners()
     }
 
-    override fun bind(event: EventApiData) {
-        placement.text = TIME_AND_PLACE_FORMAT.format(event.startTime, event.endTime, event.place)
+    override fun bind(event: EventData) {
+        placement.text = TIME_AND_PLACE_FORMAT.format(event.schedule.startTime, event.schedule.endTime, event.place)
         speakerName.text = event.speaker?.fullName
         speakerPosition.text = event.speaker?.job
         title.text = event.title

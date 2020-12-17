@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kz.kolesateam.confapp.R
 import kz.kolesateam.confapp.common.BaseViewHolder
-import kz.kolesateam.confapp.upcomingEvents.data.models.BranchApiData
+import kz.kolesateam.confapp.upcomingEvents.domain.models.BranchData
 import kz.kolesateam.confapp.upcomingEvents.presentation.models.BranchItem
 import kz.kolesateam.confapp.upcomingEvents.presentation.models.UpcomingEventListItem
 
@@ -24,13 +24,13 @@ class BranchViewHolder(
     private val eventListAdapter = EventListAdapter(onEventClick)
 
     override fun bind(data: UpcomingEventListItem) {
-        val branchApiData: BranchApiData = (data as? BranchItem)?.data ?: return
-        branchTitle.text = branchApiData.title
+        val branchData: BranchData = (data as? BranchItem)?.data ?: return
+        branchTitle.text = branchData.title
         eventList.layoutManager =
             LinearLayoutManager(parent.context, LinearLayoutManager.HORIZONTAL, false)
         eventList.adapter = eventListAdapter
-        branchApiData.events?.let { eventListAdapter.setList(it) }
-        setListeners(branchApiData.id ?: return)
+        branchData.events?.let { eventListAdapter.setList(it) }
+        setListeners(branchData.id ?: return)
     }
 
     private fun setListeners(branchId: Int) {
