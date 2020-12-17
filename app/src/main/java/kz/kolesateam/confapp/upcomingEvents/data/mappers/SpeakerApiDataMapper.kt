@@ -1,4 +1,4 @@
-package kz.kolesateam.confapp.upcomingEvents.mappers
+package kz.kolesateam.confapp.upcomingEvents.data.mappers
 
 import kz.kolesateam.confapp.common.mappers.Mapper
 import kz.kolesateam.confapp.upcomingEvents.data.models.SpeakerApiData
@@ -9,7 +9,7 @@ private const val DEFAULT_FULL_NAME = ""
 private const val DEFAULT_JOB = ""
 private const val DEFAULT_PHOTO_URL = ""
 
-class SpeakerDataMapper : Mapper<SpeakerApiData, SpeakerData> {
+class SpeakerApiDataMapper : Mapper<SpeakerApiData, SpeakerData> {
 
     override fun map(data: SpeakerApiData): SpeakerData {
         return SpeakerData(

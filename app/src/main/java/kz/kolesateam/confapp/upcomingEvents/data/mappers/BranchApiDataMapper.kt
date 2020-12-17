@@ -1,4 +1,4 @@
-package kz.kolesateam.confapp.upcomingEvents.mappers
+package kz.kolesateam.confapp.upcomingEvents.data.mappers
 
 import kz.kolesateam.confapp.common.mappers.Mapper
 import kz.kolesateam.confapp.common.mappers.NullableInputListMapperImpl
@@ -8,11 +8,11 @@ import kz.kolesateam.confapp.upcomingEvents.domain.models.BranchData
 private const val DEFAULT_ID = 0
 private const val DEFAULT_TITLE = ""
 
-class BranchDataMapper : Mapper<BranchApiData, BranchData> {
+class BranchApiDataMapper : Mapper<BranchApiData, BranchData> {
 
     override fun map(data: BranchApiData): BranchData {
         val eventListMapper =
-            NullableInputListMapperImpl(EventDataMapper())
+            NullableInputListMapperImpl(EventApiDataMapper())
         val mappedEventList = eventListMapper.map(data.events)
 
         return BranchData(
