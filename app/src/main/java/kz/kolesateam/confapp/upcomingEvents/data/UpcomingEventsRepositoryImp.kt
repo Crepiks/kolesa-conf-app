@@ -2,9 +2,9 @@ package kz.kolesateam.confapp.upcomingEvents.data
 
 import kz.kolesateam.confapp.common.mappers.ListMapperImpl
 import kz.kolesateam.confapp.common.models.ResponseData
+import kz.kolesateam.confapp.events.domain.models.BranchData
 import kz.kolesateam.confapp.upcomingEvents.data.mappers.BranchApiDataMapper
 import kz.kolesateam.confapp.upcomingEvents.domain.UpcomingEventsRepository
-import kz.kolesateam.confapp.upcomingEvents.domain.models.BranchData
 
 class UpcomingEventsRepositoryImp(
     private val upcomingEventsDataSource: UpcomingEventsDataSource

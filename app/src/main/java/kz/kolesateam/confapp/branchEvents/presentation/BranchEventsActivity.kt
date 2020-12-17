@@ -1,6 +1,7 @@
 package kz.kolesateam.confapp.branchEvents.presentation
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.ProgressBar
 import android.widget.Toast
@@ -19,11 +20,12 @@ private const val DEFAULT_BRANCH_ID = 0
 private const val DEFAULT_BRANCH_TITLE = ""
 private const val BRANCH_ID_KEY = "BRANCH_ID"
 private const val BRANCH_TITLE_KEY = "BRANCH_TITLE"
+private const val TAG = "BranchEventsActivity";
 
 class BranchEventsActivity : AppCompatActivity() {
 
     private val branchEventsViewModel: BranchEventsViewModel by viewModel()
-    private val eventListAdapter = EventListAdapter()
+    private val eventListAdapter = EventListAdapter(onFavoriteClick = ::handleFavoriteClick)
 
     private lateinit var backArrow: View
     private lateinit var eventListRecyclerView: RecyclerView
@@ -42,19 +44,8 @@ class BranchEventsActivity : AppCompatActivity() {
         )
     }
 
-    private fun getBranchId(): Int {
-        return intent.getIntExtra(BRANCH_ID_KEY, DEFAULT_BRANCH_ID)
-    }
-
-    private fun getBranchTitle(): String {
-        val branchTitle = intent.getStringExtra(BRANCH_TITLE_KEY);
-        return branchTitle ?: DEFAULT_BRANCH_TITLE
-    }
-
-    private fun observerBranchEventsLiveData() {
-        branchEventsViewModel.getProgressLiveData().observe(this, ::handleLoadingStatusChange)
-        branchEventsViewModel.getBranchEventListLiveData().observe(this, ::showBranchEventList)
-        branchEventsViewModel.getErrorLiveData().observe(this, ::showErrorMessage)
+    private fun handleFavoriteClick(eventId: Int, isFavorite: Boolean) {
+        Log.d(TAG, eventId.toString())
     }
 
     private fun bindViews() {
@@ -66,6 +57,21 @@ class BranchEventsActivity : AppCompatActivity() {
         eventListRecyclerView = findViewById(R.id.activity_branch_events_event_list)
         eventListRecyclerView.adapter = eventListAdapter
         eventListRecyclerView.layoutManager = LinearLayoutManager(this)
+    }
+
+    private fun observerBranchEventsLiveData() {
+        branchEventsViewModel.getProgressLiveData().observe(this, ::handleLoadingStatusChange)
+        branchEventsViewModel.getBranchEventListLiveData().observe(this, ::showBranchEventList)
+        branchEventsViewModel.getErrorLiveData().observe(this, ::showErrorMessage)
+    }
+
+    private fun getBranchId(): Int {
+        return intent.getIntExtra(BRANCH_ID_KEY, DEFAULT_BRANCH_ID)
+    }
+
+    private fun getBranchTitle(): String {
+        val branchTitle = intent.getStringExtra(BRANCH_TITLE_KEY);
+        return branchTitle ?: DEFAULT_BRANCH_TITLE
     }
 
     private fun handleBackArrowClick() {

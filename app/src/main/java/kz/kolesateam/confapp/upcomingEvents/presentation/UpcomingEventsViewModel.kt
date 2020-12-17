@@ -9,8 +9,8 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import kz.kolesateam.confapp.common.models.ProgressStatus
 import kz.kolesateam.confapp.common.models.ResponseData
+import kz.kolesateam.confapp.events.domain.models.BranchData
 import kz.kolesateam.confapp.upcomingEvents.domain.UpcomingEventsRepository
-import kz.kolesateam.confapp.upcomingEvents.domain.models.BranchData
 import kz.kolesateam.confapp.upcomingEvents.presentation.models.BranchItem
 import kz.kolesateam.confapp.upcomingEvents.presentation.models.HeaderItem
 import kz.kolesateam.confapp.upcomingEvents.presentation.models.UpcomingEventListItem

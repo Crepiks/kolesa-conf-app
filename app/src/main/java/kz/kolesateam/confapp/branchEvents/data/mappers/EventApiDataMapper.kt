@@ -1,9 +1,9 @@
 package kz.kolesateam.confapp.branchEvents.data.mappers
 
 import kz.kolesateam.confapp.branchEvents.data.models.EventApiData
-import kz.kolesateam.confapp.branchEvents.domain.models.EventData
 import kz.kolesateam.confapp.common.mappers.Mapper
-import kz.kolesateam.confapp.branchEvents.domain.models.SpeakerData
+import kz.kolesateam.confapp.events.domain.models.EventData
+import kz.kolesateam.confapp.events.domain.models.SpeakerData
 
 private const val DEFAULT_ID = 0
 private const val DEFAULT_START_TIME = ""

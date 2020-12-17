@@ -4,16 +4,18 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import kz.kolesateam.confapp.R
-import kz.kolesateam.confapp.branchEvents.domain.models.EventData
 import kz.kolesateam.confapp.branchEvents.presentation.models.BranchEventListItem
 import kz.kolesateam.confapp.branchEvents.presentation.models.EventItem
 import kz.kolesateam.confapp.common.BaseViewHolder
+import kz.kolesateam.confapp.events.domain.models.EventData
 
 const val TIME_AND_PLACE_FORMAT = "%s - %s • %s"
 
-class EventViewHolder(view: View) : BaseViewHolder<BranchEventListItem>(view) {
+class EventViewHolder(
+    view: View,
+    private val onFavoriteClick: (eventId: Int, isFavorite: Boolean) -> Unit
+) : BaseViewHolder<BranchEventListItem>(view) {
 
-    private val container: View = view.findViewById(R.id.layout_event_card_container)
     private val placement: TextView = view.findViewById(R.id.layout_event_card_placement)
     private val speakerName: TextView = view.findViewById(R.id.layout_event_card_speaker_name)
     private val speakerPosition: TextView =
@@ -32,5 +34,9 @@ class EventViewHolder(view: View) : BaseViewHolder<BranchEventListItem>(view) {
         speakerName.text = event.speaker?.fullName
         speakerPosition.text = event.speaker?.job
         title.text = event.title
+
+        favoriteButton.setOnClickListener {
+            onFavoriteClick(event.id, true)
+        }
     }
 }

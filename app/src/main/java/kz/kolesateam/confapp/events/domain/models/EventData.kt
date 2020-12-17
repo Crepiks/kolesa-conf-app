@@ -1,4 +1,4 @@
-package kz.kolesateam.confapp.branchEvents.domain.models
+package kz.kolesateam.confapp.events.domain.models
 
 data class EventData(
     val id: Int,

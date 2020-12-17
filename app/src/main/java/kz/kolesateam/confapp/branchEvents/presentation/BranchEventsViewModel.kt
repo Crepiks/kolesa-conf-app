@@ -8,12 +8,12 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import kz.kolesateam.confapp.branchEvents.domain.BranchEventsRepository
-import kz.kolesateam.confapp.branchEvents.domain.models.EventData
 import kz.kolesateam.confapp.branchEvents.presentation.models.BranchEventListItem
 import kz.kolesateam.confapp.branchEvents.presentation.models.EventItem
 import kz.kolesateam.confapp.branchEvents.presentation.models.HeaderItem
 import kz.kolesateam.confapp.common.models.ProgressStatus
 import kz.kolesateam.confapp.common.models.ResponseData
+import kz.kolesateam.confapp.events.domain.models.EventData
 
 private const val DEFAULT_BRANCH_ID = 0
 private const val DEFAULT_BRANCH_TITLE = ""

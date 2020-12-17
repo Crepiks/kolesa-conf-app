@@ -8,7 +8,9 @@ import kz.kolesateam.confapp.branchEvents.presentation.models.BranchEventListIte
 import kz.kolesateam.confapp.branchEvents.presentation.models.HEADER_TYPE
 import kz.kolesateam.confapp.common.BaseViewHolder
 
-class EventListAdapter : RecyclerView.Adapter<BaseViewHolder<BranchEventListItem>>() {
+class EventListAdapter(
+    private val onFavoriteClick: (eventId: Int, isFavorite: Boolean) -> Unit
+) : RecyclerView.Adapter<BaseViewHolder<BranchEventListItem>>() {
 
     private val eventList: MutableList<BranchEventListItem> = mutableListOf()
 
@@ -43,7 +45,8 @@ class EventListAdapter : RecyclerView.Adapter<BaseViewHolder<BranchEventListItem
 
     private fun getEventViewHolder(parent: ViewGroup): EventViewHolder {
         return EventViewHolder(
-            view = LayoutInflater.from(parent.context).inflate(R.layout.item_branch_event_card, parent, false)
+            view = LayoutInflater.from(parent.context).inflate(R.layout.item_branch_event_card, parent, false),
+            onFavoriteClick = onFavoriteClick
         )
     }
 }

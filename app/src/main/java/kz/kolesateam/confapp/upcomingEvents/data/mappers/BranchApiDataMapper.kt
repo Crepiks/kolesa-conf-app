@@ -2,8 +2,8 @@ package kz.kolesateam.confapp.upcomingEvents.data.mappers
 
 import kz.kolesateam.confapp.common.mappers.Mapper
 import kz.kolesateam.confapp.common.mappers.NullableInputListMapperImpl
+import kz.kolesateam.confapp.events.domain.models.BranchData
 import kz.kolesateam.confapp.upcomingEvents.data.models.BranchApiData
-import kz.kolesateam.confapp.upcomingEvents.domain.models.BranchData
 
 private const val DEFAULT_ID = 0
 private const val DEFAULT_TITLE = ""

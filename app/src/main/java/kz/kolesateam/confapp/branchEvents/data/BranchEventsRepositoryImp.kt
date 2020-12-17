@@ -2,9 +2,9 @@ package kz.kolesateam.confapp.branchEvents.data
 
 import kz.kolesateam.confapp.branchEvents.data.mappers.EventApiDataMapper
 import kz.kolesateam.confapp.branchEvents.domain.BranchEventsRepository
-import kz.kolesateam.confapp.branchEvents.domain.models.EventData
 import kz.kolesateam.confapp.common.mappers.ListMapperImpl
 import kz.kolesateam.confapp.common.models.ResponseData
+import kz.kolesateam.confapp.events.domain.models.EventData
 
 class BranchEventsRepositoryImp(
     private val branchEventsDataSource: BranchEventsDataSource
