@@ -7,8 +7,8 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import kz.kolesateam.confapp.branchEvents.data.models.EventApiData
 import kz.kolesateam.confapp.branchEvents.domain.BranchEventsRepository
+import kz.kolesateam.confapp.branchEvents.domain.models.EventData
 import kz.kolesateam.confapp.branchEvents.presentation.models.BranchEventListItem
 import kz.kolesateam.confapp.branchEvents.presentation.models.EventItem
 import kz.kolesateam.confapp.branchEvents.presentation.models.HeaderItem
@@ -45,7 +45,7 @@ class BranchEventsViewModel(
     private fun fetchData() {
         progressLiveData.value = ProgressStatus.Loading
         viewModelScope.launch(Dispatchers.Main) {
-            var response: ResponseData<List<EventApiData>, String> =
+            var response: ResponseData<List<EventData>, String> =
                 withContext(Dispatchers.IO) {
                     branchEventsRepository.getBranchEvents(branchId = branchId)
                 }
@@ -60,7 +60,7 @@ class BranchEventsViewModel(
         }
     }
 
-    private fun getBranchEventList(eventList: List<EventApiData>): List<BranchEventListItem> {
+    private fun getBranchEventList(eventList: List<EventData>): List<BranchEventListItem> {
         val headerItem = HeaderItem(title = branchTitle)
         val eventItemList = eventList.map { event ->
             EventItem(data = event)

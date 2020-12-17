@@ -1,6 +1,6 @@
 package kz.kolesateam.confapp.branchEvents.presentation.models
 
-import kz.kolesateam.confapp.branchEvents.data.models.EventApiData
+import kz.kolesateam.confapp.branchEvents.domain.models.EventData
 
 const val HEADER_TYPE: Int = 0
 const val EVENT_TYPE: Int = 1
@@ -14,5 +14,5 @@ data class HeaderItem(
 ) : BranchEventListItem(type = HEADER_TYPE)
 
 data class EventItem(
-    val data: EventApiData
+    val data: EventData
 ) : BranchEventListItem(type = EVENT_TYPE)

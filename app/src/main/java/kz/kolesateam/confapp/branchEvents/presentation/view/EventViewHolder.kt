@@ -4,7 +4,7 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import kz.kolesateam.confapp.R
-import kz.kolesateam.confapp.branchEvents.data.models.EventApiData
+import kz.kolesateam.confapp.branchEvents.domain.models.EventData
 import kz.kolesateam.confapp.branchEvents.presentation.models.BranchEventListItem
 import kz.kolesateam.confapp.branchEvents.presentation.models.EventItem
 import kz.kolesateam.confapp.common.BaseViewHolder
@@ -23,10 +23,10 @@ class EventViewHolder(view: View) : BaseViewHolder<BranchEventListItem>(view) {
         view.findViewById(R.id.layout_event_card_favorite_button)
 
     override fun bind(data: BranchEventListItem) {
-        val event: EventApiData = (data as? EventItem)?.data ?: return
+        val event: EventData = (data as? EventItem)?.data ?: return
         placement.text = TIME_AND_PLACE_FORMAT.format(
-            event.startTime,
-            event.endTime,
+            event.schedule.startTime,
+            event.schedule.endTime,
             event.place
         )
         speakerName.text = event.speaker?.fullName
