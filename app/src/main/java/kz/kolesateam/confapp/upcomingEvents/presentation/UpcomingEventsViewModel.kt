@@ -1,5 +1,6 @@
 package kz.kolesateam.confapp.upcomingEvents.presentation
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -16,6 +17,7 @@ import kz.kolesateam.confapp.upcomingEvents.presentation.models.HeaderItem
 import kz.kolesateam.confapp.upcomingEvents.presentation.models.UpcomingEventListItem
 
 private const val DEFAULT_USER_NAME = ""
+private const val TAG = "UpcomingEventsViewModel"
 
 class UpcomingEventsViewModel(
     private val upcomingEventsRepository: UpcomingEventsRepository
@@ -38,11 +40,13 @@ class UpcomingEventsViewModel(
     fun getErrorLiveData(): LiveData<String> = errorLiveData
 
     private fun fetchData() {
+        Log.d(TAG, "Started fetching")
         progressLiveData.value = ProgressStatus.Loading
         viewModelScope.launch {
             val response: ResponseData<List<BranchData>, String> = withContext(Dispatchers.IO) {
                 upcomingEventsRepository.getUpcomingEvents()
             }
+            Log.d(TAG, response.toString())
             when (response) {
                 is ResponseData.Success -> {
                     val branchList = response.result

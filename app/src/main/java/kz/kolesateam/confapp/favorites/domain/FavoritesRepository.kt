@@ -7,4 +7,6 @@ interface FavoritesRepository {
     fun getFavorites(): List<EventData>
 
     fun addFavorite(event: EventData)
+
+    fun removeFavorite(eventId: Int)
 }

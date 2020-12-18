@@ -9,13 +9,12 @@ import org.koin.core.module.Module
 import org.koin.dsl.module
 import retrofit2.Retrofit
 
-const val API_BASE_URL = "http://37.143.8.68:2020/"
-
 val branchEventsModule: Module = module {
 
     viewModel {
         BranchEventsViewModel(
-            branchEventsRepository = get()
+            branchEventsRepository = get(),
+            favoritesRepository = get()
         )
     }
 

@@ -13,7 +13,7 @@ const val TIME_AND_PLACE_FORMAT = "%s - %s • %s"
 
 class EventViewHolder(
     view: View,
-    private val onFavoriteClick: (eventId: Int, isFavorite: Boolean) -> Unit
+    private val onFavoriteClick: (event: EventData, isFavorite: Boolean) -> Unit
 ) : BaseViewHolder<BranchEventListItem>(view) {
 
     private val placement: TextView = view.findViewById(R.id.layout_event_card_placement)
@@ -35,8 +35,14 @@ class EventViewHolder(
         speakerPosition.text = event.speaker?.job
         title.text = event.title
 
+        if (event.isFavorite) {
+            favoriteButton.setImageResource(R.drawable.ic_favorite_fill)
+        } else {
+            favoriteButton.setImageResource(R.drawable.ic_favorite_border)
+        }
+
         favoriteButton.setOnClickListener {
-            onFavoriteClick(event.id, true)
+            onFavoriteClick(event, true)
         }
     }
 }

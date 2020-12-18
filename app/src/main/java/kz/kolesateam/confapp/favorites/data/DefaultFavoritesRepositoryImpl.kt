@@ -5,11 +5,17 @@ import kz.kolesateam.confapp.favorites.domain.FavoritesRepository
 
 class DefaultFavoritesRepositoryImpl : FavoritesRepository {
 
-    private val favorites: MutableList<EventData> = mutableListOf()
+    private val favorites: MutableMap<Int, EventData> = mutableMapOf()
 
-    override fun getFavorites(): List<EventData> = favorites
+    override fun getFavorites(): List<EventData> {
+        return favorites.values.toList()
+    }
 
     override fun addFavorite(event: EventData) {
-        favorites.add(event)
+        favorites[event.id] = event
+    }
+
+    override fun removeFavorite(eventId: Int) {
+        favorites.remove(eventId)
     }
 }

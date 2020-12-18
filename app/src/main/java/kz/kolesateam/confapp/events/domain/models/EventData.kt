@@ -6,7 +6,8 @@ data class EventData(
     val title: String,
     val description: String,
     val place: String,
-    val speaker: SpeakerData
+    val speaker: SpeakerData,
+    val isFavorite: Boolean = true
 ) {
     data class Schedule(
         val startTime: String,

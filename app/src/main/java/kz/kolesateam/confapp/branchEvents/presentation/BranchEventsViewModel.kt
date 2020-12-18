@@ -14,16 +14,19 @@ import kz.kolesateam.confapp.branchEvents.presentation.models.HeaderItem
 import kz.kolesateam.confapp.common.models.ProgressStatus
 import kz.kolesateam.confapp.common.models.ResponseData
 import kz.kolesateam.confapp.events.domain.models.EventData
+import kz.kolesateam.confapp.favorites.domain.FavoritesRepository
 
 private const val DEFAULT_BRANCH_ID = 0
 private const val DEFAULT_BRANCH_TITLE = ""
 
 class BranchEventsViewModel(
-    private val branchEventsRepository: BranchEventsRepository
+    private val branchEventsRepository: BranchEventsRepository,
+    private val favoritesRepository: FavoritesRepository
 ) : ViewModel() {
 
     private val progressLiveData: MutableLiveData<ProgressStatus> = MutableLiveData()
-    private val branchEventsListLiveData: MutableLiveData<List<BranchEventListItem>> = MutableLiveData()
+    private val branchEventsListLiveData: MutableLiveData<List<BranchEventListItem>> =
+        MutableLiveData()
     private val errorLiveData: MutableLiveData<String> = MutableLiveData()
 
     fun getProgressLiveData(): LiveData<ProgressStatus> = progressLiveData
@@ -40,6 +43,10 @@ class BranchEventsViewModel(
         this.branchId = branchId
         this.branchTitle = branchTitle
         fetchData()
+    }
+
+    fun onFavoriteAdd(event: EventData) {
+        favoritesRepository.addFavorite(event)
     }
 
     private fun fetchData() {
