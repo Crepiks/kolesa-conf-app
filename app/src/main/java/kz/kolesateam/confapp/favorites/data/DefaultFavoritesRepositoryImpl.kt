@@ -18,4 +18,8 @@ class DefaultFavoritesRepositoryImpl : FavoritesRepository {
     override fun removeFavorite(eventId: Int) {
         favorites.remove(eventId)
     }
+
+    override fun isFavorite(eventId: Int): Boolean {
+        return favorites.containsKey(eventId)
+    }
 }

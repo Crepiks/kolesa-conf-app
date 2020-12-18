@@ -9,4 +9,6 @@ interface FavoritesRepository {
     fun addFavorite(event: EventData)
 
     fun removeFavorite(eventId: Int)
+
+    fun isFavorite(eventId: Int): Boolean
 }

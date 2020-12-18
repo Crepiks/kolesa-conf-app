@@ -5,5 +5,7 @@ import kz.kolesateam.confapp.events.domain.models.EventData
 
 interface BranchEventsRepository {
 
-    fun getBranchEvents(branchId: Int): ResponseData<List<EventData>, String>
+    fun getBranchEvents(): List<EventData>
+
+    fun loadBranchEvents(branchId: Int): ResponseData<List<EventData>, String>
 }

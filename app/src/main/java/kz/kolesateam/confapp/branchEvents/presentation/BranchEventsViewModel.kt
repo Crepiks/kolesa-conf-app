@@ -1,5 +1,6 @@
 package kz.kolesateam.confapp.branchEvents.presentation
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -18,6 +19,7 @@ import kz.kolesateam.confapp.favorites.domain.FavoritesRepository
 
 private const val DEFAULT_BRANCH_ID = 0
 private const val DEFAULT_BRANCH_TITLE = ""
+private const val TAG = "BranchEventsViewModel"
 
 class BranchEventsViewModel(
     private val branchEventsRepository: BranchEventsRepository,
@@ -47,6 +49,12 @@ class BranchEventsViewModel(
 
     fun onFavoriteAdd(event: EventData) {
         favoritesRepository.addFavorite(event)
+        refreshBranchEventList()
+    }
+
+    fun onFavoriteRemove(event: EventData) {
+        favoritesRepository.removeFavorite(event.id)
+        refreshBranchEventList()
     }
 
     private fun fetchData() {
@@ -54,12 +62,12 @@ class BranchEventsViewModel(
         viewModelScope.launch(Dispatchers.Main) {
             var response: ResponseData<List<EventData>, String> =
                 withContext(Dispatchers.IO) {
-                    branchEventsRepository.getBranchEvents(branchId = branchId)
+                    branchEventsRepository.loadBranchEvents(branchId = branchId)
                 }
             when (response) {
                 is ResponseData.Success -> {
-                    val branchList = response.result
-                    branchEventsListLiveData.value = getBranchEventList(branchList)
+                    val eventList = response.result
+                    branchEventsListLiveData.value = getBranchEventList(eventList)
                 }
                 is ResponseData.Error -> errorLiveData.value = response.error
             }
@@ -73,5 +81,10 @@ class BranchEventsViewModel(
             EventItem(data = event)
         }
         return listOf(headerItem) + eventItemList
+    }
+
+    private fun refreshBranchEventList() {
+        val eventList = branchEventsRepository.getBranchEvents()
+        branchEventsListLiveData.value = getBranchEventList(eventList)
     }
 }

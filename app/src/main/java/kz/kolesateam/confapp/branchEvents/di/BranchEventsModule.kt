@@ -24,6 +24,9 @@ val branchEventsModule: Module = module {
     }
 
     factory<BranchEventsRepository> {
-        BranchEventsRepositoryImp(branchEventsDataSource = get())
+        BranchEventsRepositoryImp(
+            branchEventsDataSource = get(),
+            favoritesRepository = get()
+        )
     }
 }

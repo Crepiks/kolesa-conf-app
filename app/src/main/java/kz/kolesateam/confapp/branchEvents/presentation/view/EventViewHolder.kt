@@ -42,7 +42,7 @@ class EventViewHolder(
         }
 
         favoriteButton.setOnClickListener {
-            onFavoriteClick(event, true)
+            onFavoriteClick(event, !event.isFavorite)
         }
     }
 }

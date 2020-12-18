@@ -50,7 +50,10 @@ class BranchEventsActivity : AppCompatActivity() {
     }
 
     private fun handleFavoriteClick(event: EventData, isFavorite: Boolean) {
-        branchEventsViewModel.onFavoriteAdd(event)
+        when (isFavorite) {
+            true -> branchEventsViewModel.onFavoriteAdd(event)
+            false -> branchEventsViewModel.onFavoriteRemove(event)
+        }
     }
 
     private fun bindViews() {

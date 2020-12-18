@@ -2,10 +2,13 @@ package kz.kolesateam.confapp.eventDetails
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.TextView
 import kz.kolesateam.confapp.R
 import kz.kolesateam.confapp.favorites.domain.FavoritesRepository
 import org.koin.android.ext.android.inject
+
+private const val TAG = "EventDetailsActivity"
 
 class EventDetailsActivity : AppCompatActivity() {
 
