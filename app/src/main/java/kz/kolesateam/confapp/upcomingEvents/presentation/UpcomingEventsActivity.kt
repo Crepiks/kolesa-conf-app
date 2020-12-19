@@ -14,8 +14,10 @@ import kz.kolesateam.confapp.common.models.ProgressStatus
 import kz.kolesateam.confapp.common.models.EventData
 import kz.kolesateam.confapp.extension.gone
 import kz.kolesateam.confapp.extension.show
+import kz.kolesateam.confapp.notifications.EventsNotificationManager
 import kz.kolesateam.confapp.upcomingEvents.presentation.models.UpcomingEventListItem
 import kz.kolesateam.confapp.upcomingEvents.presentation.view.UpcomingEventListAdapter
+import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.lang.ref.WeakReference
 
@@ -26,6 +28,7 @@ private const val TAG = "UpcomingEventsActivity"
 class UpcomingEventsActivity : AppCompatActivity() {
 
     private val upcomingEventsViewModel: UpcomingEventsViewModel by viewModel()
+    private val eventsNotificationManager: EventsNotificationManager by inject()
 
     private val branchListAdapter = UpcomingEventListAdapter(
         onBranchClick = ::handleBranchClick,
@@ -61,6 +64,7 @@ class UpcomingEventsActivity : AppCompatActivity() {
 
     private fun handleFavoriteClick(event: EventData, isFavorite: Boolean) {
         Log.d(TAG, event.toString())
+        eventsNotificationManager.sendNotification(event.speaker.fullName, event.title)
         when (isFavorite) {
             true -> upcomingEventsViewModel.onFavoriteAdd(event)
             false -> upcomingEventsViewModel.onFavoriteRemove(event)

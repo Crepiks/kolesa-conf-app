@@ -2,6 +2,8 @@ package kz.kolesateam.confapp.di
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.registerKotlinModule
+import kz.kolesateam.confapp.notifications.EventsNotificationManager
+import org.koin.android.ext.koin.androidApplication
 import org.koin.core.module.Module
 import org.koin.dsl.module
 import retrofit2.Retrofit
@@ -19,5 +21,11 @@ val applicationModule: Module = module {
 
     single {
         ObjectMapper().registerKotlinModule()
+    }
+
+    single {
+        EventsNotificationManager(
+            context = androidApplication()
+        )
     }
 }
