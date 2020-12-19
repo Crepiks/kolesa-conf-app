@@ -13,7 +13,7 @@ import kz.kolesateam.confapp.R
 import kz.kolesateam.confapp.branchEvents.presentation.models.BranchEventListItem
 import kz.kolesateam.confapp.branchEvents.presentation.view.EventListAdapter
 import kz.kolesateam.confapp.common.models.ProgressStatus
-import kz.kolesateam.confapp.eventDetails.EventDetailsActivity
+import kz.kolesateam.confapp.eventDetails.presentation.EventDetailsActivity
 import kz.kolesateam.confapp.common.models.EventData
 import kz.kolesateam.confapp.extension.gone
 import kz.kolesateam.confapp.extension.show

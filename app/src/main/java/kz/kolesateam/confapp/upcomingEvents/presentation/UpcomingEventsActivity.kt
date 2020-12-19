@@ -28,7 +28,6 @@ private const val TAG = "UpcomingEventsActivity"
 class UpcomingEventsActivity : AppCompatActivity() {
 
     private val upcomingEventsViewModel: UpcomingEventsViewModel by viewModel()
-    private val eventsNotificationManager: EventsNotificationManager by inject()
 
     private val branchListAdapter = UpcomingEventListAdapter(
         onBranchClick = ::handleBranchClick,
@@ -63,8 +62,6 @@ class UpcomingEventsActivity : AppCompatActivity() {
     }
 
     private fun handleFavoriteClick(event: EventData, isFavorite: Boolean) {
-        Log.d(TAG, event.toString())
-        eventsNotificationManager.sendNotification(event.speaker.fullName, event.title)
         when (isFavorite) {
             true -> upcomingEventsViewModel.onFavoriteAdd(event)
             false -> upcomingEventsViewModel.onFavoriteRemove(event)
