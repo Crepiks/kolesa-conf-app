@@ -6,6 +6,7 @@ import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import org.threeten.bp.ZonedDateTime
+import java.util.*
 
 const val EVENT_NOTIFICATION_ID_EXTRA_KEY = "event_notification_id"
 const val EVENT_NOTIFICATION_TEXT_EXTRA_KEY = "event_notification_text"
@@ -60,6 +61,16 @@ class EventsNotificationAlarm(
     private fun getNotificationTimestamp(startTime: String): Long {
         val parsedDateTime: ZonedDateTime = ZonedDateTime.parse(startTime)
         val notificationTime: ZonedDateTime = parsedDateTime.minusMinutes(MINUTES_TO_SUBTRACT)
-        return notificationTime.toEpochSecond() * 1000
+
+        val calendar: Calendar = Calendar.getInstance()
+        calendar.timeInMillis = System.currentTimeMillis()
+        calendar.set(Calendar.YEAR, notificationTime.year)
+        calendar.set(Calendar.MONTH, notificationTime.monthValue)
+        calendar.set(Calendar.DAY_OF_MONTH, notificationTime.dayOfMonth)
+        calendar.set(Calendar.HOUR_OF_DAY, notificationTime.hour)
+        calendar.set(Calendar.MINUTE, notificationTime.minute)
+        calendar.set(Calendar.SECOND, notificationTime.second)
+
+        return calendar.timeInMillis
     }
 }
