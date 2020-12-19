@@ -5,7 +5,7 @@ import android.content.Intent
 
 const val EVENT_ID_EXTRA_KEY = "event_id"
 
-class EventDetailsRouter {
+class EventDetailsRouter() {
 
     private fun createIntent(
         context: Context

@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kz.kolesateam.confapp.R
+import kz.kolesateam.confapp.branchEvents.presentation.BranchEventsRouter
 import kz.kolesateam.confapp.common.models.EventData
 import kz.kolesateam.confapp.common.models.ProgressStatus
 import kz.kolesateam.confapp.extension.gone
@@ -65,11 +66,12 @@ class UpcomingEventsActivity : AppCompatActivity() {
     }
 
     private fun handleBranchClick(branchId: Int, branchTitle: String) {
-        val router = UpcomingEventsRouter(WeakReference(this))
-        router.navigateToBranchEventsScreen(
+        val branchEventsIntent = BranchEventsRouter().createIntent(
+            context = this,
             branchId = branchId,
             branchTitle = branchTitle
         )
+        startActivity(branchEventsIntent)
     }
 
     private fun showUpcomingEventsChange(upcomingEventList: List<UpcomingEventListItem>) {

@@ -21,8 +21,6 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 private const val DEFAULT_BRANCH_ID = 0
 private const val DEFAULT_BRANCH_TITLE = ""
-private const val BRANCH_ID_KEY = "BRANCH_ID"
-private const val BRANCH_TITLE_KEY = "BRANCH_TITLE"
 
 class BranchEventsActivity : AppCompatActivity() {
 
@@ -80,11 +78,11 @@ class BranchEventsActivity : AppCompatActivity() {
     }
 
     private fun getBranchId(): Int {
-        return intent.getIntExtra(BRANCH_ID_KEY, DEFAULT_BRANCH_ID)
+        return intent.getIntExtra(BRANCH_ID_EXTRA_KEY, DEFAULT_BRANCH_ID)
     }
 
     private fun getBranchTitle(): String {
-        val branchTitle = intent.getStringExtra(BRANCH_TITLE_KEY);
+        val branchTitle = intent.getStringExtra(BRANCH_TITLE_EXTRA_KEY);
         return branchTitle ?: DEFAULT_BRANCH_TITLE
     }
 

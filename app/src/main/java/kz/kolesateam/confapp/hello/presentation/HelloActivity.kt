@@ -11,6 +11,8 @@ import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import kz.kolesateam.confapp.R
 import kz.kolesateam.confapp.upcomingEvents.presentation.UpcomingEventsActivity
+import kz.kolesateam.confapp.upcomingEvents.presentation.UpcomingEventsRouter
+import java.lang.ref.WeakReference
 
 private const val PREFERENCE_NAME = "user_name"
 
@@ -50,7 +52,8 @@ class HelloActivity : AppCompatActivity() {
     }
 
     private fun navigateToUpcomingEventsScreen() {
-        val testHelloScreenIntent = Intent(this, UpcomingEventsActivity::class.java)
-        startActivity(testHelloScreenIntent)
+        val upcomingEventsIntent =
+            UpcomingEventsRouter().createIntent(context = this)
+        startActivity(upcomingEventsIntent)
     }
 }
