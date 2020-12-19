@@ -5,12 +5,14 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import kz.kolesateam.confapp.R
 import kz.kolesateam.confapp.common.BaseViewHolder
+import kz.kolesateam.confapp.events.domain.models.EventData
 import kz.kolesateam.confapp.upcomingEvents.presentation.models.HEADER_TYPE
 import kz.kolesateam.confapp.upcomingEvents.presentation.models.UpcomingEventListItem
 
 class UpcomingEventListAdapter(
     private val onBranchClick: (branchId: Int, branchTitle: String) -> Unit,
-    private val onEventClick: (eventTitle: String) -> Unit
+    private val onEventClick: (eventTitle: String) -> Unit,
+    private val onFavoriteClick: (event: EventData, isFavorite: Boolean) -> Unit
 ) : RecyclerView.Adapter<BaseViewHolder<UpcomingEventListItem>>() {
 
     private val itemList: MutableList<UpcomingEventListItem> = mutableListOf()
@@ -61,6 +63,7 @@ class UpcomingEventListAdapter(
         ),
         parent = parent,
         onBranchClick = onBranchClick,
-        onEventClick = onEventClick
+        onEventClick = onEventClick,
+        onFavoriteClick = onFavoriteClick
     )
 }

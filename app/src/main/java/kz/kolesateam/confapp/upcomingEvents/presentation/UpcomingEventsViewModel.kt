@@ -11,6 +11,8 @@ import kotlinx.coroutines.withContext
 import kz.kolesateam.confapp.common.models.ProgressStatus
 import kz.kolesateam.confapp.common.models.ResponseData
 import kz.kolesateam.confapp.events.domain.models.BranchData
+import kz.kolesateam.confapp.events.domain.models.EventData
+import kz.kolesateam.confapp.favorites.domain.FavoritesRepository
 import kz.kolesateam.confapp.upcomingEvents.domain.UpcomingEventsRepository
 import kz.kolesateam.confapp.upcomingEvents.presentation.models.BranchItem
 import kz.kolesateam.confapp.upcomingEvents.presentation.models.HeaderItem
@@ -20,7 +22,8 @@ private const val DEFAULT_USER_NAME = ""
 private const val TAG = "UpcomingEventsViewModel"
 
 class UpcomingEventsViewModel(
-    private val upcomingEventsRepository: UpcomingEventsRepository
+    private val upcomingEventsRepository: UpcomingEventsRepository,
+    private val favoritesRepository: FavoritesRepository
 ) : ViewModel() {
 
     private val progressLiveData: MutableLiveData<ProgressStatus> = MutableLiveData()
@@ -30,23 +33,32 @@ class UpcomingEventsViewModel(
 
     private var userName: String = DEFAULT_USER_NAME
 
-    fun onStart(userName: String) {
-        this.userName = userName
-        fetchData()
-    }
 
     fun getProgressLiveData(): LiveData<ProgressStatus> = progressLiveData
     fun getUpcomingEventsLiveData(): LiveData<List<UpcomingEventListItem>> = upcomingEventsLiveData
     fun getErrorLiveData(): LiveData<String> = errorLiveData
 
+    fun onStart(userName: String) {
+        this.userName = userName
+        fetchData()
+    }
+
+    fun onFavoriteAdd(event: EventData) {
+        favoritesRepository.addFavorite(event)
+        refreshUpcomingEventList()
+    }
+
+    fun onFavoriteRemove(event: EventData) {
+        favoritesRepository.removeFavorite(event.id)
+        refreshUpcomingEventList()
+    }
+
     private fun fetchData() {
-        Log.d(TAG, "Started fetching")
         progressLiveData.value = ProgressStatus.Loading
         viewModelScope.launch {
             val response: ResponseData<List<BranchData>, String> = withContext(Dispatchers.IO) {
-                upcomingEventsRepository.getUpcomingEvents()
+                upcomingEventsRepository.loadUpcomingEvents()
             }
-            Log.d(TAG, response.toString())
             when (response) {
                 is ResponseData.Success -> {
                     val branchList = response.result
@@ -72,4 +84,8 @@ class UpcomingEventsViewModel(
         return listOf(headerListItem) + branchListItems
     }
 
+    private fun refreshUpcomingEventList() {
+        val eventList = upcomingEventsRepository.getUpcomingEvents()
+        upcomingEventsLiveData.value = getUpcomingEventList(eventList)
+    }
 }

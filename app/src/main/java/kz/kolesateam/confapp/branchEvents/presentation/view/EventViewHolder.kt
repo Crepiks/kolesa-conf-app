@@ -41,6 +41,10 @@ class EventViewHolder(
             favoriteButton.setImageResource(R.drawable.ic_favorite_border)
         }
 
+        setListeners(event)
+    }
+
+    private fun setListeners(event: EventData) {
         favoriteButton.setOnClickListener {
             onFavoriteClick(event, !event.isFavorite)
         }

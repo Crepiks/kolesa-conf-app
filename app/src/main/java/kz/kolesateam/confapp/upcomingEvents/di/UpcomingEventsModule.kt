@@ -13,7 +13,8 @@ val upcomingEventsModule: Module = module {
 
     viewModel {
         UpcomingEventsViewModel(
-            upcomingEventsRepository = get()
+            upcomingEventsRepository = get(),
+            favoritesRepository = get()
         )
     }
 
@@ -24,7 +25,8 @@ val upcomingEventsModule: Module = module {
 
     factory<UpcomingEventsRepository> {
         UpcomingEventsRepositoryImp(
-            upcomingEventsDataSource = get()
+            upcomingEventsDataSource = get(),
+            favoritesRepository = get()
         )
     }
 }

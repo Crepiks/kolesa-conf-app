@@ -1,6 +1,7 @@
 package kz.kolesateam.confapp.di
 
 import com.fasterxml.jackson.databind.ObjectMapper
+import com.fasterxml.jackson.module.kotlin.registerKotlinModule
 import org.koin.core.module.Module
 import org.koin.dsl.module
 import retrofit2.Retrofit
@@ -17,6 +18,6 @@ val applicationModule: Module = module {
     }
 
     single {
-        ObjectMapper()
+        ObjectMapper().registerKotlinModule()
     }
 }

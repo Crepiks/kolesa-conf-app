@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import kz.kolesateam.confapp.R
 import kz.kolesateam.confapp.common.BaseViewHolder
 import kz.kolesateam.confapp.events.domain.models.BranchData
+import kz.kolesateam.confapp.events.domain.models.EventData
 import kz.kolesateam.confapp.upcomingEvents.presentation.models.BranchItem
 import kz.kolesateam.confapp.upcomingEvents.presentation.models.UpcomingEventListItem
 
@@ -15,13 +16,17 @@ class BranchViewHolder(
     view: View,
     private val parent: ViewGroup,
     private val onBranchClick: (branchId: Int, branchTitle: String) -> Unit,
-    onEventClick: (eventTitle: String) -> Unit
+    onEventClick: (eventTitle: String) -> Unit,
+    onFavoriteClick: (event: EventData, isFavorite: Boolean) -> Unit
 ) : BaseViewHolder<UpcomingEventListItem>(view) {
 
     private val header: View = view.findViewById(R.id.item_branch_card_header)
     private val branchTitle: TextView = view.findViewById(R.id.item_branch_card_branch_name)
     private val eventList: RecyclerView = view.findViewById(R.id.item_branch_card_event_list)
-    private val eventListAdapter = EventListAdapter(onEventClick)
+    private val eventListAdapter = EventListAdapter(
+        onEventClick = onEventClick,
+        onFavoriteClick = onFavoriteClick
+    )
 
     override fun bind(data: UpcomingEventListItem) {
         val branchData: BranchData = (data as? BranchItem)?.data ?: return

@@ -7,15 +7,17 @@ import kz.kolesateam.confapp.R
 import kz.kolesateam.confapp.events.domain.models.EventData
 
 class EventListAdapter(
-        private val onEventClick: (eventTitle: String) -> Unit
+    private val onEventClick: (eventTitle: String) -> Unit,
+    private val onFavoriteClick: (event: EventData, isFavorite: Boolean) -> Unit
 ) : RecyclerView.Adapter<EventViewHolder>() {
 
     private var eventList: MutableList<EventData> = mutableListOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EventViewHolder {
         return EventViewHolder(
-                view = View.inflate(parent.context, R.layout.item_upcoming_event_card, null),
-                onEventClick = onEventClick
+            view = View.inflate(parent.context, R.layout.item_upcoming_event_card, null),
+            onEventClick = onEventClick,
+            onFavoriteClick = onFavoriteClick
         )
     }
 

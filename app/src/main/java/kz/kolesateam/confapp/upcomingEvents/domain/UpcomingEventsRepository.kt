@@ -5,5 +5,7 @@ import kz.kolesateam.confapp.events.domain.models.BranchData
 
 interface UpcomingEventsRepository {
 
-    fun getUpcomingEvents(): ResponseData<List<BranchData>, String>
+    fun getUpcomingEvents(): List<BranchData>
+
+    fun loadUpcomingEvents(): ResponseData<List<BranchData>, String>
 }

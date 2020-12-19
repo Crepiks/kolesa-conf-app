@@ -3,6 +3,7 @@ package kz.kolesateam.confapp.upcomingEvents.presentation
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.util.Log
 import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -10,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kz.kolesateam.confapp.R
 import kz.kolesateam.confapp.common.models.ProgressStatus
+import kz.kolesateam.confapp.events.domain.models.EventData
 import kz.kolesateam.confapp.extension.gone
 import kz.kolesateam.confapp.extension.show
 import kz.kolesateam.confapp.upcomingEvents.presentation.models.UpcomingEventListItem
@@ -19,6 +21,7 @@ import java.lang.ref.WeakReference
 
 private const val PREFERENCE_NAME = "user_name"
 private const val USERNAME_DEFAULT_VALUE = ""
+private const val TAG = "UpcomingEventsActivity"
 
 class UpcomingEventsActivity : AppCompatActivity() {
 
@@ -26,7 +29,8 @@ class UpcomingEventsActivity : AppCompatActivity() {
 
     private val branchListAdapter = UpcomingEventListAdapter(
         onBranchClick = ::handleBranchClick,
-        onEventClick = ::handleEventClick
+        onEventClick = ::handleEventClick,
+        onFavoriteClick = ::handleFavoriteClick
     )
 
     private lateinit var progressBar: ProgressBar
@@ -52,6 +56,14 @@ class UpcomingEventsActivity : AppCompatActivity() {
         when (progressStatus) {
             ProgressStatus.Loading -> startLoading()
             ProgressStatus.Finished -> finishLoading()
+        }
+    }
+
+    private fun handleFavoriteClick(event: EventData, isFavorite: Boolean) {
+        Log.d(TAG, event.toString())
+        when (isFavorite) {
+            true -> upcomingEventsViewModel.onFavoriteAdd(event)
+            false -> upcomingEventsViewModel.onFavoriteRemove(event)
         }
     }
 

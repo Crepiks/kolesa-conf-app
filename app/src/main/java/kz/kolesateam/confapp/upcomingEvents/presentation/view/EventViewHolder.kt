@@ -1,5 +1,6 @@
 package kz.kolesateam.confapp.upcomingEvents.presentation.view
 
+import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
@@ -11,7 +12,8 @@ const val TIME_AND_PLACE_FORMAT = "%s - %s • %s"
 
 class EventViewHolder(
     view: View,
-    private val onEventClick: (eventTitle: String) -> Unit
+    private val onEventClick: (eventTitle: String) -> Unit,
+    private val onFavoriteClick: (event: EventData, isFavorite: Boolean) -> Unit
 ) : BaseViewHolder<EventData>(view) {
 
     private val container: View = view.findViewById(R.id.layout_event_card_container)
@@ -23,33 +25,33 @@ class EventViewHolder(
     private val favoriteButton: ImageView =
         view.findViewById(R.id.layout_event_card_favorite_button)
 
-    private var liked: Boolean = false
-
-    init {
-        setListeners()
-    }
-
     override fun bind(event: EventData) {
-        placement.text = TIME_AND_PLACE_FORMAT.format(event.schedule.startTime, event.schedule.endTime, event.place)
+        placement.text = TIME_AND_PLACE_FORMAT.format(
+            event.schedule.startTime,
+            event.schedule.endTime,
+            event.place
+        )
         speakerName.text = event.speaker?.fullName
         speakerPosition.text = event.speaker?.job
         title.text = event.title
+
+        if (event.isFavorite) {
+            favoriteButton.setImageResource(R.drawable.ic_favorite_fill)
+        } else {
+            favoriteButton.setImageResource(R.drawable.ic_favorite_border)
+        }
+
+        setListeners(event)
     }
 
-    private fun setListeners() {
+    private fun setListeners(event: EventData) {
         container.setOnClickListener {
             val eventTitle = title.text.toString()
             onEventClick(eventTitle)
         }
 
         favoriteButton.setOnClickListener {
-            liked = if (liked) {
-                favoriteButton.setImageResource(R.drawable.ic_favorite_border)
-                false
-            } else {
-                favoriteButton.setImageResource(R.drawable.ic_favorite_fill)
-                true
-            }
+            onFavoriteClick(event, !event.isFavorite)
         }
     }
 }
