@@ -2,6 +2,7 @@ package kz.kolesateam.confapp.di
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.registerKotlinModule
+import kz.kolesateam.confapp.notifications.EventsNotificationAlarm
 import kz.kolesateam.confapp.notifications.EventsNotificationManager
 import org.koin.android.ext.koin.androidApplication
 import org.koin.core.module.Module
@@ -26,6 +27,12 @@ val applicationModule: Module = module {
     single {
         EventsNotificationManager(
             context = androidApplication()
+        )
+    }
+
+    factory {
+        EventsNotificationAlarm(
+            application = androidApplication()
         )
     }
 }

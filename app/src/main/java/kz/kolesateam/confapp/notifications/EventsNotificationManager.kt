@@ -1,9 +1,6 @@
 package kz.kolesateam.confapp.notifications
 
-import android.app.Notification
-import android.app.NotificationChannel
-import android.app.NotificationManager
-import android.app.PendingIntent
+import android.app.*
 import android.content.Context
 import android.content.Intent
 import android.os.Build
@@ -11,12 +8,13 @@ import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import kz.kolesateam.confapp.R
 import kz.kolesateam.confapp.eventDetails.presentation.EventDetailsRouter
+import kotlin.random.Random
+
+private const val EVENTS_NOTIFICATION_CHANNEL = "event_notification_channel"
 
 class EventsNotificationManager(
     private val context: Context
 ) {
-
-    private var counter: Int = 0
 
     init {
         createNotificationIfNeeded()
@@ -32,20 +30,19 @@ class EventsNotificationManager(
             title,
             text
         )
-        val notificationId = counter++
+        val notificationId = Random.nextInt(Int.MAX_VALUE)
+
         NotificationManagerCompat.from(context).notify(
             notificationId,
             notification
         )
     }
 
-    private fun getChannelId(): String = context.packageName + ".events_notification_manager"
-
     private fun createNotification(
         eventId: Int,
         title: String,
         text: String
-    ): Notification = NotificationCompat.Builder(context, getChannelId())
+    ): Notification = NotificationCompat.Builder(context, EVENTS_NOTIFICATION_CHANNEL)
         .setSmallIcon(R.drawable.ic_favorite_fill)
         .setContentTitle(title)
         .setContentText(text)
@@ -74,7 +71,7 @@ class EventsNotificationManager(
         val name = "ConfApplication"
         val importance = NotificationManager.IMPORTANCE_DEFAULT
         val channel = NotificationChannel(
-            getChannelId(),
+            EVENTS_NOTIFICATION_CHANNEL,
             name,
             importance
         )

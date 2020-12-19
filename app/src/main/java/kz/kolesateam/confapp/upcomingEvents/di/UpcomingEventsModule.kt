@@ -15,7 +15,7 @@ val upcomingEventsModule: Module = module {
         UpcomingEventsViewModel(
             upcomingEventsRepository = get(),
             favoritesRepository = get(),
-            eventsNotificationManager = get()
+            eventsNotificationAlarm = get()
         )
     }
 

@@ -23,6 +23,8 @@
         <activity android:name=".upcomingEvents.presentation.UpcomingEventsActivity" />
         <activity android:name=".branchEvents.presentation.BranchEventsActivity" />
         <activity android:name=".eventDetails.presentation.EventDetailsActivity" />
+
+        <receiver android:name=".notifications.EventsNotificationAlarmBroadcastReceiver" />
     </application>
 
 </manifest>

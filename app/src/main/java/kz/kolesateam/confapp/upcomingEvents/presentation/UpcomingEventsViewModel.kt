@@ -12,6 +12,7 @@ import kz.kolesateam.confapp.common.models.ResponseData
 import kz.kolesateam.confapp.common.models.BranchData
 import kz.kolesateam.confapp.common.models.EventData
 import kz.kolesateam.confapp.favorites.domain.FavoritesRepository
+import kz.kolesateam.confapp.notifications.EventsNotificationAlarm
 import kz.kolesateam.confapp.notifications.EventsNotificationManager
 import kz.kolesateam.confapp.upcomingEvents.domain.UpcomingEventsRepository
 import kz.kolesateam.confapp.upcomingEvents.presentation.models.BranchItem
@@ -24,7 +25,7 @@ private const val TAG = "UpcomingEventsViewModel"
 class UpcomingEventsViewModel(
     private val upcomingEventsRepository: UpcomingEventsRepository,
     private val favoritesRepository: FavoritesRepository,
-    private val eventsNotificationManager: EventsNotificationManager
+    private val eventsNotificationAlarm: EventsNotificationAlarm
 ) : ViewModel() {
 
     private val progressLiveData: MutableLiveData<ProgressStatus> = MutableLiveData()
@@ -46,13 +47,17 @@ class UpcomingEventsViewModel(
 
     fun onFavoriteAdd(event: EventData) {
         favoritesRepository.addFavorite(event)
-        eventsNotificationManager.sendNotification(event.id, event.speaker.fullName, event.title)
         refreshUpcomingEventList()
+        scheduleNotification(event)
     }
 
     fun onFavoriteRemove(event: EventData) {
         favoritesRepository.removeFavorite(event.id)
         refreshUpcomingEventList()
+    }
+
+    private fun scheduleNotification(event: EventData) {
+        eventsNotificationAlarm.scheduleNotification(event.id, event.title)
     }
 
     private fun fetchData() {
