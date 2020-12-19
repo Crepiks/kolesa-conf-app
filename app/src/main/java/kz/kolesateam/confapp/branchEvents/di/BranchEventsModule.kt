@@ -14,7 +14,8 @@ val branchEventsModule: Module = module {
     viewModel {
         BranchEventsViewModel(
             branchEventsRepository = get(),
-            favoritesRepository = get()
+            favoritesRepository = get(),
+            eventsNotificationAlarm = get()
         )
     }
 

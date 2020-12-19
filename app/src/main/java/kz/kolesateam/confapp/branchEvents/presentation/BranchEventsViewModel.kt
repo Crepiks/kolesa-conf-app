@@ -11,18 +11,19 @@ import kz.kolesateam.confapp.branchEvents.domain.BranchEventsRepository
 import kz.kolesateam.confapp.branchEvents.presentation.models.BranchEventListItem
 import kz.kolesateam.confapp.branchEvents.presentation.models.EventItem
 import kz.kolesateam.confapp.branchEvents.presentation.models.HeaderItem
+import kz.kolesateam.confapp.common.models.EventData
 import kz.kolesateam.confapp.common.models.ProgressStatus
 import kz.kolesateam.confapp.common.models.ResponseData
-import kz.kolesateam.confapp.common.models.EventData
 import kz.kolesateam.confapp.favorites.domain.FavoritesRepository
+import kz.kolesateam.confapp.notifications.EventsNotificationAlarm
 
 private const val DEFAULT_BRANCH_ID = 0
 private const val DEFAULT_BRANCH_TITLE = ""
-private const val TAG = "BranchEventsViewModel"
 
 class BranchEventsViewModel(
     private val branchEventsRepository: BranchEventsRepository,
-    private val favoritesRepository: FavoritesRepository
+    private val favoritesRepository: FavoritesRepository,
+    private val eventsNotificationAlarm: EventsNotificationAlarm
 ) : ViewModel() {
 
     private val progressLiveData: MutableLiveData<ProgressStatus> = MutableLiveData()
@@ -49,11 +50,25 @@ class BranchEventsViewModel(
     fun onFavoriteAdd(event: EventData) {
         favoritesRepository.addFavorite(event)
         refreshBranchEventList()
+        scheduleNotification(event)
     }
 
     fun onFavoriteRemove(event: EventData) {
         favoritesRepository.removeFavorite(event.id)
         refreshBranchEventList()
+        cancelNotification(event)
+    }
+
+    private fun scheduleNotification(event: EventData) {
+        eventsNotificationAlarm.scheduleNotification(
+            event.id,
+            event.title,
+            event.schedule.startTime
+        )
+    }
+
+    private fun cancelNotification(event: EventData) {
+        eventsNotificationAlarm.cancelNotification(event.id)
     }
 
     private fun fetchData() {

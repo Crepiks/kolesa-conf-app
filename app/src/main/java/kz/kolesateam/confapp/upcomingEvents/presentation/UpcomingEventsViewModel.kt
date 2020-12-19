@@ -54,10 +54,19 @@ class UpcomingEventsViewModel(
     fun onFavoriteRemove(event: EventData) {
         favoritesRepository.removeFavorite(event.id)
         refreshUpcomingEventList()
+        cancelNotification(event)
     }
 
     private fun scheduleNotification(event: EventData) {
-        eventsNotificationAlarm.scheduleNotification(event.id, event.title)
+        eventsNotificationAlarm.scheduleNotification(
+            event.id,
+            event.title,
+            event.schedule.startTime
+        )
+    }
+
+    private fun cancelNotification(event: EventData) {
+        eventsNotificationAlarm.cancelNotification(event.id)
     }
 
     private fun fetchData() {
