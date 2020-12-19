@@ -3,12 +3,12 @@ package kz.kolesateam.confapp.hello.presentation
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.widget.Button
 import android.widget.EditText
+import androidx.appcompat.app.AppCompatActivity
 import kz.kolesateam.confapp.R
 import kz.kolesateam.confapp.upcomingEvents.presentation.UpcomingEventsActivity
 
@@ -23,7 +23,7 @@ class HelloActivity : AppCompatActivity() {
         val nameEditText = findViewById<EditText>(R.id.activity_hello_name_input)
         val continueButton = findViewById<Button>(R.id.activity_hello_continue_button)
 
-        nameEditText.addTextChangedListener(object: TextWatcher {
+        nameEditText.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
@@ -42,7 +42,8 @@ class HelloActivity : AppCompatActivity() {
     }
 
     private fun storeUserName(userName: String) {
-        val sharedPref: SharedPreferences = getSharedPreferences(PREFERENCE_NAME, Context.MODE_PRIVATE)
+        val sharedPref: SharedPreferences =
+            getSharedPreferences(PREFERENCE_NAME, Context.MODE_PRIVATE)
         val editor = sharedPref.edit()
         editor.putString(PREFERENCE_NAME, userName)
         editor.apply()

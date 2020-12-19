@@ -1,7 +1,7 @@
 package kz.kolesateam.confapp.upcomingEvents.domain
 
-import kz.kolesateam.confapp.common.models.ResponseData
 import kz.kolesateam.confapp.common.models.BranchData
+import kz.kolesateam.confapp.common.models.ResponseData
 
 interface UpcomingEventsRepository {
 

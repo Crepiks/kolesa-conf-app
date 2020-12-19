@@ -1,6 +1,5 @@
 package kz.kolesateam.confapp
 
-import android.app.Application
 import androidx.multidex.MultiDexApplication
 import kz.kolesateam.confapp.branchEvents.di.branchEventsModule
 import kz.kolesateam.confapp.di.applicationModule

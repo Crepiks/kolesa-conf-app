@@ -6,7 +6,6 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import kz.kolesateam.confapp.R
 
-private const val TAG = "EventDetailsActivity"
 private const val DEFAULT_EVENT_ID = 0
 
 class EventDetailsActivity : AppCompatActivity() {

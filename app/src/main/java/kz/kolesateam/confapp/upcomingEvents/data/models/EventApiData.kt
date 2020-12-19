@@ -4,19 +4,19 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import com.fasterxml.jackson.annotation.JsonProperty
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-data class EventApiData (
+data class EventApiData(
     @JsonProperty("id")
-    val id : Int?,
+    val id: Int?,
     @JsonProperty("startTime")
-    val startTime : String?,
+    val startTime: String?,
     @JsonProperty("endTime")
-    val endTime : String?,
+    val endTime: String?,
     @JsonProperty("title")
-    val title : String?,
+    val title: String?,
     @JsonProperty("description")
-    val description : String?,
+    val description: String?,
     @JsonProperty("place")
-    val place : String?,
+    val place: String?,
     @JsonProperty("speaker")
-    val speaker : SpeakerApiData?
+    val speaker: SpeakerApiData?
 )

@@ -12,9 +12,9 @@ import androidx.recyclerview.widget.RecyclerView
 import kz.kolesateam.confapp.R
 import kz.kolesateam.confapp.branchEvents.presentation.models.BranchEventListItem
 import kz.kolesateam.confapp.branchEvents.presentation.view.EventListAdapter
+import kz.kolesateam.confapp.common.models.EventData
 import kz.kolesateam.confapp.common.models.ProgressStatus
 import kz.kolesateam.confapp.eventDetails.presentation.EventDetailsActivity
-import kz.kolesateam.confapp.common.models.EventData
 import kz.kolesateam.confapp.extension.gone
 import kz.kolesateam.confapp.extension.show
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -23,7 +23,6 @@ private const val DEFAULT_BRANCH_ID = 0
 private const val DEFAULT_BRANCH_TITLE = ""
 private const val BRANCH_ID_KEY = "BRANCH_ID"
 private const val BRANCH_TITLE_KEY = "BRANCH_TITLE"
-private const val TAG = "BranchEventsActivity";
 
 class BranchEventsActivity : AppCompatActivity() {
 

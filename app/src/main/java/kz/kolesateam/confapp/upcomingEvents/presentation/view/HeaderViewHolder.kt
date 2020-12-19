@@ -14,7 +14,8 @@ class HeaderViewHolder(val view: View) : BaseViewHolder<UpcomingEventListItem>(v
     override fun bind(data: UpcomingEventListItem) {
         val userName: String = (data as? HeaderItem)?.userName ?: return
         if (userName.isNotEmpty()) {
-            greeting.text = view.context.getString(R.string.item_upcoming_events_header_greeting_fmt, userName)
+            greeting.text =
+                view.context.getString(R.string.item_upcoming_events_header_greeting_fmt, userName)
         }
     }
 }

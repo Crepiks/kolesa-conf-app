@@ -7,20 +7,18 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import kz.kolesateam.confapp.common.models.ProgressStatus
-import kz.kolesateam.confapp.common.models.ResponseData
 import kz.kolesateam.confapp.common.models.BranchData
 import kz.kolesateam.confapp.common.models.EventData
+import kz.kolesateam.confapp.common.models.ProgressStatus
+import kz.kolesateam.confapp.common.models.ResponseData
 import kz.kolesateam.confapp.favorites.domain.FavoritesRepository
 import kz.kolesateam.confapp.notifications.EventsNotificationAlarm
-import kz.kolesateam.confapp.notifications.EventsNotificationManager
 import kz.kolesateam.confapp.upcomingEvents.domain.UpcomingEventsRepository
 import kz.kolesateam.confapp.upcomingEvents.presentation.models.BranchItem
 import kz.kolesateam.confapp.upcomingEvents.presentation.models.HeaderItem
 import kz.kolesateam.confapp.upcomingEvents.presentation.models.UpcomingEventListItem
 
 private const val DEFAULT_USER_NAME = ""
-private const val TAG = "UpcomingEventsViewModel"
 
 class UpcomingEventsViewModel(
     private val upcomingEventsRepository: UpcomingEventsRepository,
@@ -34,7 +32,6 @@ class UpcomingEventsViewModel(
     private val errorLiveData: MutableLiveData<String> = MutableLiveData()
 
     private var userName: String = DEFAULT_USER_NAME
-
 
     fun getProgressLiveData(): LiveData<ProgressStatus> = progressLiveData
     fun getUpcomingEventsLiveData(): LiveData<List<UpcomingEventListItem>> = upcomingEventsLiveData

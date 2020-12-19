@@ -3,27 +3,23 @@ package kz.kolesateam.confapp.upcomingEvents.presentation
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.util.Log
 import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kz.kolesateam.confapp.R
-import kz.kolesateam.confapp.common.models.ProgressStatus
 import kz.kolesateam.confapp.common.models.EventData
+import kz.kolesateam.confapp.common.models.ProgressStatus
 import kz.kolesateam.confapp.extension.gone
 import kz.kolesateam.confapp.extension.show
-import kz.kolesateam.confapp.notifications.EventsNotificationManager
 import kz.kolesateam.confapp.upcomingEvents.presentation.models.UpcomingEventListItem
 import kz.kolesateam.confapp.upcomingEvents.presentation.view.UpcomingEventListAdapter
-import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.lang.ref.WeakReference
 
 private const val PREFERENCE_NAME = "user_name"
 private const val USERNAME_DEFAULT_VALUE = ""
-private const val TAG = "UpcomingEventsActivity"
 
 class UpcomingEventsActivity : AppCompatActivity() {
 

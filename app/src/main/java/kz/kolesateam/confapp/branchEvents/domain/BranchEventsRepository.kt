@@ -1,7 +1,7 @@
 package kz.kolesateam.confapp.branchEvents.domain
 
-import kz.kolesateam.confapp.common.models.ResponseData
 import kz.kolesateam.confapp.common.models.EventData
+import kz.kolesateam.confapp.common.models.ResponseData
 
 interface BranchEventsRepository {
 

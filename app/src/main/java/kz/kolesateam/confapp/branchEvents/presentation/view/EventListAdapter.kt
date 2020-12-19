@@ -15,8 +15,11 @@ class EventListAdapter(
 
     private val eventList: MutableList<BranchEventListItem> = mutableListOf()
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<BranchEventListItem> {
-        return when(viewType) {
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int
+    ): BaseViewHolder<BranchEventListItem> {
+        return when (viewType) {
             HEADER_TYPE -> getHeaderViewHolder(parent)
             else -> getEventViewHolder(parent)
         }
@@ -40,13 +43,15 @@ class EventListAdapter(
 
     private fun getHeaderViewHolder(parent: ViewGroup): HeaderViewHolder {
         return HeaderViewHolder(
-            view = LayoutInflater.from(parent.context).inflate(R.layout.item_branch_events_header, parent, false)
+            view = LayoutInflater.from(parent.context)
+                .inflate(R.layout.item_branch_events_header, parent, false)
         )
     }
 
     private fun getEventViewHolder(parent: ViewGroup): EventViewHolder {
         return EventViewHolder(
-            view = LayoutInflater.from(parent.context).inflate(R.layout.item_branch_event_card, parent, false),
+            view = LayoutInflater.from(parent.context)
+                .inflate(R.layout.item_branch_event_card, parent, false),
             onFavoriteClick = onFavoriteClick
         )
     }
