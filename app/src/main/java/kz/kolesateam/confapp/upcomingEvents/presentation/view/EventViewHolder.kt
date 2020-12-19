@@ -6,6 +6,8 @@ import android.widget.TextView
 import kz.kolesateam.confapp.R
 import kz.kolesateam.confapp.common.BaseViewHolder
 import kz.kolesateam.confapp.common.models.EventData
+import org.threeten.bp.ZonedDateTime
+import org.threeten.bp.format.DateTimeFormatter
 
 const val TIME_AND_PLACE_FORMAT = "%s - %s • %s"
 
@@ -26,8 +28,8 @@ class EventViewHolder(
 
     override fun bind(event: EventData) {
         placement.text = TIME_AND_PLACE_FORMAT.format(
-            event.schedule.startTime,
-            event.schedule.endTime,
+            getHours(event.schedule.startTime),
+            getHours(event.schedule.endTime),
             event.place
         )
         speakerName.text = event.speaker?.fullName
@@ -52,5 +54,11 @@ class EventViewHolder(
         favoriteButton.setOnClickListener {
             onFavoriteClick(event, !event.isFavorite)
         }
+    }
+
+    private fun getHours(dateTimeString: String): String {
+        val parsedDateTime: ZonedDateTime = ZonedDateTime.parse(dateTimeString)
+        val formatter: DateTimeFormatter = DateTimeFormatter.ofPattern("HH:mm")
+        return parsedDateTime.format(formatter)
     }
 }
