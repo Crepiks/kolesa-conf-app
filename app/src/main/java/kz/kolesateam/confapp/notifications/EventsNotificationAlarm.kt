@@ -7,8 +7,8 @@ import android.content.Context
 import android.content.Intent
 import org.threeten.bp.ZonedDateTime
 
-const val EVENT_NOTIFICATION_ID_EXTRA_KEY = "event_notification_id_extra_key"
-const val EVENT_NOTIFICATION_TEXT_EXTRA_KEY = "event_notification_text_extra_key"
+const val EVENT_NOTIFICATION_ID_EXTRA_KEY = "event_notification_id"
+const val EVENT_NOTIFICATION_TEXT_EXTRA_KEY = "event_notification_text"
 const val MINUTES_TO_SUBTRACT: Long = 5
 
 class EventsNotificationAlarm(
@@ -22,12 +22,13 @@ class EventsNotificationAlarm(
     ) {
         val alarmManager: AlarmManager? =
             application.getSystemService(Context.ALARM_SERVICE) as? AlarmManager
+
         val pendingIntent: PendingIntent =
             Intent(application, EventsNotificationAlarmBroadcastReceiver::class.java).apply {
                 putExtra(EVENT_NOTIFICATION_ID_EXTRA_KEY, eventId)
                 putExtra(EVENT_NOTIFICATION_TEXT_EXTRA_KEY, title)
             }.let {
-                PendingIntent.getBroadcast(application, eventId, it, PendingIntent.FLAG_ONE_SHOT)
+                PendingIntent.getBroadcast(application, 0, it, PendingIntent.FLAG_ONE_SHOT)
             }
 
         alarmManager?.setExact(

@@ -7,4 +7,6 @@
     <string name="activity_hello_what_is_your_name">Как тебя зовут?</string>
 
     <string name="item_upcoming_events_header_greeting_fmt">Привет, %1s</string>
+
+    <string name="notifications_events_notification_title">Скоро начнется доклад</string>
 </resources>
