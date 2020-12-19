@@ -2,8 +2,8 @@ package kz.kolesateam.confapp.branchEvents.data.mappers
 
 import kz.kolesateam.confapp.branchEvents.data.models.EventApiData
 import kz.kolesateam.confapp.common.mappers.Mapper
-import kz.kolesateam.confapp.events.domain.models.EventData
-import kz.kolesateam.confapp.events.domain.models.SpeakerData
+import kz.kolesateam.confapp.common.models.EventData
+import kz.kolesateam.confapp.common.models.SpeakerData
 import kz.kolesateam.confapp.favorites.domain.FavoritesRepository
 
 private const val DEFAULT_ID = 0

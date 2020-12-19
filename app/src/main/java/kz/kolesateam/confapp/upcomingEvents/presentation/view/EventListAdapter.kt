@@ -4,7 +4,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import kz.kolesateam.confapp.R
-import kz.kolesateam.confapp.events.domain.models.EventData
+import kz.kolesateam.confapp.common.models.EventData
 
 class EventListAdapter(
     private val onEventClick: (eventTitle: String) -> Unit,

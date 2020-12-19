@@ -1,6 +1,6 @@
 package kz.kolesateam.confapp.favorites.domain
 
-import kz.kolesateam.confapp.events.domain.models.EventData
+import kz.kolesateam.confapp.common.models.EventData
 
 interface FavoritesRepository {
 

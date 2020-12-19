@@ -1,6 +1,5 @@
 package kz.kolesateam.confapp.branchEvents.presentation
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -14,7 +13,7 @@ import kz.kolesateam.confapp.branchEvents.presentation.models.EventItem
 import kz.kolesateam.confapp.branchEvents.presentation.models.HeaderItem
 import kz.kolesateam.confapp.common.models.ProgressStatus
 import kz.kolesateam.confapp.common.models.ResponseData
-import kz.kolesateam.confapp.events.domain.models.EventData
+import kz.kolesateam.confapp.common.models.EventData
 import kz.kolesateam.confapp.favorites.domain.FavoritesRepository
 
 private const val DEFAULT_BRANCH_ID = 0

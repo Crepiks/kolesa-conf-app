@@ -7,7 +7,7 @@ import kz.kolesateam.confapp.R
 import kz.kolesateam.confapp.branchEvents.presentation.models.BranchEventListItem
 import kz.kolesateam.confapp.branchEvents.presentation.models.HEADER_TYPE
 import kz.kolesateam.confapp.common.BaseViewHolder
-import kz.kolesateam.confapp.events.domain.models.EventData
+import kz.kolesateam.confapp.common.models.EventData
 
 class EventListAdapter(
     private val onFavoriteClick: (event: EventData, isFavorite: Boolean) -> Unit

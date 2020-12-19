@@ -7,7 +7,7 @@ import kz.kolesateam.confapp.R
 import kz.kolesateam.confapp.branchEvents.presentation.models.BranchEventListItem
 import kz.kolesateam.confapp.branchEvents.presentation.models.EventItem
 import kz.kolesateam.confapp.common.BaseViewHolder
-import kz.kolesateam.confapp.events.domain.models.EventData
+import kz.kolesateam.confapp.common.models.EventData
 
 const val TIME_AND_PLACE_FORMAT = "%s - %s • %s"
 

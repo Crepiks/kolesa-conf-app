@@ -2,7 +2,6 @@ package kz.kolesateam.confapp.branchEvents.presentation
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.ProgressBar
@@ -15,7 +14,7 @@ import kz.kolesateam.confapp.branchEvents.presentation.models.BranchEventListIte
 import kz.kolesateam.confapp.branchEvents.presentation.view.EventListAdapter
 import kz.kolesateam.confapp.common.models.ProgressStatus
 import kz.kolesateam.confapp.eventDetails.EventDetailsActivity
-import kz.kolesateam.confapp.events.domain.models.EventData
+import kz.kolesateam.confapp.common.models.EventData
 import kz.kolesateam.confapp.extension.gone
 import kz.kolesateam.confapp.extension.show
 import org.koin.androidx.viewmodel.ext.android.viewModel

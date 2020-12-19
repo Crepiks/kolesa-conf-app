@@ -1,8 +1,8 @@
 package kz.kolesateam.confapp.upcomingEvents.data.mappers
 
 import kz.kolesateam.confapp.common.mappers.Mapper
-import kz.kolesateam.confapp.events.domain.models.EventData
-import kz.kolesateam.confapp.events.domain.models.SpeakerData
+import kz.kolesateam.confapp.common.models.EventData
+import kz.kolesateam.confapp.common.models.SpeakerData
 import kz.kolesateam.confapp.favorites.domain.FavoritesRepository
 import kz.kolesateam.confapp.upcomingEvents.data.models.EventApiData
 

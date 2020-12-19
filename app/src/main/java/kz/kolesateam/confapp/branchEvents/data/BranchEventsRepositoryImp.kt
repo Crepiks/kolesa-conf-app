@@ -5,7 +5,7 @@ import kz.kolesateam.confapp.branchEvents.data.models.EventApiData
 import kz.kolesateam.confapp.branchEvents.domain.BranchEventsRepository
 import kz.kolesateam.confapp.common.mappers.ListMapperImpl
 import kz.kolesateam.confapp.common.models.ResponseData
-import kz.kolesateam.confapp.events.domain.models.EventData
+import kz.kolesateam.confapp.common.models.EventData
 import kz.kolesateam.confapp.favorites.domain.FavoritesRepository
 
 class BranchEventsRepositoryImp(
