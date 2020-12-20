@@ -130,8 +130,8 @@ class EventDetailsActivity : AppCompatActivity() {
         speakerFullName.text = event.speaker.fullName
         speakerJob.text = event.speaker.job
         timeAndPlace.text = TIME_AND_PLACE_FORMAT.format(
-            getHours(event.schedule.startTime),
-            getHours(event.schedule.endTime),
+            event.schedule.startTime,
+            event.schedule.endTime,
             event.place
         )
         title.text = event.title
@@ -139,12 +139,6 @@ class EventDetailsActivity : AppCompatActivity() {
 
         setFavoriteButtonResource(event.isFavorite)
         setSpeakerImage(event.speaker.photoUrl)
-    }
-
-    private fun getHours(dateTimeString: String): String {
-        val parsedDateTime: ZonedDateTime = ZonedDateTime.parse(dateTimeString)
-        val formatter: DateTimeFormatter = DateTimeFormatter.ofPattern("HH:mm")
-        return parsedDateTime.format(formatter)
     }
 
     private fun setFavoriteButtonResource(isFavorite: Boolean) {
