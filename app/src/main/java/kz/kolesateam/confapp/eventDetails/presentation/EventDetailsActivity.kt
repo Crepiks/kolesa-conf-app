@@ -140,7 +140,7 @@ class EventDetailsActivity : AppCompatActivity() {
 
     private fun setSpeakerImage(imageUrl: String) {
         Glide
-            .with(speakerImage.context)
+            .with(this)
             .load(imageUrl)
             .into(speakerImage)
     }
