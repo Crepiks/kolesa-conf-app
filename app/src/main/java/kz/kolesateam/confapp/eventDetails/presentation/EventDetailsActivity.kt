@@ -2,24 +2,25 @@ package kz.kolesateam.confapp.eventDetails.presentation
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import kz.kolesateam.confapp.R
-import kz.kolesateam.confapp.eventDetails.domain.EventDetailsRepository
-import org.koin.android.ext.android.inject
+import kz.kolesateam.confapp.common.models.EventData
+import kz.kolesateam.confapp.common.models.ProgressStatus
+import org.koin.androidx.viewmodel.ext.android.viewModel
+import org.threeten.bp.ZonedDateTime
+import org.threeten.bp.format.DateTimeFormatter
 
 private const val DEFAULT_EVENT_ID = 0
 private const val TAG = "EventDetailsActivity"
+const val TIME_AND_PLACE_FORMAT = "%s - %s • %s"
 
 class EventDetailsActivity : AppCompatActivity() {
 
-    private val eventDetailsRepository: EventDetailsRepository by inject()
+    private val eventDetailsViewModel: EventDetailsViewModel by viewModel()
 
     private lateinit var backButton: View
     private lateinit var favoriteButton: View
@@ -34,12 +35,10 @@ class EventDetailsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_event_details)
 
+        initViews()
         val eventId: Int = getEventId()
-        Log.d(TAG, eventId.toString())
-        CoroutineScope(Dispatchers.IO).launch {
-            val response = eventDetailsRepository.loadEvent(eventId)
-            Log.d(TAG, response.toString())
-        }
+        observerEventDetailsLiveData()
+        eventDetailsViewModel.onStart(eventId)
     }
 
     override fun onNewIntent(intent: Intent?) {
@@ -47,7 +46,55 @@ class EventDetailsActivity : AppCompatActivity() {
         setIntent(intent)
     }
 
+    private fun initViews() {
+        backButton = findViewById(R.id.activity_event_details_back_arrow)
+        favoriteButton = findViewById(R.id.activity_event_details_favorite_button)
+        speakerImage = findViewById(R.id.activity_event_details_speaker_photo)
+        speakerFullName = findViewById(R.id.activity_event_details_speaker_full_name)
+        speakerJob = findViewById(R.id.activity_event_details_speaker_job)
+        timeAndPlace = findViewById(R.id.activity_event_details_time_and_place)
+        title = findViewById(R.id.activity_event_details_title)
+        description = findViewById(R.id.activity_event_details_description)
+    }
+
+    private fun observerEventDetailsLiveData() {
+        eventDetailsViewModel.getProgressLiveData().observe(this, ::handleLoadingStatusChange)
+        eventDetailsViewModel.getEventLiveData().observe(this, ::handleEventDataChange)
+        eventDetailsViewModel.getErrorLiveData().observe(this, ::showErrorMessage)
+    }
+
     private fun getEventId(): Int {
         return intent.getIntExtra(EVENT_ID_EXTRA_KEY, DEFAULT_EVENT_ID)
+    }
+
+    private fun handleLoadingStatusChange(status: ProgressStatus) {
+
+    }
+
+    private fun handleEventDataChange(event: EventData) {
+        setEventData(event)
+    }
+
+    private fun showErrorMessage(errorMessage: String) {
+        Toast.makeText(this, errorMessage, Toast.LENGTH_SHORT).show()
+    }
+
+    private fun setEventData(event: EventData) {
+        speakerFullName.text = event.speaker.fullName
+        speakerJob.text = event.speaker.job
+        timeAndPlace.text = TIME_AND_PLACE_FORMAT.format(
+            getHours(event.schedule.startTime),
+            getHours(event.schedule.endTime),
+            event.place
+        )
+        title.text = event.title
+        description.text = event.description
+    }
+
+
+    private fun getHours(dateTimeString: String): String {
+        val parsedDateTime: ZonedDateTime = ZonedDateTime.parse(dateTimeString)
+        val formatter: DateTimeFormatter = DateTimeFormatter.ofPattern("HH:mm")
+        return parsedDateTime.format(formatter)
     }
 }
