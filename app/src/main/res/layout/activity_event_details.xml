@@ -31,7 +31,7 @@
             <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="20dp"
+                android:padding="@dimen/activity_event_details_header_padding"
                 >
 
                 <ImageView
@@ -52,8 +52,8 @@
 
                 <ImageView
                     android:id="@+id/activity_event_details_favorite_button"
-                    android:layout_width="16dp"
-                    android:layout_height="16dp"
+                    android:layout_width="@dimen/activity_event_details_favorite_icon_width"
+                    android:layout_height="@dimen/activity_event_details_favorite_icon_height"
                     android:layout_gravity="right|center_vertical"
                     android:src="@drawable/ic_favorite_white_border"
                     />
@@ -63,14 +63,14 @@
             <ImageView
                 android:id="@+id/activity_event_details_speaker_photo"
                 android:layout_width="match_parent"
-                android:layout_height="280dp"
+                android:layout_height="@dimen/activity_event_details_speaker_image_height"
                 />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="16dp"
+                android:padding="@dimen/activity_event_details_text_content_padding"
                 >
 
                 <TextView
@@ -78,7 +78,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColor="@color/activity_event_details_text_color"
-                    android:textSize="18dp"
+                    android:textSize="@dimen/activity_event_details_speaker_name_text_size"
                     tools:text="Кирилл Розов"
                     />
 
@@ -87,15 +87,15 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColor="@color/activity_event_details_text_color"
-                    android:textSize="12dp"
+                    android:textSize="@dimen/activity_event_details_speaker_job_text_size"
                     tools:text="Mobile Lead в Replika.ai"
                     />
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginBottom="8dp"
+                    android:layout_height="@dimen/activity_event_details_divider_height"
+                    android:layout_marginTop="@dimen/activity_event_details_dividers_vertical_margin"
+                    android:layout_marginBottom="@dimen/activity_event_details_dividers_vertical_padding"
                     android:background="@color/activity_event_details_divider_background_color"
                     />
 
@@ -104,15 +104,15 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColor="@color/activity_event_details_text_color"
-                    android:textSize="16dp"
+                    android:textSize="@dimen/activity_event_details_time_and_place_text_size"
                     tools:text="15:00 - 16:00 • Зал 5"
                     />
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginBottom="16dp"
+                    android:layout_height="@dimen/activity_event_details_divider_height"
+                    android:layout_marginTop="@dimen/activity_event_details_dividers_vertical_padding"
+                    android:layout_marginBottom="@dimen/activity_event_details_dividers_vertical_margin"
                     android:background="@color/activity_event_details_divider_background_color"
                     />
 
@@ -121,7 +121,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColor="@color/activity_event_details_text_color"
-                    android:textSize="18dp"
+                    android:textSize="@dimen/activity_event_details_title_size"
                     android:textStyle="bold"
                     tools:text="Увлекательная жизнь в панели уведомлений"
                     />
@@ -130,9 +130,9 @@
                     android:id="@+id/activity_event_details_description"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="@dimen/activity_event_details_description_margin_top"
                     android:textColor="@color/activity_event_details_text_color"
-                    android:textSize="14dp"
+                    android:textSize="@dimen/activity_event_details_description_size"
                     tools:text="Системные уведомления позволяют пользователям получать информацию, не заходя в приложение, и быстрее с ним взаимодействовать.
 Как использовать все возможности системы уведомлений? Как сделать уведомления в каждой версии ОС и использовать их возможности по максимуму? NotificationCompat не решит все за вас. Обо всем этом поговорим в докладе."
                     />

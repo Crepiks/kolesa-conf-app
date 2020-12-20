@@ -58,4 +58,19 @@
 
     <dimen name="item_branch_events_header_padding_bottom">32dp</dimen>
     <dimen name="item_branch_events_header_title_size">24dp</dimen>
+
+    <dimen name="activity_event_details_header_padding">20dp</dimen>
+    <dimen name="activity_event_details_favorite_icon_width">16dp</dimen>
+    <dimen name="activity_event_details_favorite_icon_height">16dp</dimen>
+    <dimen name="activity_event_details_speaker_image_height">280dp</dimen>
+    <dimen name="activity_event_details_text_content_padding">16dp</dimen>
+    <dimen name="activity_event_details_speaker_name_text_size">18sp</dimen>
+    <dimen name="activity_event_details_speaker_job_text_size">12sp</dimen>
+    <dimen name="activity_event_details_dividers_vertical_margin">16dp</dimen>
+    <dimen name="activity_event_details_dividers_vertical_padding">8dp</dimen>
+    <dimen name="activity_event_details_divider_height">1dp</dimen>
+    <dimen name="activity_event_details_time_and_place_text_size">16sp</dimen>
+    <dimen name="activity_event_details_title_size">18sp</dimen>
+    <dimen name="activity_event_details_description_size">16sp</dimen>
+    <dimen name="activity_event_details_description_margin_top">8dp</dimen>
 </resources>
