@@ -10,7 +10,8 @@ import kz.kolesateam.confapp.common.BaseViewHolder
 import kz.kolesateam.confapp.common.models.EventData
 
 class EventListAdapter(
-    private val onFavoriteClick: (event: EventData, isFavorite: Boolean) -> Unit
+    private val onFavoriteClick: (event: EventData, isFavorite: Boolean) -> Unit,
+    private val onEventClick: (eventId: Int) -> Unit
 ) : RecyclerView.Adapter<BaseViewHolder<BranchEventListItem>>() {
 
     private val eventList: MutableList<BranchEventListItem> = mutableListOf()
@@ -52,7 +53,8 @@ class EventListAdapter(
         return EventViewHolder(
             view = LayoutInflater.from(parent.context)
                 .inflate(R.layout.item_branch_event_card, parent, false),
-            onFavoriteClick = onFavoriteClick
+            onFavoriteClick = onFavoriteClick,
+            onEventClick = onEventClick
         )
     }
 }

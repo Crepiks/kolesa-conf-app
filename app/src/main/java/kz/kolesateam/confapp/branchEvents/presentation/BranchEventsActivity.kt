@@ -15,6 +15,7 @@ import kz.kolesateam.confapp.branchEvents.presentation.view.EventListAdapter
 import kz.kolesateam.confapp.common.models.EventData
 import kz.kolesateam.confapp.common.models.ProgressStatus
 import kz.kolesateam.confapp.eventDetails.presentation.EventDetailsActivity
+import kz.kolesateam.confapp.eventDetails.presentation.EventDetailsRouter
 import kz.kolesateam.confapp.extension.gone
 import kz.kolesateam.confapp.extension.show
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -25,7 +26,10 @@ private const val DEFAULT_BRANCH_TITLE = ""
 class BranchEventsActivity : AppCompatActivity() {
 
     private val branchEventsViewModel: BranchEventsViewModel by viewModel()
-    private val eventListAdapter = EventListAdapter(onFavoriteClick = ::handleFavoriteClick)
+    private val eventListAdapter = EventListAdapter(
+        onFavoriteClick = ::handleFavoriteClick,
+        onEventClick = ::handleEventClick
+    )
 
     private lateinit var backArrow: View
     private lateinit var eventListRecyclerView: RecyclerView
@@ -55,6 +59,14 @@ class BranchEventsActivity : AppCompatActivity() {
             true -> branchEventsViewModel.onFavoriteAdd(event)
             false -> branchEventsViewModel.onFavoriteRemove(event)
         }
+    }
+
+    private fun handleEventClick(eventId: Int) {
+        val eventDetailsIntent: Intent = EventDetailsRouter().createIntent(
+            context = this,
+            eventId = eventId
+        )
+        startActivity(eventDetailsIntent)
     }
 
     private fun bindViews() {
