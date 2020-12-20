@@ -12,7 +12,8 @@ import org.threeten.bp.format.DateTimeFormatter
 
 class EventViewHolder(
     view: View,
-    private val onFavoriteClick: (event: EventData) -> Unit
+    private val onFavoriteClick: (event: EventData) -> Unit,
+    private val onEventClick: (event: EventData) -> Unit
 ) : BaseViewHolder<EventData>(view) {
 
     private val container: View = view.findViewById(R.id.layout_event_card_container)
@@ -41,6 +42,10 @@ class EventViewHolder(
     private fun setListeners(event: EventData) {
         favoriteButton.setOnClickListener {
             onFavoriteClick(event)
+        }
+
+        container.setOnClickListener {
+            onEventClick(event)
         }
     }
 

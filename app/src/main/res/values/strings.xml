@@ -9,4 +9,7 @@
     <string name="item_upcoming_events_header_greeting_fmt">Привет, %1s</string>
 
     <string name="notifications_events_notification_title">Скоро начнется доклад</string>
+
+    <string name="activity_favorites_home_button_text">На главную</string>
+    <string name="favorites_button_text">В избранное</string>
 </resources>

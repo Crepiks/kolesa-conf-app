@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.widget.Button
 import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -16,6 +17,7 @@ import kz.kolesateam.confapp.common.models.ProgressStatus
 import kz.kolesateam.confapp.eventDetails.presentation.EventDetailsRouter
 import kz.kolesateam.confapp.extension.gone
 import kz.kolesateam.confapp.extension.show
+import kz.kolesateam.confapp.favorites.presentation.FavoritesRouter
 import kz.kolesateam.confapp.upcomingEvents.presentation.models.UpcomingEventListItem
 import kz.kolesateam.confapp.upcomingEvents.presentation.view.UpcomingEventListAdapter
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -36,6 +38,7 @@ class UpcomingEventsActivity : AppCompatActivity() {
 
     private lateinit var progressBar: ProgressBar
     private lateinit var branchList: RecyclerView
+    private lateinit var favoritesButton: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -102,6 +105,15 @@ class UpcomingEventsActivity : AppCompatActivity() {
         branchList = findViewById(R.id.activity_upcoming_events_events_list)
         branchList.layoutManager = LinearLayoutManager(this)
         branchList.adapter = branchListAdapter
+        favoritesButton = findViewById(R.id.activity_upcoming_events_favorites_button)
+        favoritesButton.setOnClickListener {
+            navigateToFavoritesScreen()
+        }
+    }
+
+    private fun navigateToFavoritesScreen() {
+        val favoritesIntent: Intent = FavoritesRouter().createIntent(this)
+        startActivity(favoritesIntent)
     }
 
     private fun startLoading() {

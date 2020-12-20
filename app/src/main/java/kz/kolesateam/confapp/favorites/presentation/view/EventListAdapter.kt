@@ -7,7 +7,8 @@ import kz.kolesateam.confapp.R
 import kz.kolesateam.confapp.common.models.EventData
 
 class EventListAdapter(
-    private val onFavoriteClick: (event: EventData) -> Unit
+    private val onFavoriteClick: (event: EventData) -> Unit,
+    private val onEventClick: (event: EventData) -> Unit
 ) : RecyclerView.Adapter<EventViewHolder>() {
 
     private val eventList: MutableList<EventData> = mutableListOf()
@@ -18,7 +19,8 @@ class EventListAdapter(
                 .inflate(
                     R.layout.item_favorites_event_card, parent, false,
                 ),
-            onFavoriteClick = onFavoriteClick
+            onFavoriteClick = onFavoriteClick,
+            onEventClick = onEventClick
         )
     }
 
