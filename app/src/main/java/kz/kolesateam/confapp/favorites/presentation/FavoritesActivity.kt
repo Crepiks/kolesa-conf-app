@@ -2,7 +2,6 @@ package kz.kolesateam.confapp.favorites.presentation
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -13,8 +12,6 @@ import kz.kolesateam.confapp.eventDetails.presentation.EventDetailsRouter
 import kz.kolesateam.confapp.favorites.presentation.view.EventListAdapter
 import kz.kolesateam.confapp.upcomingEvents.presentation.UpcomingEventsRouter
 import org.koin.androidx.viewmodel.ext.android.viewModel
-
-private const val TAG = "FavoritesActivity"
 
 class FavoritesActivity : AppCompatActivity() {
 
@@ -75,7 +72,6 @@ class FavoritesActivity : AppCompatActivity() {
     }
 
     private fun setEventList(eventList: List<EventData>) {
-        Log.d(TAG, eventList.toString())
         eventListAdapter.setList(eventList)
     }
 }

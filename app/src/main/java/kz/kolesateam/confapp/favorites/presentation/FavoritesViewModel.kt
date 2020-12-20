@@ -1,13 +1,10 @@
 package kz.kolesateam.confapp.favorites.presentation
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import kz.kolesateam.confapp.common.models.EventData
 import kz.kolesateam.confapp.favorites.domain.FavoritesRepository
-
-private const val TAG = "FavoritesViewModel"
 
 class FavoritesViewModel(
     private val favoritesRepository: FavoritesRepository

@@ -4,7 +4,9 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -12,18 +14,21 @@ import com.bumptech.glide.Glide
 import kz.kolesateam.confapp.R
 import kz.kolesateam.confapp.common.models.EventData
 import kz.kolesateam.confapp.common.models.ProgressStatus
+import kz.kolesateam.confapp.extension.gone
+import kz.kolesateam.confapp.extension.show
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.threeten.bp.ZonedDateTime
 import org.threeten.bp.format.DateTimeFormatter
 
 private const val DEFAULT_EVENT_ID = 0
-private const val TAG = "EventDetailsActivity"
-const val TIME_AND_PLACE_FORMAT = "%s - %s • %s"
+private const val TIME_AND_PLACE_FORMAT = "%s - %s • %s"
 
 class EventDetailsActivity : AppCompatActivity() {
 
     private val eventDetailsViewModel: EventDetailsViewModel by viewModel()
 
+    private lateinit var progressBar: ProgressBar
+    private lateinit var contentContainer: ViewGroup
     private lateinit var backButton: View
     private lateinit var favoriteButton: ImageView
     private lateinit var speakerImage: ImageView
@@ -52,6 +57,8 @@ class EventDetailsActivity : AppCompatActivity() {
     }
 
     private fun initViews() {
+        progressBar = findViewById(R.id.activity_event_details_progress_bar)
+        contentContainer = findViewById(R.id.activity_event_details_content)
         backButton = findViewById(R.id.activity_event_details_back_arrow)
         favoriteButton = findViewById(R.id.activity_event_details_favorite_button)
         speakerImage = findViewById(R.id.activity_event_details_speaker_photo)
@@ -98,7 +105,16 @@ class EventDetailsActivity : AppCompatActivity() {
     }
 
     private fun handleLoadingStatusChange(status: ProgressStatus) {
-
+        when (status) {
+            ProgressStatus.Loading -> {
+                progressBar.show()
+                contentContainer.gone()
+            }
+            ProgressStatus.Finished -> {
+                progressBar.gone()
+                contentContainer.show()
+            }
+        }
     }
 
     private fun handleEventDataChange(event: EventData) {

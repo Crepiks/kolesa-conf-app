@@ -23,6 +23,7 @@
         >
 
         <LinearLayout
+            android:id="@+id/activity_event_details_content"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
@@ -142,5 +143,14 @@
         </LinearLayout>
 
     </ScrollView>
+
+    <ProgressBar
+        android:id="@+id/activity_event_details_progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:theme="@style/AppTheme.WhiteAccent"
+        android:visibility="gone"
+        />
 
 </FrameLayout>
