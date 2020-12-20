@@ -7,7 +7,7 @@ import kz.kolesateam.confapp.R
 import kz.kolesateam.confapp.common.models.EventData
 
 class EventListAdapter(
-    private val onEventClick: (eventTitle: String) -> Unit,
+    private val onEventClick: (eventId: Int) -> Unit,
     private val onFavoriteClick: (event: EventData, isFavorite: Boolean) -> Unit
 ) : RecyclerView.Adapter<EventViewHolder>() {
 

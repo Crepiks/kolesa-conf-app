@@ -13,7 +13,7 @@ const val TIME_AND_PLACE_FORMAT = "%s - %s • %s"
 
 class EventViewHolder(
     view: View,
-    private val onEventClick: (eventTitle: String) -> Unit,
+    private val onEventClick: (eventId: Int) -> Unit,
     private val onFavoriteClick: (event: EventData, isFavorite: Boolean) -> Unit
 ) : BaseViewHolder<EventData>(view) {
 
@@ -47,8 +47,7 @@ class EventViewHolder(
 
     private fun setListeners(event: EventData) {
         container.setOnClickListener {
-            val eventTitle = title.text.toString()
-            onEventClick(eventTitle)
+            onEventClick(event.id)
         }
 
         favoriteButton.setOnClickListener {

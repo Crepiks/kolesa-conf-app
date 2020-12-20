@@ -32,4 +32,8 @@
     <color name="item_branch_events_header_title_color">#FFFFFF</color>
 
     <color name="favorite_button_text_color">#2A81DD</color>
+
+    <color name="activity_event_details_background_color">#051021</color>
+    <color name="activity_event_details_text_color">#ffffff</color>
+    <color name="activity_event_details_divider_background_color">#ffffff</color>
 </resources>

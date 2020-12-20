@@ -7,14 +7,10 @@ const val EVENT_ID_EXTRA_KEY = "event_id"
 
 class EventDetailsRouter() {
 
-    private fun createIntent(
-        context: Context
-    ): Intent = Intent(context, EventDetailsActivity::class.java)
-
-    fun createNotificationIntent(
+    fun createIntent(
         context: Context,
         eventId: Int
-    ): Intent = createIntent(context).apply {
+    ): Intent = Intent(context, EventDetailsActivity::class.java).apply {
         putExtra(EVENT_ID_EXTRA_KEY, eventId)
     }
 }

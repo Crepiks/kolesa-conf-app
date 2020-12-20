@@ -56,7 +56,7 @@ class EventsNotificationManager(
 
     private fun getPendingIntent(eventId: Int): PendingIntent {
         val eventDetailsIntent: Intent =
-            EventDetailsRouter().createNotificationIntent(context, eventId).apply {
+            EventDetailsRouter().createIntent(context, eventId).apply {
                 flags = Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT
             }
 

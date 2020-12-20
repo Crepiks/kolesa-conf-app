@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="@color/activity_upcoming_events_background_color"
     android:orientation="vertical"
-    tools:context=".events.presentation.UpcomingEventsActivity"
+    tools:context=".upcomingEvents.presentation.UpcomingEventsActivity"
     >
 
     <ImageView

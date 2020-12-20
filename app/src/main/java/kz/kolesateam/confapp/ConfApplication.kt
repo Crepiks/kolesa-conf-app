@@ -3,6 +3,7 @@ package kz.kolesateam.confapp
 import androidx.multidex.MultiDexApplication
 import kz.kolesateam.confapp.branchEvents.di.branchEventsModule
 import kz.kolesateam.confapp.di.applicationModule
+import kz.kolesateam.confapp.eventDetails.di.eventDetailsModule
 import kz.kolesateam.confapp.favorites.di.favoritesModule
 import kz.kolesateam.confapp.upcomingEvents.di.upcomingEventsModule
 import org.koin.android.ext.koin.androidContext
@@ -17,7 +18,8 @@ class ConfApplication : MultiDexApplication() {
                 applicationModule,
                 branchEventsModule,
                 upcomingEventsModule,
-                favoritesModule
+                favoritesModule,
+                eventDetailsModule
             )
         }
     }

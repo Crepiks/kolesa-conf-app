@@ -11,7 +11,7 @@ import kz.kolesateam.confapp.upcomingEvents.presentation.models.UpcomingEventLis
 
 class UpcomingEventListAdapter(
     private val onBranchClick: (branchId: Int, branchTitle: String) -> Unit,
-    private val onEventClick: (eventTitle: String) -> Unit,
+    private val onEventClick: (eventId: Int) -> Unit,
     private val onFavoriteClick: (event: EventData, isFavorite: Boolean) -> Unit
 ) : RecyclerView.Adapter<BaseViewHolder<UpcomingEventListItem>>() {
 

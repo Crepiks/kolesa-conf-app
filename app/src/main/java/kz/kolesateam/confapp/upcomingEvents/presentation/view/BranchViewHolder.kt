@@ -16,7 +16,7 @@ class BranchViewHolder(
     view: View,
     private val parent: ViewGroup,
     private val onBranchClick: (branchId: Int, branchTitle: String) -> Unit,
-    onEventClick: (eventTitle: String) -> Unit,
+    onEventClick: (eventId: Int) -> Unit,
     onFavoriteClick: (event: EventData, isFavorite: Boolean) -> Unit
 ) : BaseViewHolder<UpcomingEventListItem>(view) {
 

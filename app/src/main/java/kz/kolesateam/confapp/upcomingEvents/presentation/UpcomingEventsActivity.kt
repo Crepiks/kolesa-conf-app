@@ -1,6 +1,7 @@
 package kz.kolesateam.confapp.upcomingEvents.presentation
 
 import android.content.Context
+import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.widget.ProgressBar
@@ -12,6 +13,7 @@ import kz.kolesateam.confapp.R
 import kz.kolesateam.confapp.branchEvents.presentation.BranchEventsRouter
 import kz.kolesateam.confapp.common.models.EventData
 import kz.kolesateam.confapp.common.models.ProgressStatus
+import kz.kolesateam.confapp.eventDetails.presentation.EventDetailsRouter
 import kz.kolesateam.confapp.extension.gone
 import kz.kolesateam.confapp.extension.show
 import kz.kolesateam.confapp.upcomingEvents.presentation.models.UpcomingEventListItem
@@ -82,8 +84,12 @@ class UpcomingEventsActivity : AppCompatActivity() {
         Toast.makeText(this, errorMessage, Toast.LENGTH_SHORT).show()
     }
 
-    private fun handleEventClick(eventTitle: String) {
-        Toast.makeText(this, eventTitle, Toast.LENGTH_SHORT).show()
+    private fun handleEventClick(eventId: Int) {
+        val eventDetailsIntent: Intent = EventDetailsRouter().createIntent(
+            context = this,
+            eventId = eventId
+        )
+        startActivity(eventDetailsIntent)
     }
 
     private fun bindViews() {
