@@ -7,6 +7,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.bumptech.glide.Glide
 import kz.kolesateam.confapp.R
 import kz.kolesateam.confapp.common.models.EventData
 import kz.kolesateam.confapp.common.models.ProgressStatus
@@ -55,6 +56,18 @@ class EventDetailsActivity : AppCompatActivity() {
         timeAndPlace = findViewById(R.id.activity_event_details_time_and_place)
         title = findViewById(R.id.activity_event_details_title)
         description = findViewById(R.id.activity_event_details_description)
+
+        setListeners()
+    }
+
+    private fun setListeners() {
+        backButton.setOnClickListener {
+            handleBackButtonClick()
+        }
+    }
+
+    private fun handleBackButtonClick() {
+        finish()
     }
 
     private fun observerEventDetailsLiveData() {
@@ -89,12 +102,20 @@ class EventDetailsActivity : AppCompatActivity() {
         )
         title.text = event.title
         description.text = event.description
-    }
 
+        setSpeakerImage(event.speaker.photoUrl)
+    }
 
     private fun getHours(dateTimeString: String): String {
         val parsedDateTime: ZonedDateTime = ZonedDateTime.parse(dateTimeString)
         val formatter: DateTimeFormatter = DateTimeFormatter.ofPattern("HH:mm")
         return parsedDateTime.format(formatter)
+    }
+
+    private fun setSpeakerImage(imageUrl: String) {
+        Glide
+            .with(this)
+            .load(imageUrl)
+            .into(speakerImage)
     }
 }
