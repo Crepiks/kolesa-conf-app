@@ -45,6 +45,11 @@ class BranchEventsActivity : AppCompatActivity() {
         )
     }
 
+    override fun onResume() {
+        super.onResume()
+        branchEventsViewModel.onBranchEventsRefresh()
+    }
+
     private fun handleFavoriteClick(event: EventData, isFavorite: Boolean) {
         when (isFavorite) {
             true -> branchEventsViewModel.onFavoriteAdd(event)

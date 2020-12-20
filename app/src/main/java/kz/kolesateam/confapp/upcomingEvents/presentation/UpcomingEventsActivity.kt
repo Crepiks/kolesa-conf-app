@@ -46,6 +46,11 @@ class UpcomingEventsActivity : AppCompatActivity() {
         upcomingEventsViewModel.onStart(userName = getUserName())
     }
 
+    override fun onResume() {
+        super.onResume()
+        upcomingEventsViewModel.onRefreshUpcomingEventList()
+    }
+
     private fun observerUpcomingEventsLiveData() {
         upcomingEventsViewModel.getProgressLiveData().observe(this, ::handleProgressStatusChange)
         upcomingEventsViewModel.getUpcomingEventsLiveData()

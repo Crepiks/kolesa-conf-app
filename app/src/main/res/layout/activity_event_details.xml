@@ -77,18 +77,18 @@
                     android:id="@+id/activity_event_details_speaker_full_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Кирилл Розов"
                     android:textColor="@color/activity_event_details_text_color"
                     android:textSize="18dp"
+                    tools:text="Кирилл Розов"
                     />
 
                 <TextView
                     android:id="@+id/activity_event_details_speaker_job"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Mobile Lead в Replika.ai"
                     android:textColor="@color/activity_event_details_text_color"
                     android:textSize="12dp"
+                    tools:text="Mobile Lead в Replika.ai"
                     />
 
                 <LinearLayout
@@ -103,9 +103,9 @@
                     android:id="@+id/activity_event_details_time_and_place"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="15:00 - 16:00 • Зал 5"
                     android:textColor="@color/activity_event_details_text_color"
                     android:textSize="16dp"
+                    tools:text="15:00 - 16:00 • Зал 5"
                     />
 
                 <LinearLayout

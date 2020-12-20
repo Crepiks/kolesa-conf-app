@@ -59,6 +59,10 @@ class BranchEventsViewModel(
         cancelNotification(event)
     }
 
+    fun onBranchEventsRefresh() {
+        refreshBranchEventList()
+    }
+
     private fun scheduleNotification(event: EventData) {
         eventsNotificationAlarm.scheduleNotification(
             event.id,

@@ -2,6 +2,7 @@ package kz.kolesateam.confapp.eventDetails.presentation
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
@@ -39,6 +40,7 @@ class EventDetailsActivity : AppCompatActivity() {
         setContentView(R.layout.activity_event_details)
 
         initViews()
+
         val eventId: Int = getEventId()
         observerEventDetailsLiveData()
         eventDetailsViewModel.onStart(eventId)
@@ -138,7 +140,7 @@ class EventDetailsActivity : AppCompatActivity() {
 
     private fun setSpeakerImage(imageUrl: String) {
         Glide
-            .with(this)
+            .with(speakerImage.context)
             .load(imageUrl)
             .into(speakerImage)
     }

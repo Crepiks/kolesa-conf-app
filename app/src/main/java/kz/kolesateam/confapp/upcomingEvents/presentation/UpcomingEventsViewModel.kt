@@ -54,6 +54,10 @@ class UpcomingEventsViewModel(
         cancelNotification(event)
     }
 
+    fun onRefreshUpcomingEventList() {
+        refreshUpcomingEventList()
+    }
+
     private fun scheduleNotification(event: EventData) {
         eventsNotificationAlarm.scheduleNotification(
             event.id,
@@ -85,6 +89,11 @@ class UpcomingEventsViewModel(
         }
     }
 
+    private fun refreshUpcomingEventList() {
+        val eventList = upcomingEventsRepository.getUpcomingEvents()
+        upcomingEventsLiveData.value = getUpcomingEventList(eventList)
+    }
+
     private fun getUpcomingEventList(branchList: List<BranchData>): List<UpcomingEventListItem> {
         val headerListItem = HeaderItem(
             userName = userName
@@ -95,10 +104,5 @@ class UpcomingEventsViewModel(
             )
         }
         return listOf(headerListItem) + branchListItems
-    }
-
-    private fun refreshUpcomingEventList() {
-        val eventList = upcomingEventsRepository.getUpcomingEvents()
-        upcomingEventsLiveData.value = getUpcomingEventList(eventList)
     }
 }
