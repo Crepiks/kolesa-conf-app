@@ -73,4 +73,8 @@
     <dimen name="activity_event_details_title_size">18sp</dimen>
     <dimen name="activity_event_details_description_size">16sp</dimen>
     <dimen name="activity_event_details_description_margin_top">8dp</dimen>
+
+    <dimen name="activity_favorites_header_vertical_padding">20dp</dimen>
+    <dimen name="item_favorites_event_card_padding_bottom">16dp</dimen>
+    <dimen name="item_favorites_event_card_width">312dp</dimen>
 </resources>

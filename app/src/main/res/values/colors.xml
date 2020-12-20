@@ -36,4 +36,6 @@
     <color name="activity_event_details_background_color">#051021</color>
     <color name="activity_event_details_text_color">#ffffff</color>
     <color name="activity_event_details_divider_background_color">#ffffff</color>
+
+    <color name="activity_favorites_background_color">#051021</color>
 </resources>
