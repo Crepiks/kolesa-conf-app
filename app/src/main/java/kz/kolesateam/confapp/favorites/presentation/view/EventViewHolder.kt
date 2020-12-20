@@ -34,8 +34,8 @@ class EventViewHolder(
         speakerName.text = event.speaker?.fullName
         speakerPosition.text = event.speaker?.job
         title.text = event.title
+        favoriteButton.setImageResource(R.drawable.ic_favorite_blue_filled)
 
-        setFavoriteImageResource(event.isFavorite)
         setListeners(event)
     }
 
@@ -46,13 +46,6 @@ class EventViewHolder(
 
         container.setOnClickListener {
             onEventClick(event)
-        }
-    }
-
-    private fun setFavoriteImageResource(isFavorite: Boolean) {
-        when (isFavorite) {
-            true -> favoriteButton.setImageResource(R.drawable.ic_favorite_blue_filled)
-            false -> favoriteButton.setImageResource(R.drawable.ic_favorite_blue_border)
         }
     }
 
