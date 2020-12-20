@@ -13,7 +13,9 @@ val eventDetailsModule: Module = module {
 
     viewModel {
         EventDetailsViewModel(
-            eventDetailsRepository = get()
+            eventDetailsRepository = get(),
+            favoritesRepository = get(),
+            eventsNotificationAlarm = get()
         )
     }
 

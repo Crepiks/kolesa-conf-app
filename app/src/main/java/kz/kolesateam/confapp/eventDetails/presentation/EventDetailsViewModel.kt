@@ -10,15 +10,16 @@ import kotlinx.coroutines.withContext
 import kz.kolesateam.confapp.common.models.EventData
 import kz.kolesateam.confapp.common.models.ProgressStatus
 import kz.kolesateam.confapp.common.models.ResponseData
-import kz.kolesateam.confapp.eventDetails.data.models.EventApiData
 import kz.kolesateam.confapp.eventDetails.domain.EventDetailsRepository
-import org.threeten.bp.ZonedDateTime
-import org.threeten.bp.format.DateTimeFormatter
+import kz.kolesateam.confapp.favorites.domain.FavoritesRepository
+import kz.kolesateam.confapp.notifications.EventsNotificationAlarm
 
 private const val DEFAULT_EVENT_ID = 0
 
 class EventDetailsViewModel(
-    private val eventDetailsRepository: EventDetailsRepository
+    private val eventDetailsRepository: EventDetailsRepository,
+    private val favoritesRepository: FavoritesRepository,
+    private val eventsNotificationAlarm: EventsNotificationAlarm
 ) : ViewModel() {
 
     private val progressLiveData: MutableLiveData<ProgressStatus> = MutableLiveData()
@@ -37,6 +38,30 @@ class EventDetailsViewModel(
         fetchEvent(eventId)
     }
 
+    fun onFavoriteAdd(event: EventData) {
+        favoritesRepository.addFavorite(event)
+        scheduleNotification(event)
+        refreshEvent()
+    }
+
+    fun onFavoriteRemove(event: EventData) {
+        favoritesRepository.removeFavorite(event.id)
+        cancelNotification(event)
+        refreshEvent()
+    }
+
+    private fun scheduleNotification(event: EventData) {
+        eventsNotificationAlarm.scheduleNotification(
+            event.id,
+            event.title,
+            event.schedule.startTime
+        )
+    }
+
+    private fun cancelNotification(event: EventData) {
+        eventsNotificationAlarm.cancelNotification(event.id)
+    }
+
     private fun fetchEvent(eventId: Int) {
         progressLiveData.value = ProgressStatus.Loading
         viewModelScope.launch(Dispatchers.Main) {
@@ -52,7 +77,7 @@ class EventDetailsViewModel(
         }
     }
 
-    private fun refreshEvent(): EventData {
-        return eventDetailsRepository.getEvent()
+    private fun refreshEvent() {
+        eventLiveData.value = eventDetailsRepository.getEvent()
     }
 }

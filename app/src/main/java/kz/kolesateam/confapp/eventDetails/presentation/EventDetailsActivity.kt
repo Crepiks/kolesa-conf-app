@@ -24,13 +24,15 @@ class EventDetailsActivity : AppCompatActivity() {
     private val eventDetailsViewModel: EventDetailsViewModel by viewModel()
 
     private lateinit var backButton: View
-    private lateinit var favoriteButton: View
+    private lateinit var favoriteButton: ImageView
     private lateinit var speakerImage: ImageView
     private lateinit var speakerFullName: TextView
     private lateinit var speakerJob: TextView
     private lateinit var timeAndPlace: TextView
     private lateinit var title: TextView
     private lateinit var description: TextView
+
+    private lateinit var event: EventData
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -64,10 +66,23 @@ class EventDetailsActivity : AppCompatActivity() {
         backButton.setOnClickListener {
             handleBackButtonClick()
         }
+
+        favoriteButton.setOnClickListener {
+            handleFavoriteButtonClick()
+        }
     }
 
     private fun handleBackButtonClick() {
         finish()
+    }
+
+    private fun handleFavoriteButtonClick() {
+        if (!::event.isInitialized) return
+
+        when (event.isFavorite) {
+            true -> eventDetailsViewModel.onFavoriteRemove(event)
+            false -> eventDetailsViewModel.onFavoriteAdd(event)
+        }
     }
 
     private fun observerEventDetailsLiveData() {
@@ -85,6 +100,7 @@ class EventDetailsActivity : AppCompatActivity() {
     }
 
     private fun handleEventDataChange(event: EventData) {
+        this.event = event
         setEventData(event)
     }
 
@@ -103,6 +119,7 @@ class EventDetailsActivity : AppCompatActivity() {
         title.text = event.title
         description.text = event.description
 
+        setFavoriteButtonResource(event.isFavorite)
         setSpeakerImage(event.speaker.photoUrl)
     }
 
@@ -110,6 +127,13 @@ class EventDetailsActivity : AppCompatActivity() {
         val parsedDateTime: ZonedDateTime = ZonedDateTime.parse(dateTimeString)
         val formatter: DateTimeFormatter = DateTimeFormatter.ofPattern("HH:mm")
         return parsedDateTime.format(formatter)
+    }
+
+    private fun setFavoriteButtonResource(isFavorite: Boolean) {
+        when (isFavorite) {
+            true -> favoriteButton.setImageResource(R.drawable.ic_favorite_fill)
+            false -> favoriteButton.setImageResource(R.drawable.ic_favorite_border)
+        }
     }
 
     private fun setSpeakerImage(imageUrl: String) {

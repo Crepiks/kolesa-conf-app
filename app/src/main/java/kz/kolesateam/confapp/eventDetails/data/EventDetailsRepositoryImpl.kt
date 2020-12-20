@@ -19,11 +19,7 @@ class EventDetailsRepositoryImpl(
         if (response.isSuccessful) {
             val eventApiData: EventApiData = response.body()!!
             this.eventApiData = eventApiData
-            ResponseData.Success(
-                EventApiDataMapper(
-                    favoritesRepository
-                ).map(eventApiData)
-            )
+            ResponseData.Success(mapEventApiData(eventApiData))
         } else {
             ResponseData.Error(response.errorBody().toString())
         }
@@ -32,6 +28,10 @@ class EventDetailsRepositoryImpl(
     }
 
     override fun getEvent(): EventData {
+        return mapEventApiData(eventApiData)
+    }
+
+    private fun mapEventApiData(eventApiData: EventApiData): EventData {
         return EventApiDataMapper(favoritesRepository).map(eventApiData)
     }
 }
