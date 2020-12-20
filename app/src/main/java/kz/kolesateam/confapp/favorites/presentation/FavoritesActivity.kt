@@ -36,6 +36,12 @@ class FavoritesActivity : AppCompatActivity() {
         favoritesViewModel.onStart()
     }
 
+    override fun onResume() {
+        super.onResume()
+
+        favoritesViewModel.onStart()
+    }
+
     private fun initViews() {
         eventListRecyclerView = findViewById(R.id.activity_favorites_event_list)
         eventListRecyclerView.adapter = eventListAdapter
