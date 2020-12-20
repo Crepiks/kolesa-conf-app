@@ -11,5 +11,6 @@
     <string name="notifications_events_notification_title">Скоро начнется доклад</string>
 
     <string name="activity_favorites_home_button_text">На главную</string>
+    <string name="activity_favorites_empty_text">Здесь пока тихо</string>
     <string name="favorites_button_text">В избранное</string>
 </resources>

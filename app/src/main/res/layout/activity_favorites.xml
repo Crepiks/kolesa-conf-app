@@ -45,6 +45,33 @@
             tools:listitem="@layout/item_favorites_event_card"
             />
 
+        <LinearLayout
+            android:id="@+id/activity_favorites_empty_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="gone"
+            >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/activity_favorites_empty_image_margin_bottom"
+                android:src="@drawable/astronaut"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/activity_favorites_empty_text"
+                android:textAlignment="center"
+                android:textColor="@color/activity_favorites_text_color"
+                android:textSize="@dimen/activity_favorites_empty_text_size"
+                />
+
+        </LinearLayout>
+
     </LinearLayout>
 
     <Button
