@@ -13,8 +13,6 @@ import kz.kolesateam.confapp.common.models.ResponseData
 import kz.kolesateam.confapp.eventDetails.domain.EventDetailsRepository
 import kz.kolesateam.confapp.favorites.domain.FavoritesRepository
 import kz.kolesateam.confapp.notifications.EventsNotificationAlarm
-import org.threeten.bp.ZonedDateTime
-import org.threeten.bp.format.DateTimeFormatter
 
 private const val DEFAULT_EVENT_ID = 0
 
@@ -72,7 +70,7 @@ class EventDetailsViewModel(
             }
 
             when (response) {
-                is ResponseData.Success -> eventLiveData.value = prepareEventData(response.result)
+                is ResponseData.Success -> eventLiveData.value = response.result
                 is ResponseData.Error -> errorLiveData.value = response.error
             }
             progressLiveData.value = ProgressStatus.Finished
@@ -80,30 +78,6 @@ class EventDetailsViewModel(
     }
 
     private fun refreshEvent() {
-        eventLiveData.value = prepareEventData(eventDetailsRepository.getEvent())
-    }
-
-    private fun prepareEventData(event: EventData): EventData {
-        val schedule = EventData.Schedule(
-            startTime = getHours(event.schedule.startTime),
-            endTime = getHours(
-                event.schedule.endTime
-            )
-        )
-        return EventData(
-            id = event.id,
-            schedule = schedule,
-            title = event.title,
-            description = event.description,
-            place = event.place,
-            speaker = event.speaker,
-            isFavorite = event.isFavorite
-        )
-    }
-
-    private fun getHours(dateTimeString: String): String {
-        val parsedDateTime: ZonedDateTime = ZonedDateTime.parse(dateTimeString)
-        val formatter: DateTimeFormatter = DateTimeFormatter.ofPattern("HH:mm")
-        return parsedDateTime.format(formatter)
+        eventLiveData.value = eventDetailsRepository.getEvent()
     }
 }
