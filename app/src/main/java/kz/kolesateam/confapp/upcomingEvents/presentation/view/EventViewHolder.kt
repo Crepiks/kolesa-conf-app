@@ -37,9 +37,9 @@ class EventViewHolder(
         title.text = event.title
 
         if (event.isFavorite) {
-            favoriteButton.setImageResource(R.drawable.ic_favorite_fill)
+            favoriteButton.setImageResource(R.drawable.ic_favorite_blue_filled)
         } else {
-            favoriteButton.setImageResource(R.drawable.ic_favorite_border)
+            favoriteButton.setImageResource(R.drawable.ic_favorite_blue_border)
         }
 
         setListeners(event)

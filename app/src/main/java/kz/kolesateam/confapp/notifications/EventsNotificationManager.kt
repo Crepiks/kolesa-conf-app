@@ -46,7 +46,7 @@ class EventsNotificationManager(
         title: String,
         text: String
     ): Notification = NotificationCompat.Builder(context, EVENTS_NOTIFICATION_CHANNEL)
-        .setSmallIcon(R.drawable.ic_favorite_fill)
+        .setSmallIcon(R.drawable.ic_favorite_blue_filled)
         .setContentTitle(title)
         .setContentText(text)
         .setPriority(NotificationCompat.PRIORITY_DEFAULT)

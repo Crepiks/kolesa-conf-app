@@ -73,7 +73,7 @@
         android:layout_gravity="center_horizontal|bottom"
         android:layout_marginBottom="@dimen/activity_branch_events_favorite_button_margin_bottom"
         android:background="@drawable/favorite_button_background"
-        android:drawableLeft="@drawable/ic_favorite_border"
+        android:drawableLeft="@drawable/ic_favorite_blue_border"
         android:drawablePadding="@dimen/activity_branch_events_favorite_button_drawable_padding"
         android:padding="@dimen/activity_branch_events_favorite_button_padding"
         android:text="В избранные"

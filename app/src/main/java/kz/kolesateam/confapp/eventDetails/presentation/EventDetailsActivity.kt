@@ -133,8 +133,8 @@ class EventDetailsActivity : AppCompatActivity() {
 
     private fun setFavoriteButtonResource(isFavorite: Boolean) {
         when (isFavorite) {
-            true -> favoriteButton.setImageResource(R.drawable.ic_favorite_fill)
-            false -> favoriteButton.setImageResource(R.drawable.ic_favorite_border)
+            true -> favoriteButton.setImageResource(R.drawable.ic_favorite_white_filled)
+            false -> favoriteButton.setImageResource(R.drawable.ic_favorite_white_border)
         }
     }
 
