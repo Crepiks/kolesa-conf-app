@@ -18,6 +18,7 @@ import kz.kolesateam.confapp.eventDetails.presentation.EventDetailsActivity
 import kz.kolesateam.confapp.eventDetails.presentation.EventDetailsRouter
 import kz.kolesateam.confapp.extension.gone
 import kz.kolesateam.confapp.extension.show
+import kz.kolesateam.confapp.favorites.presentation.FavoritesRouter
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 private const val DEFAULT_BRANCH_ID = 0
@@ -83,9 +84,13 @@ class BranchEventsActivity : AppCompatActivity() {
 
         favoritesButton = findViewById(R.id.activity_branch_events_favorites_button)
         favoritesButton.setOnClickListener {
-            val intent = Intent(this, EventDetailsActivity::class.java)
-            startActivity(intent)
+            navigateToFavoritesScreen()
         }
+    }
+
+    private fun navigateToFavoritesScreen() {
+        val favoritesIntent: Intent = FavoritesRouter().createIntent(this)
+        startActivity(favoritesIntent)
     }
 
     private fun observerBranchEventsLiveData() {

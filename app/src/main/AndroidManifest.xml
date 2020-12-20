@@ -13,7 +13,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ConfApp"
         android:usesCleartextTraffic="true">
-        <activity android:name=".favorites.presentation.FavoritesActivity"></activity>
         <activity android:name=".hello.presentation.HelloActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,7 +23,8 @@
         <activity android:name=".upcomingEvents.presentation.UpcomingEventsActivity" />
         <activity android:name=".branchEvents.presentation.BranchEventsActivity" />
         <activity android:name=".eventDetails.presentation.EventDetailsActivity" />
-
+        <activity android:name=".favorites.presentation.FavoritesActivity" />
+¬
         <receiver android:name=".notifications.EventsNotificationAlarmBroadcastReceiver" />
     </application>
 
