@@ -38,7 +38,7 @@
                 android:layout_height="@dimen/layout_event_card_favorite_button_height"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="@dimen/layout_event_card_favorite_button_margin_left"
-                android:src="@drawable/ic_favorite_border"
+                android:src="@drawable/ic_favorite_blue_border"
                 />
 
         </LinearLayout>

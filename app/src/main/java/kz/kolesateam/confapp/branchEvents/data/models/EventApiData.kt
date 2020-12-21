@@ -6,7 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty
 @JsonIgnoreProperties(ignoreUnknown = true)
 data class EventApiData(
     @JsonProperty("id")
-    val id: Integer?,
+    val id: Int?,
     @JsonProperty("startTime")
     val startTime: String?,
     @JsonProperty("endTime")

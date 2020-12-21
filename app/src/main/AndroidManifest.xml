@@ -20,8 +20,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".events.presentation.UpcomingEventsActivity" />
+        <activity android:name=".upcomingEvents.presentation.UpcomingEventsActivity" />
         <activity android:name=".branchEvents.presentation.BranchEventsActivity" />
+        <activity android:name=".eventDetails.presentation.EventDetailsActivity" />
+        <activity android:name=".favorites.presentation.FavoritesActivity" />
+¬
+        <receiver android:name=".notifications.EventsNotificationAlarmBroadcastReceiver" />
     </application>
 
 </manifest>
