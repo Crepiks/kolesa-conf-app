@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/activity_upcoming_events_background_color"
+    android:orientation="vertical"
+    tools:context=".upcomingEvents.presentation.UpcomingEventsActivity"
+    >
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="matrix"
+        android:src="@drawable/bg"
+        />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/activity_upcoming_events_events_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:listitem="@layout/item_branch_card"
+        />
+
+    <ProgressBar
+        android:id="@+id/activity_upcoming_events_progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:theme="@style/AppTheme.WhiteAccent"
+        android:visibility="gone"
+        />
+
+    <Button
+        android:id="@+id/activity_upcoming_events_favorites_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal|bottom"
+        android:layout_marginBottom="@dimen/activity_upcoming_events_favorites_button_margin_bottom"
+        android:background="@drawable/favorite_button_background"
+        android:drawableLeft="@drawable/ic_favorite_blue_border"
+        android:drawablePadding="@dimen/activity_upcoming_events_favorites_button_drawable_padding"
+        android:padding="@dimen/activity_upcoming_events_favorites_button_padding"
+        android:text="@string/favorites_button_text"
+        android:textAllCaps="false"
+        android:textColor="@color/favorite_button_text_color"
+        android:textSize="@dimen/activity_upcoming_events_favorites_button_text_size"
+        />
+
+</FrameLayout>

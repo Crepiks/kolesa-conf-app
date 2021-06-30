@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="edit_text_stroke_width">1dp</dimen>
+    <dimen name="edit_text_corner_radius">3dp</dimen>
+    <dimen name="button_stroke_width">1dp</dimen>
+    <dimen name="button_corners_radius">3dp</dimen>
+
+    <dimen name="activity_hello_header_height">210dp</dimen>
+    <dimen name="activity_hello_logo_margin_top">40dp</dimen>
+    <dimen name="activity_hello_content_padding">16dp</dimen>
+    <dimen name="activity_hello_title_size">24sp</dimen>
+    <dimen name="activity_hello_edit_text_height">44dp</dimen>
+    <dimen name="activity_hello_edit_text_margin_top">16dp</dimen>
+    <dimen name="activity_hello_edit_text_padding_horizontal">16dp</dimen>
+    <dimen name="activity_hello_continue_button_margin_top">16dp</dimen>
+    <dimen name="activity_hello_continue_button_padding">10dp</dimen>
+    <dimen name="activity_hello_continue_button_text_size">16sp</dimen>
+
+    <dimen name="item_upcoming_events_header_logo_margin_vertical">16dp</dimen>
+    <dimen name="item_upcoming_events_header_greeting_margin_left">16dp</dimen>
+    <dimen name="item_upcoming_events_header_margin_bottom">24dp</dimen>
+
+    <dimen name="activity_upcoming_events_favorites_button_margin_bottom">20dp</dimen>
+    <dimen name="activity_upcoming_events_favorites_button_drawable_padding">8dp</dimen>
+    <dimen name="activity_upcoming_events_favorites_button_padding">16dp</dimen>
+    <dimen name="activity_upcoming_events_favorites_button_text_size">16sp</dimen>
+
+    <dimen name="item_upcoming_event_card_width">288dp</dimen>
+
+    <dimen name="item_branch_card_padding_left">24dp</dimen>
+    <dimen name="item_branch_card_padding_bottom">42dp</dimen>
+    <dimen name="item_branch_card_header_margin_bottom">16dp</dimen>
+    <dimen name="item_branch_card_title_width">0dp</dimen>
+    <dimen name="item_branch_card_title_size">24sp</dimen>
+    <dimen name="item_branch_card_arrow_icon_width">14dp</dimen>
+    <dimen name="item_branch_card_arrow_icon_height">12dp</dimen>
+    <dimen name="item_branch_card_arrow_icon_margin_right">8dp</dimen>
+
+    <dimen name="item_event_card_padding_right">8dp</dimen>
+
+    <dimen name="layout_event_card_width">280dp</dimen>
+    <dimen name="layout_event_card_padding">16dp</dimen>
+    <dimen name="layout_event_card_placement_size">14sp</dimen>
+    <dimen name="layout_event_card_favorite_button_width">14dp</dimen>
+    <dimen name="layout_event_card_favorite_button_height">14dp</dimen>
+    <dimen name="layout_event_card_speaker_name_margin_top">8dp</dimen>
+    <dimen name="layout_event_card_speaker_name_size">14sp</dimen>
+    <dimen name="layout_event_card_position_size">13sp</dimen>
+    <dimen name="layout_event_card_title_margin_top">8dp</dimen>
+    <dimen name="layout_event_card_title_size">14sp</dimen>
+    <dimen name="layout_event_card_corner_radius">3dp</dimen>
+    <dimen name="layout_event_card_favorite_button_margin_left">20dp</dimen>
+
+    <dimen name="activity_branch_events_header_padding_vertical">16dp</dimen>
+    <dimen name="activity_branch_events_header_padding_horizontal">21dp</dimen>
+    <dimen name="activity_branch_events_favorite_button_margin_bottom">20dp</dimen>
+    <dimen name="activity_branch_events_favorite_button_drawable_padding">8dp</dimen>
+    <dimen name="activity_branch_events_favorite_button_padding">16dp</dimen>
+    <dimen name="activity_branch_events_favorite_button_text_size">16sp</dimen>
+
+    <dimen name="item_branch_event_card_padding_bottom">16dp</dimen>
+    <dimen name="item_branch_event_card_width">312dp</dimen>
+
+    <dimen name="item_branch_events_header_padding_bottom">32dp</dimen>
+    <dimen name="item_branch_events_header_title_size">24dp</dimen>
+
+    <dimen name="activity_event_details_header_padding">20dp</dimen>
+    <dimen name="activity_event_details_favorite_icon_width">16dp</dimen>
+    <dimen name="activity_event_details_favorite_icon_height">16dp</dimen>
+    <dimen name="activity_event_details_speaker_image_height">280dp</dimen>
+    <dimen name="activity_event_details_text_content_padding">16dp</dimen>
+    <dimen name="activity_event_details_speaker_name_text_size">18sp</dimen>
+    <dimen name="activity_event_details_speaker_job_text_size">12sp</dimen>
+    <dimen name="activity_event_details_dividers_vertical_margin">16dp</dimen>
+    <dimen name="activity_event_details_dividers_vertical_padding">8dp</dimen>
+    <dimen name="activity_event_details_divider_height">1dp</dimen>
+    <dimen name="activity_event_details_time_and_place_text_size">16sp</dimen>
+    <dimen name="activity_event_details_title_size">18sp</dimen>
+    <dimen name="activity_event_details_description_size">16sp</dimen>
+    <dimen name="activity_event_details_description_margin_top">8dp</dimen>
+
+    <dimen name="activity_favorites_header_vertical_padding">20dp</dimen>
+    <dimen name="activity_favorites_home_button_margin_bottom">20dp</dimen>
+    <dimen name="activity_favorites_home_button_drawable_padding">8dp</dimen>
+    <dimen name="activity_favorites_home_button_padding">16dp</dimen>
+    <dimen name="activity_favorites_home_button_text_size">16sp</dimen>
+    <dimen name="activity_favorites_empty_image_margin_bottom">24dp</dimen>
+    <dimen name="activity_favorites_empty_text_size">18sp</dimen>
+
+    <dimen name="item_favorites_event_card_padding_bottom">16dp</dimen>
+    <dimen name="item_favorites_event_card_width">312dp</dimen>
+</resources>

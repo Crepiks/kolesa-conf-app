@@ -7,4 +7,36 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="color_primary_dark">#051021</color>
+    <color name="text_primary_dark">#1C1819</color>
+    <color name="edit_text_background">#00717171</color>
+    <color name="edit_text_stroke">#1C181932</color>
+    <color name="button_background_disabled">#1A858585</color>
+    <color name="button_stroke_disabled">#331C1819</color>
+    <color name="button_background_enabled">#2A81DD</color>
+
+    <color name="activity_hello_header_background">#051021</color>
+
+    <color name="activity_upcoming_events_background_color">#051021</color>
+    <color name="activity_upcoming_events_branch_name_color">#FFFFFF</color>
+
+    <color name="item_event_card_background_color">#FFFFFF</color>
+    <color name="item_event_card_speaker_name_color">#1C1819</color>
+    <color name="item_event_card_speaker_position_color">#888B94</color>
+    <color name="item_event_card_description_color">#1C1819</color>
+
+    <color name="item_upcoming_events_heading_greeting_color">#FAFAFA</color>
+
+    <color name="activity_branch_events_background_color">#051021</color>
+
+    <color name="item_branch_events_header_title_color">#FFFFFF</color>
+
+    <color name="favorite_button_text_color">#2A81DD</color>
+
+    <color name="activity_event_details_background_color">#051021</color>
+    <color name="activity_event_details_text_color">#ffffff</color>
+    <color name="activity_event_details_divider_background_color">#ffffff</color>
+
+    <color name="activity_favorites_background_color">#051021</color>
+    <color name="activity_favorites_text_color">#ffffff</color>
 </resources>
